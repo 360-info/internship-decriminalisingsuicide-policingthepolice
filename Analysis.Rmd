@@ -1,0 +1,90 @@
+---
+title: "De-Criminalizing Suicide: Analysis"
+author: "Nishtha Arora"
+output: html_document
+date: "2023-03-19"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Research statements
+
+- India’s Mental Healthcare Act 2017 is not enough to help decriminalize suicide. There are still loopholes as to what is the limit of severe stress when deciding the case of attempted suicide.
+
+- Importance and limitations of suicide registry database in providing data and information for suicide intervention programmes. As one of the effects of criminalizing suicide is the lack of data and resources available for meaningful reporting and evaluation of suicide cases.
+
+- Actions and solutions on what should countries like Msia prepare in their move to decriminalize suicide. 
+# Data sources 
+https://ourworldindata.org/suicide
+https://ourworldindata.org/world-population-growth
+
+# Analysis
+
+- On the basis on death rate
+
+```{r libraries}
+library(readr)
+library(tidyverse)
+```
+
+```{r reading data}
+data2 <- read_csv("data/suicide-death-rates.csv")
+```
+
+```{r}
+filtered <- data2 %>% filter(between(Year, ('2008'),('2017'))) %>% 
+  group_by(Entity) %>% 
+  summarise(avg_rate=mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`)) %>% 
+  arrange(desc(avg_rate))
+```
+
+
+
+- On the basis of just count
+
+```{r reading data}
+data1 <- read_csv("data/Data1.csv")
+trimmed<- data1 %>% mutate(data1$Entity==(trimws(data1$Entity)))
+  
+count <- trimmed %>% filter(between(Year, ('2008'),('2017'))) %>% 
+  select(Entity, `Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`, Year) %>% 
+  group_by(Entity) %>% 
+  summarise(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`= mean(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`)) 
+```
+
+```{r}
+data2 <- read_csv("data/population-and-demography.csv") %>% 
+  filter(between(Year, ('2008'),('2017'))) %>% 
+  group_by(`Country name`) %>% 
+  summarise(pop_avg= mean(Population))
+```
+
+
+## Top 10 countries with most deaths due to self harm for years 2008-2017 (10 years)
+
+```{r}
+# count <- trimmed %>% 
+#   filter(between(Year, ('2008'),('2017'))) %>% 
+#   select(Entity, `Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`) %>% 
+#   group_by(Entity) %>% 
+#   summarise(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`= mean(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`)) %>% 
+#   arrange(desc(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`)) %>% 
+#   tail(-8) %>% 
+#   slice(-c(2, 3, 4, 5, 7,8,9, 10, 13, 14,15,17)) %>% 
+#   head(10)
+```
+
+```{r}
+# ggplot(count, aes(x=Entity, y=`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)` , fill=Entity))+
+#   geom_col()+
+#  labs(title="Top 10 countries with maximum suicides", 
+#          x="Country",
+#       y="Count")+
+#  theme(legend.position="none")+
+#  scale_y_continuous(labels =scales::comma )+
+#   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
+```
+
+
