@@ -29,6 +29,8 @@ library(readr)
 library(tidyverse)
 ```
 
+## Top 10 countries with most deaths due to self harm for years 2008-2017 (10 years)
+
 ```{r reading data}
 data2 <- read_csv("data/suicide-death-rates.csv")
 ```
@@ -37,54 +39,42 @@ data2 <- read_csv("data/suicide-death-rates.csv")
 filtered <- data2 %>% filter(between(Year, ('2008'),('2017'))) %>% 
   group_by(Entity) %>% 
   summarise(avg_rate=mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`)) %>% 
-  arrange(desc(avg_rate))
-```
-
-
-
-- On the basis of just count
-
-```{r reading data}
-data1 <- read_csv("data/Data1.csv")
-trimmed<- data1 %>% mutate(data1$Entity==(trimws(data1$Entity)))
-  
-count <- trimmed %>% filter(between(Year, ('2008'),('2017'))) %>% 
-  select(Entity, `Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`, Year) %>% 
-  group_by(Entity) %>% 
-  summarise(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`= mean(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`)) 
+  arrange(desc(avg_rate)) %>% 
+  head(10)
 ```
 
 ```{r}
-data2 <- read_csv("data/population-and-demography.csv") %>% 
-  filter(between(Year, ('2008'),('2017'))) %>% 
-  group_by(`Country name`) %>% 
-  summarise(pop_avg= mean(Population))
+ggplot(filtered, aes(x=Entity, y=avg_rate , fill=Entity))+
+  geom_col()+
+ labs(title="Top 10 countries with maximum suicides",
+         x="Country",
+      y="Rate")+
+ theme(legend.position="none")+
+ scale_y_continuous(labels =scales::comma )+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 ```
 
 
-## Top 10 countries with most deaths due to self harm for years 2008-2017 (10 years)
-
 ```{r}
-# count <- trimmed %>% 
-#   filter(between(Year, ('2008'),('2017'))) %>% 
-#   select(Entity, `Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`) %>% 
+# data1 <- read_csv("data/Data1.csv")
+# trimmed<- data1 %>% mutate(data1$Entity==(trimws(data1$Entity)))
+#   
+# count <- trimmed %>% filter(between(Year, ('2008'),('2017'))) %>% 
+#   select(Entity, `Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`, Year) %>% 
 #   group_by(Entity) %>% 
-#   summarise(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`= mean(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`)) %>% 
-#   arrange(desc(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`)) %>% 
-#   tail(-8) %>% 
-#   slice(-c(2, 3, 4, 5, 7,8,9, 10, 13, 14,15,17)) %>% 
-#   head(10)
+#   summarise(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`= mean(`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`)) 
+# 
+# data2 <- read_csv("data/population-and-demography.csv") %>% 
+#   filter(between(Year, ('2008'),('2017'))) %>% 
+#   group_by(`Country name`) %>% 
+#   summarise(pop_avg= mean(Population)) %>% 
+#   rename("Entity" =`Country name`)
+# 
+# join <- full_join(count,data2,
+#           by = c("Entity")) %>% 
+#   mutate(d= (`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)`/pop_avg)*100) %>% 
+#   arrange(desc(d))
 ```
 
-```{r}
-# ggplot(count, aes(x=Entity, y=`Deaths - Self-harm - Sex: Both - Age: All Ages (Number)` , fill=Entity))+
-#   geom_col()+
-#  labs(title="Top 10 countries with maximum suicides", 
-#          x="Country",
-#       y="Count")+
-#  theme(legend.position="none")+
-#  scale_y_continuous(labels =scales::comma )+
-#   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
-```
 
 
