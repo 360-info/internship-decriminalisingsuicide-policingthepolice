@@ -97,9 +97,9 @@ join <- full_join(filtered, data3) %>%
 ```
 
 ```{r}
-# one <- join %>% filter(y== "HIGH HUMAN DEVELOPMENT") %>% head(10)
-# two <- join %>% filter(y== "VERY HIGH HUMAN DEVELOPMENT") %>% head(10)
-# three <- join %>% filter(y== "MEDIUM HUMAN DEVELOPMENT")%>% head(10)
+one <- join %>% filter(y== "HIGH HUMAN DEVELOPMENT") %>% head(10) %>% arrange()
+two <- join %>% filter(y== "VERY HIGH HUMAN DEVELOPMENT") %>% head(10) %>% arrange()
+three <- join %>% filter(y== "MEDIUM HUMAN DEVELOPMENT")%>% head(10)%>% arrange()
 ```
 
 # Visualization for top 10 countries (in terms of highest average suicide rates of years 2008-2017) of each selected category.
@@ -117,6 +117,18 @@ ggplot(plot1, aes(x=Entity, y=avg_rate, fill=y))+
 
 
 
+# Suicides in India due to Mental Health? How many people have mental health issues?
+How many are getting treated for it?
+
+# Which countries de-criminalize it, and which dont. So if they do, why not india at this number?
+
+# 
+
+
+
+
+
+https://www.kaggle.com/datasets/gauravdahiya/all-india-distribution-of-suicides-during-2018?resource=download
 
 
 
