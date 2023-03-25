@@ -8,6 +8,7 @@ output: html_document
 # Mental health % in india, 2000-2017
 
 https://www.kaggle.com/datasets/osmi/mental-health-in-tech-survey
+https://ourworldindata.org/mental-health
 
 ```{r}
 library(lubridate)
@@ -46,5 +47,5 @@ ggplot(data6, aes(x=Year, y= Menatl_illness_percent))+
   geom_line()
 ```
 
-# want to get suicides from mental illness
+
 
