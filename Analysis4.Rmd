@@ -1,0 +1,50 @@
+---
+title: "Analysis 4"
+author: "Nishtha Arora"
+date: "2023-03-25"
+output: html_document
+---
+
+# Mental health % in india, 2000-2017
+
+https://www.kaggle.com/datasets/osmi/mental-health-in-tech-survey
+
+```{r}
+library(lubridate)
+```
+
+```{r}
+data4 <- read_csv("data/Mental health Depression disorder Data.csv") %>% 
+  filter(Entity == "India")
+```
+
+```{r}
+data5 <- data4 %>% 
+  filter(Year %in% c(2000: 2019)) %>% 
+  head(18) %>% 
+  mutate(index=as.character(index))
+```
+
+```{r}
+str(data5)
+```
+
+```{r}
+data6 <- data5 %>% 
+  group_by(Year) %>% 
+mutate(Menatl_illness_percent = sum(across(where(is.numeric))),
+       Year=as.numeric(Year)) %>% 
+  select(Year, Menatl_illness_percent) 
+```
+
+```{r}
+str(data6)
+```
+
+```{r}
+ggplot(data6, aes(x=Year, y= Menatl_illness_percent))+
+  geom_line()
+```
+
+# want to get suicides from mental illness
+

@@ -37,6 +37,7 @@ Plot showing trend of suicide rates form 2000 to 2019 in India.
 
 ```{r}
 ggplot(Anyl, aes(x=year, y=Total))+
-  geom_line()
+  geom_line()+
+  ggtitle("Suicide rate for India, 2000-2019")
 ```
 
