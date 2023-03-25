@@ -1,0 +1,90 @@
+---
+title: "Analysis 3"
+author: "Nishtha Arora"
+date: "2023-03-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Data sources: http://www.diva-gis.org/datadown
+
+# 2001- 2012 statewise India
+
+```{r libraries}
+library(readr)
+library(tidyverse)
+library(readxl)
+library(lubridate)
+```
+
+```{r}
+india_su <- read_csv("data/Suicides in India 2001-2012 2.csv") %>% 
+  slice(1 : 209476)
+
+india_su2 <- read_csv("data/Suicides in India 2001-2012 2.csv") %>% 
+  slice(210413 :237520)
+
+join <- full_join(india_su, india_su2) %>% 
+  slice(-c( 183557, 183558))
+ 
+```
+
+```{r}
+#str(join)
+```
+
+```{r}
+india_map <- join %>% select(State, Total) %>% 
+  group_by(State) %>% 
+    summarise(Total= mean(Total)) %>% 
+  mutate(Total=round(Total, digits = 2)) 
+
+
+#str(india_map$Total)
+  
+#mutate(Total=format(Total, scientific = FALSE))
+
+```
+
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+library(ggmap)
+library(maps)
+library(rgdal)
+library(scales)
+library(maptools)
+library(gridExtra)
+library(rgeos)
+```
+
+```{r}
+states_shape = readShapeSpatial("IND_adm/IND_adm1.shp")
+class(states_shape)
+names(states_shape)
+print(states_shape$ID_1)
+print(states_shape$NAME_1)
+plot(states_shape, main = "Administrative Map of India")
+```
+
+```{r}
+fortify_shape = fortify(states_shape, region = "ID_1")
+class(fortify_shape)
+```
+
+```{r}
+Merged_data = merge(fortify_shape, State_data, by="id", all.x=TRUE)
+Map_plot = Merged_data[order(Merged_data$order), ]
+```
+
+```{r}
+ggplot() +
+  geom_polygon(data = Map_plot,
+           	aes(x = long, y = lat, group = group, fill = score),
+      	     color = "black", size = 0.5) +
+  coord_map()
+```
+
