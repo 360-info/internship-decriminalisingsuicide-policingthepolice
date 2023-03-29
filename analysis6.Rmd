@@ -20,6 +20,7 @@ library(readr)
 library(tidyverse)
 library(readxl)
 library(lubridate)
+library(themes360info)
 ```
 
 ```{r}
@@ -90,8 +91,12 @@ mental_and_substance_use <- read_csv("data/analy5/mental-and-substance-use-as-sh
   
 ggplot(mental_and_substance_use, aes(x=Year, y=`DALYs (Disability-Adjusted Life Years) - Mental disorders - Sex: Both - Age: All Ages (Percent)`))+
   geom_line()
+```
 
 
+```{r testing}
+p2 <- ggplot(mtcars) + aes(hp, mpg) + geom_point() + labs(title = "Big chart", caption = "**CHART:** Nish") + theme_360()
+save_360plot(p2, "testplot2.png")
 ```
 
 
