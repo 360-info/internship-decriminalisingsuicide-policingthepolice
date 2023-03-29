@@ -13,3 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Ans- (IF) less deaths in countries de crimalizing or a decreae after it decrimaize- then good.
 
+```{r}
+I 
+```
+

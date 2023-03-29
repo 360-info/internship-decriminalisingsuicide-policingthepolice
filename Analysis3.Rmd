@@ -97,7 +97,7 @@ ggplot() +
            	aes(x = long, y = lat, group = group, fill = Rate),
       	     color = "black", linewidth = 0.25) +
   coord_map()+
-  scale_fill_gradient(name="State", limits=c(0,100), low = 'white', high = 'red')+
+  scale_fill_gradient(name="State", low = 'white', high = 'red')+
   labs(title="Average Suicide Rate: India 2000-2012")+
   xlab('Longitude')+
   ylab('Latitude')
