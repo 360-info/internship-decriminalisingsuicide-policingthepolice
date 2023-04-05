@@ -1,0 +1,36 @@
+---
+title: "Article 1"
+author: "Nishtha Arora"
+date: "2023-04-04"
+output: html_document
+---
+HEADLINE: What a suicide registry database should look like
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Countries where suicide act changed from illegal to legal- their suicide rate increaed beacuse more reporting.
+
+- Malaysia- 2021 changed
+
+```{r libraries}
+library(readr)
+library(tidyverse)
+library(readxl)
+```
+
+Data source- https://ourworldindata.org/suicide
+
+```{r}
+death_rate_from_suicides_gho <- read_csv("data/branch2/death-rate-from-suicides-gho.csv")
+```
+
+```{r}
+ggplot(death_rate_from_suicides_gho, aes(x=))
+```
+
+```{r}
+```
+
+
