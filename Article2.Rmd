@@ -17,6 +17,11 @@ Data source- https://ourworldindata.org/suicide
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
+```{r libraries}
+library(readr)
+library(tidyverse)
+library(readxl)
+```
 Bangladesh suicide rate for 2019 was 3.70, a 2.78% increase from 2018.
 
 ```{r}
@@ -37,7 +42,7 @@ str(Bangladesh)
 
 
 ```{r}
-plot <- ggplot(Bangladesh, aes(x=Year, y=`Age-standardized suicide rate - Sex: both sexes` ))+
+ggplot(Bangladesh, aes(x=Year, y=`Age-standardized suicide rate - Sex: both sexes` ))+
   geom_line(color="steelblue")+
   geom_point()+
   ylab("Suicide Rate")+

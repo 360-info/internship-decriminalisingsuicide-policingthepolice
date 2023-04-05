@@ -1,0 +1,49 @@
+---
+title: "Article3"
+author: "Nishtha Arora"
+date: "2023-04-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries}
+library(readr)
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+filtered <- death_rate_from_suicides_gho <- read_csv("data/branch2/death-rate-from-suicides-gho.csv") %>% 
+  filter(Entity %in% c("India", "Maldives", "Afghanistan", "Nepal", "Bangladesh", "Bhutan", "Sri Lanka", "Pakistan"))
+```
+
+
+```{r}
+ggplot(filtered, aes(colour=Entity, y=`Age-standardized suicide rate - Sex: both sexes`, x=Year))+
+  geom_line()+
+  geom_point()+
+  ylab("Suicide rate")+
+  ggtitle("South Asian Countries")+
+  scale_colour_brewer(type = "seq", palette = "Dark2")+
+  theme_classic()
+
+
+```
+
+```{r}
+ggplot(filtered, aes(x=Entity, y=`Age-standardized suicide rate - Sex: both sexes`, fill=Year))+
+  geom_col()
+```
+
+```{r}
+article3 <- filtered %>% 
+  filter(Entity== "Pakistan")
+```
+
+```{r}
+ggplot(article3, aes(x=Year, y=`Age-standardized suicide rate - Sex: both sexes`))+
+  geom_line()
+```

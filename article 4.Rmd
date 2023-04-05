@@ -1,0 +1,31 @@
+---
+title: "Article 4"
+author: "Nishtha Arora"
+date: "2023-04-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Countries where suicide is illegal
+
+```{r}
+illegal <- death_rate_from_suicides_gho <- read_csv("data/branch2/death-rate-from-suicides-gho.csv") %>% 
+  filter(Entity %in% c("Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia", "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar", "Saint Lucia", "Somalia", "South Sudan", "Sudan", "Tanzania", "Tonga", "Uganda", "Brunei"))
+```
+
+```{r}
+unique(illegal$Entity)
+```
+
+```{r}
+colnames(illegal)
+```
+
+
+```{r}
+ggplot(illegal, aes(colour=Entity, y= `Age-standardized suicide rate - Sex: both sexes`, x=Year))+
+  geom_line()
+```
