@@ -23,6 +23,9 @@ library(readxl)
 Data source- https://ourworldindata.org/suicide
 
 
+```{r}
+death_rate_from_suicides_gho <- read_csv("data/branch2/death-rate-from-suicides-gho.csv")
+```
 
 ```{r}
 change <- death_rate_from_suicides_gho %>% 
