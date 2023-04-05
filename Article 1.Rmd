@@ -22,15 +22,18 @@ library(readxl)
 
 Data source- https://ourworldindata.org/suicide
 
-```{r}
-death_rate_from_suicides_gho <- read_csv("data/branch2/death-rate-from-suicides-gho.csv")
-```
+
 
 ```{r}
-ggplot(death_rate_from_suicides_gho, aes(x=))
+change <- death_rate_from_suicides_gho %>% 
+  filter(Entity %in% c("Eswatini", "Lesotho")
+)
+ggplot(change, aes(colour=Entity, y= `Age-standardized suicide rate - Sex: both sexes`, x=Year))+
+  geom_line()+
+  geom_point()+
+  theme_minimal()+
+  ylab("Suicide rate")+
+  ggtitle("Countries with questionable plot")
 ```
 
-```{r}
-```
-
-
+In Lesotho, in 2014 the government was changed, maybe data wasnt collected properly and thoroughly then and hence a drop?
