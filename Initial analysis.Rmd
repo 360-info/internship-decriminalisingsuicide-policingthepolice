@@ -1,0 +1,138 @@
+---
+title: "De-Criminalizing Suicide:  Initial Analysis"
+author: "Nishtha Arora"
+output: html_document
+date: "2023-03-19"
+---
+# Initial Analysis 1
+
+## COMPARISON WITH DEVELOPMENT STATUS. 2008-2019.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+### Data sources 
+1. Using data from 2008-2019 (12 years), worldwide suicide rates- 
+https://ourworldindata.org/suicide
+
+2. Using HDI data for High, Very high and medium development country recognition- http://hdr.undp.org/en/composite/HDI
+
+
+```{r libraries}
+library(readr)
+library(tidyverse)
+library(readxl)
+```
+
+```{r cleaning}
+read_data <- function(x,y,z){
+  read_excel("data/InitialA1/HDIstatus.xlsx", rang = x,col_names = FALSE) %>% 
+    rename(HDI_rank_2021 = ...1, 
+           Country = ...2, 
+           HDI_Value = ...3, 
+           Life_expectancy = ...5, 
+           Expected_years_of_schooling = ...7, 
+           Mean_years_of_schooling = ...9, 
+           GNI_per_capita = ...11, 
+           GNI_rank_minus_HDI_rank = ...13, 
+           HDI_rank_2020 = ...15)} %>% 
+  select(HDI_rank_2021, Country, HDI_Value,
+         Life_expectancy, Expected_years_of_schooling, 
+         Mean_years_of_schooling, GNI_per_capita, 
+         GNI_rank_minus_HDI_rank, HDI_rank_2020) %>% 
+  mutate(y = z )
+
+
+VERY_HIGH_HUMAN_DEVELOPMENT <- 
+  read_data('A9:O74',Degree_of_Human_Development, 'VERY HIGH HUMAN DEVELOPMENT')
+
+HIGH_HUMAN_DEVELOPMENT <- 
+  read_data('A76:O128', Degree_of_Human_Development, 'HIGH HUMAN DEVELOPMENT' ) 
+
+MEDIUM_HUMAN_DEVELOPMENT <- 
+  read_data('A130:O166', Degree_of_Human_Development, 'MEDIUM HUMAN DEVELOPMENT' ) 
+
+LOW_HUMAN_DEVELOPMENT <- 
+  read_data('A168:O200', Degree_of_Human_Development, 'LOW HUMAN DEVELOPMENT' )
+
+HDI <- bind_rows(VERY_HIGH_HUMAN_DEVELOPMENT,HIGH_HUMAN_DEVELOPMENT,MEDIUM_HUMAN_DEVELOPMENT,LOW_HUMAN_DEVELOPMENT)
+
+write_csv(HDI, "data/InitialA1/HDIStatus2.csv")
+```
+
+```{r}
+data3 <- read_csv("data/InitialA1/HDIStatus2.csv") %>% 
+  rename("Entity"= Country)
+```
+
+```{r reading data}
+data2 <- read_csv("data/InitialA1/suicide-death-rates.csv")
+```
+
+```{r}
+setdiff(data2$Entity, data3$Entity)
+
+change <- data2 %>%
+  mutate(Entity = recode(Entity,
+    "American Samoa" = "Samoa",
+    "Bolivia" = "Bolivia (Plurinational State of)",
+    "Brunei"= "Brunei Darussalam",
+    "Cape Verde"= "Cabo Verde",
+    "Cote d'Ivoire"="Côte d'Ivoire",
+    "Democratic Republic of Congo"= "Congo (Democratic Republic of the)",
+    "Eswatini"= "Eswatini (Kingdom of)",
+    "Iran"= "Iran (Islamic Republic of)",
+    "Laos"= "Lao People's Democratic Republic",
+    "Micronesia (country)"= "Micronesia (Federated States of)",
+    "North Korea"= "Korea (Republic of)",
+    "Northern Ireland"= "Ireland",
+    "Palestine"= "Palestine, State of",
+    "Russia"= "Russian Federation",
+    "South Sudan"= "Sudan",
+    "Syria"= "Syrian Arab Republic",
+    "Timor"= "Timor-Leste",
+    "Venezuela"= "Venezuela (Bolivarian Republic of)",
+    "Vietnam"= "Viet Nam"
+    ))
+```
+
+
+```{r}
+filtered <- change %>% filter(Year > 2007) %>% 
+  group_by(Entity) %>% 
+  summarise(avg_rate=mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))
+```
+
+
+```{r}
+join <- full_join(filtered, data3) %>% 
+  arrange(desc(avg_rate)) %>% na.omit() %>% 
+  rename(`Development status` = y) %>% 
+  mutate(avg_rate= round(avg_rate, digits=2))
+
+```
+
+### Visualization for top 30 countries with maximum suicide rates
+
+```{r}
+plot1 <- join %>% head(30)
+ggplot(plot1, aes(x=reorder(Entity, -avg_rate), y=avg_rate, fill=`Development status`))+
+  geom_col()+
+geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size=3)+
+  theme(legend.position="bottom",
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
+  labs(title="Top 30 countries with maximum suicides, 2008-2019",
+         x=substitute(paste(bold("Country"))),
+      y=substitute(paste(bold("Suicide rate per 100,000 people"))))+
+  scale_fill_manual(values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))+
+   theme(plot.title = element_text(face="bold"))
+```
+
+# Initial Analysis 2
+
+## India's Mental Health Act 2017
+
+
+
+
