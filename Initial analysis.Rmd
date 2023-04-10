@@ -9,7 +9,7 @@ date: "2023-03-19"
 ## COMPARISON WITH DEVELOPMENT STATUS. 2008-2019.
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=12, fig.height=8)
 ```
 
 ### Data sources 
@@ -71,7 +71,7 @@ data2 <- read_csv("data/InitialA1/suicide-death-rates.csv")
 ```
 
 ```{r}
-setdiff(data2$Entity, data3$Entity)
+# setdiff(data2$Entity, data3$Entity)
 
 change <- data2 %>%
   mutate(Entity = recode(Entity,
@@ -132,6 +132,54 @@ geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size=3)+
 # Initial Analysis 2
 
 ## India's Mental Health Act 2017
+
+### Suicide Rates & reported mental health issues before and after 2017
+
+Data source: https://data.worldbank.org/indicator/SH.STA.SUIC.P5?locations=IN
+https://ourworldindata.org/mental-health
+
+```{r}
+library(ggthemes)
+library(reshape2)
+
+Anyl2 <- data2 %>% filter(Entity == "India") %>% 
+  filter(Year >1999)
+
+data4 <- read_csv("data/InitialA1/share-with-mental-and-substance-disorders.csv")%>% 
+  filter(Entity == "India")  %>% 
+  filter(Year >1999)
+
+change_join <- full_join(Anyl2, data4, by = c("Year", "Code", "Entity")) %>%  
+  select(-c(Entity, Code))
+final_join <-  melt(change_join, id.vars = "Year") %>%
+  mutate(variable = recode(variable,
+    "Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)" = "Suicide",
+    "Prevalence - Mental disorders - Sex: Both - Age: Age-standardized (Percent)"= "Mental Health disorder"
+    ))
+```
+
+
+```{r}
+ggplot(final_join, aes(x=Year, y=value, col=variable))+
+  geom_line()+
+  ylab(substitute(paste(bold("Rate per 100,000 people"))))+
+  xlab(substitute(paste(bold(Year))))+
+  geom_point(color="brown", size=1.5)+
+  ggtitle("Time-series for India, 2000-2019")+
+ theme_economist()+
+   theme(plot.title = element_text(size=14, lineheight=.8))+
+
+  geom_vline(xintercept = 2017, linetype = "dashed")+
+  scale_x_continuous(breaks = seq(from= 2000,to=2019, by =1 ))+
+scale_color_manual(values=c('Brown','Purple', 'Black'))+
+  geom_text(aes(x = 2005 , y = 18.5, label = "Suicide Rate", colour = "Black")) +
+geom_text(aes(x = 2010, y = 14.2, label = "Mental Disorder rate", colour= "Black"))+
+  theme(legend.position = "none")
+```
+
+
+
+
 
 
 
