@@ -110,7 +110,7 @@ change <- suicide_rates %>%
 
 ```{r}
 # calculate the average death rate over 2008 to latest
-filtered <- change %>%
+selected_suicide_rates <- change %>%
   filter(Year > 2007) %>%
   group_by(Entity) %>%
   summarise(avg_rate = mean(
@@ -118,7 +118,7 @@ filtered <- change %>%
 ```
 
 ```{r}
-join <- full_join(filtered, tidied_hdi_data) %>%
+join <- full_join(selected_suicide_rates, tidied_hdi_data) %>%
   arrange(desc(avg_rate)) %>%
   na.omit() %>%
   rename(`Development status` = Degree_of_Human_Development) %>%
@@ -323,35 +323,48 @@ source- https://pubmed.ncbi.nlm.nih.gov/31474777/
 ## Visualization for South Asian countries
 
 ```{r}
-filtered <- global_suicide_rates %>% 
-  filter(Location %in% c("India", "Maldives", "Afghanistan", "Nepal", "Bangladesh", "Bhutan", "Sri Lanka", "Pakistan"))
+selected_suicide_rates <-
+  global_suicide_rates %>% 
+  filter(Location %in% c("India", "Maldives", "Afghanistan", "Nepal",
+    "Bangladesh", "Bhutan", "Sri Lanka", "Pakistan"))
 
-ggplot(filtered, aes(colour=Location, y=FactValueNumeric, x=Period ))+
-  geom_line()+
-  geom_point()+
-  ylab("Suicide rate")+
-  ggtitle("South Asian Countries")+
-  scale_colour_brewer(type = "seq", palette = "Dark2")+
+ggplot(
+  selected_suicide_rates,
+  aes(colour = Location, y = FactValueNumeric, x = Period)) +
+  geom_line() +
+  geom_point() +
+  ylab("Suicide rate") +
+  ggtitle("South Asian Countries") +
+  scale_colour_brewer(type = "seq", palette = "Dark2") +
   theme_classic()
 ```
 
 ```{r}
-article3 <- filtered %>% 
+pakistan_suicide_rates <-
+  selected_suicide_rates %>%
   filter(Location== "Pakistan")
 
-ggplot(article3, aes(colour=Location, y=FactValueNumeric, x=Period ))+
+ggplot(
+  pakistan_suicide_rates,
+  aes(colour = Location, y = FactValueNumeric, x = Period)) +
   geom_line()
 ```
 
-# Initial Analysis 6
+# Initial Analysis 7
 
 ## Countries where suicide is illegal
 
 ```{r}
-illegal <- global_suicide_rates %>% 
-  filter(Location %in% c("Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia", "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar", "Saint Lucia", "Somalia", "South Sudan", "Sudan", "Tanzania", "Tonga", "Uganda", "Brunei"))
+criminalised_countries <- global_suicide_rates %>% 
+  filter(Location %in% c(
+    "Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia",
+    "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar",
+    "Saint Lucia", "Somalia", "South Sudan", "Sudan", "Tanzania", "Tonga",
+    "Uganda", "Brunei"))
 
-ggplot(illegal, aes(colour=Location, y=FactValueNumeric, x=Period ))+
+ggplot(
+  criminalised_countries,
+  aes(colour = Location, y = FactValueNumeric, x = Period)) +
   geom_line()
 ```
 
