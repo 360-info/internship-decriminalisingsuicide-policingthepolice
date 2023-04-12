@@ -302,9 +302,9 @@ global_suicide_rates %>%
 # Suicide prevention in Bangladesh: The current state and the way forward
 
 ```{r}
-Bangladesh <- global_suicide_rates %>% filter(Location == "Bangladesh")
+bangladesh <- global_suicide_rates %>% filter(Location == "Bangladesh")
 
-ggplot(Bangladesh, aes(x = Period, y = FactValueNumeric)) +
+ggplot(bangladesh, aes(x = Period, y = FactValueNumeric)) +
   geom_line(color = "steelblue") +
   geom_point() +
   ylab("Suicide rate") +
@@ -355,7 +355,7 @@ ggplot(
 ## Countries where suicide is illegal
 
 ```{r}
-criminalised_countries <- global_suicide_rates %>% 
+criminalised_countries <- global_suicide_rates %>%
   filter(Location %in% c(
     "Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia",
     "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar",
