@@ -250,9 +250,10 @@ ggplot() +
 Data from WHO - https://www.who.int/data/gho/data/themes/mental-health/suicide-rates
 
 ```{r}
-data <- data <- read_csv("data/Article-wise/data.csv") %>% 
-  select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric) %>% 
-  filter(Dim1 == "Both sexes") 
+global_suicide_rates <-
+  read_csv("data/Article-wise/data.csv") %>%
+  select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric) %>%
+  filter(Dim1 == "Both sexes")
 ```
 
 ```{r}
@@ -269,34 +270,49 @@ data <- data <- read_csv("data/Article-wise/data.csv") %>%
 ## Countries with outliers in data
 
 ```{r}
-data %>%  filter(Location %in% c( "Kiribati", "Central African Republic", "Latvia", "Republic of Korea", "Fiji", "Rwanda", "Poland", "Comoros", "Uzbekistan", "Bosnia and Herzegovina", "Grenada", "Niger", "Cuba", "Equatorial Guinea", "Burkina Faso", "Samoa", "Latvia", "Sao Tome and Principe", "Honduras", "Lebanon", "Maldives", "Bahamas", "Timor-Leste", "Iraq", "Dominican Republic", "Iran (Islamic Republic of)", "Brazil", "Bolivia (Plurinational State of)", "The former Yugoslav Republic of Macedonia", "Portugal", "Belize", "Serbia", "Mali", "Argentina", "United Republic of Tanzania", "Democratic People's Republic of Korea")) %>% 
-  ggplot( aes(x=Location, y=FactValueNumeric, fill=Location)) +
-    geom_boxplot() +
-  theme(legend.position = "none")+
-  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
-theme(text = element_text(size=8),
-        axis.text.x = element_text(angle=45, hjust=1),
-      plot.title = element_text(size=14, lineheight=8)) +
-  xlab(substitute(paste(bold("Country"))))+
-  ylab(substitute(paste(bold("Suicide Rates"))))+
-  ggtitle(substitute(paste(bold("Irregularity in Data Collection"))))
-
+global_suicide_rates %>%
+  filter(Location %in% c(
+    "Kiribati", "Central African Republic", "Latvia", "Republic of Korea",
+    "Fiji", "Rwanda", "Poland", "Comoros", "Uzbekistan",
+    "Bosnia and Herzegovina", "Grenada", "Niger", "Cuba", "Equatorial Guinea",
+    "Burkina Faso", "Samoa", "Latvia", "Sao Tome and Principe", "Honduras",
+    "Lebanon", "Maldives", "Bahamas", "Timor-Leste", "Iraq",
+    "Dominican Republic", "Iran (Islamic Republic of)", "Brazil",
+    "Bolivia (Plurinational State of)",
+    "The former Yugoslav Republic of Macedonia", "Portugal", "Belize",
+    "Serbia", "Mali", "Argentina", "United Republic of Tanzania",
+    "Democratic People's Republic of Korea")) %>%
+  ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
+  geom_boxplot() +
+  theme(legend.position = "none") +
+  scale_fill_viridis_d(alpha = 0.6) +
+  theme(
+    text = element_text(size = 8),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(face = "bold"),
+    plot.title = element_text(size = 14, lineheight = 8, face= "bold")
+  ) +
+  labs(
+    x = "Country",
+    y = "Suicide rate",
+    title = "Irregularity in Data Collection"
+  )
 ```
 
 # Suicide prevention in Bangladesh: The current state and the way forward
 
 ```{r}
-Bangladesh <- data %>% filter(Location == "Bangladesh")
-ggplot(Bangladesh, aes(x=Period, y=FactValueNumeric))+
-  geom_line(color="steelblue")+
-  geom_point()+
-  ylab("Suicide Rate")+
-  ggtitle("Bangladesh")+
-theme_classic()
+Bangladesh <- global_suicide_rates %>% filter(Location == "Bangladesh")
 
+ggplot(Bangladesh, aes(x = Period, y = FactValueNumeric)) +
+  geom_line(color = "steelblue") +
+  geom_point() +
+  ylab("Suicide rate") +
+  ggtitle("Bangladesh") +
+  theme_classic()
 ```
 
-Suicides started increasin from 2016
+Suicides started increasing from 2016
 
 In 2016, the government of Bangladesh introduced a pilot project to strengthen the civil registration and vital statistics system and generate cause of death data in Kaliganj Upazila. Community-based health workers were trained to notify births and deaths to the civil registrar, and to conduct verbal autopsy interviews with family members of a deceased person
 
@@ -307,7 +323,7 @@ source- https://pubmed.ncbi.nlm.nih.gov/31474777/
 ## Visualization for South Asian countries
 
 ```{r}
-filtered <- data %>% 
+filtered <- global_suicide_rates %>% 
   filter(Location %in% c("India", "Maldives", "Afghanistan", "Nepal", "Bangladesh", "Bhutan", "Sri Lanka", "Pakistan"))
 
 ggplot(filtered, aes(colour=Location, y=FactValueNumeric, x=Period ))+
@@ -332,7 +348,7 @@ ggplot(article3, aes(colour=Location, y=FactValueNumeric, x=Period ))+
 ## Countries where suicide is illegal
 
 ```{r}
-illegal <- data %>% 
+illegal <- global_suicide_rates %>% 
   filter(Location %in% c("Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia", "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar", "Saint Lucia", "Somalia", "South Sudan", "Sudan", "Tanzania", "Tonga", "Uganda", "Brunei"))
 
 ggplot(illegal, aes(colour=Location, y=FactValueNumeric, x=Period ))+
