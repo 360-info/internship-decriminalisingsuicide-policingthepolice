@@ -23,11 +23,9 @@ https://ourworldindata.org/suicide
 library(readxl)
 library(tidyverse)
 library(hrbrthemes)
-library(viridis)
 library(ggthemes)
 library(reshape2)
 library(lubridate)
-library(RColorBrewer)
 library(ggmap)
 library(maps)
 library(mapproj)
@@ -39,44 +37,49 @@ library(rgeos)
 ```
 
 ```{r cleaning}
-read_data <- function(x,y,z){
-  read_excel("data/InitialA1/HDIstatus.xlsx", rang = x,col_names = FALSE) %>% 
-    rename(HDI_rank_2021 = ...1, 
-           Country = ...2, 
-           HDI_Value = ...3, 
-           Life_expectancy = ...5, 
-           Expected_years_of_schooling = ...7, 
-           Mean_years_of_schooling = ...9, 
-           GNI_per_capita = ...11, 
-           GNI_rank_minus_HDI_rank = ...13, 
-           HDI_rank_2020 = ...15)} %>% 
-  select(HDI_rank_2021, Country, HDI_Value,
-         Life_expectancy, Expected_years_of_schooling, 
-         Mean_years_of_schooling, GNI_per_capita, 
-         GNI_rank_minus_HDI_rank, HDI_rank_2020) %>% 
-  mutate(y = z )
+read_data <- function(range, development_status) {
+  read_excel(
+    "data/InitialA1/HDIstatus.xlsx", range = range, col_names = FALSE) %>%
+    rename(
+      HDI_rank_2021 = ...1,
+      Country = ...2,
+      HDI_Value = ...3,
+      Life_expectancy = ...5,
+      Expected_years_of_schooling = ...7,
+      Mean_years_of_schooling = ...9,
+      GNI_per_capita = ...11,
+      GNI_rank_minus_HDI_rank = ...13,
+      HDI_rank_2020 = ...15
+    ) %>%
+  select(
+    HDI_rank_2021, Country, HDI_Value,
+    Life_expectancy, Expected_years_of_schooling,
+    Mean_years_of_schooling, GNI_per_capita,
+    GNI_rank_minus_HDI_rank, HDI_rank_2020
+  ) %>%
+  mutate(Degree_of_Human_Development = development_status)
+}
 
+VERY_HIGH_HUMAN_DEVELOPMENT <-
+  read_data("A9:O74", "VERY HIGH HUMAN DEVELOPMENT")
 
-VERY_HIGH_HUMAN_DEVELOPMENT <- 
-  read_data('A9:O74',Degree_of_Human_Development, 'VERY HIGH HUMAN DEVELOPMENT')
+HIGH_HUMAN_DEVELOPMENT <-
+  read_data("A76:O128", "HIGH HUMAN DEVELOPMENT")
 
-HIGH_HUMAN_DEVELOPMENT <- 
-  read_data('A76:O128', Degree_of_Human_Development, 'HIGH HUMAN DEVELOPMENT' ) 
+MEDIUM_HUMAN_DEVELOPMENT <-
+  read_data("A130:O166", "MEDIUM HUMAN DEVELOPMENT")
 
-MEDIUM_HUMAN_DEVELOPMENT <- 
-  read_data('A130:O166', Degree_of_Human_Development, 'MEDIUM HUMAN DEVELOPMENT' ) 
+LOW_HUMAN_DEVELOPMENT <-
+  read_data("A168:O200", "LOW HUMAN DEVELOPMENT")
 
-LOW_HUMAN_DEVELOPMENT <- 
-  read_data('A168:O200', Degree_of_Human_Development, 'LOW HUMAN DEVELOPMENT' )
-
-HDI <- bind_rows(VERY_HIGH_HUMAN_DEVELOPMENT,HIGH_HUMAN_DEVELOPMENT,MEDIUM_HUMAN_DEVELOPMENT,LOW_HUMAN_DEVELOPMENT)
+HDI <- bind_rows(VERY_HIGH_HUMAN_DEVELOPMENT, HIGH_HUMAN_DEVELOPMENT, MEDIUM_HUMAN_DEVELOPMENT, LOW_HUMAN_DEVELOPMENT)
 
 write_csv(HDI, "data/InitialA1/HDIStatus2.csv")
 ```
 
 ```{r}
-data3 <- read_csv("data/InitialA1/HDIStatus2.csv") %>% 
-  rename("Entity"= Country)
+data3 <- read_csv("data/InitialA1/HDIStatus2.csv") %>%
+  rename("Entity" = Country)
 ```
 
 ```{r reading data}
