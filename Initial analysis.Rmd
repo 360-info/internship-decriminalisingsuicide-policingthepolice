@@ -24,14 +24,8 @@ library(readxl)
 library(tidyverse)
 library(hrbrthemes)
 library(ggthemes)
-library(reshape2)
 library(lubridate)
-library(ggmap)
-library(maps)
-library(mapproj)
-# library(rgdal)
-# library(scales)
-library(maptools)
+library(sf)
 # library(gridExtra)
 library(rgeos)
 ```
@@ -60,89 +54,98 @@ read_data <- function(range, development_status) {
   mutate(Degree_of_Human_Development = development_status)
 }
 
-VERY_HIGH_HUMAN_DEVELOPMENT <-
+very_high_hdi <-
   read_data("A9:O74", "VERY HIGH HUMAN DEVELOPMENT")
 
-HIGH_HUMAN_DEVELOPMENT <-
+high_hdi <-
   read_data("A76:O128", "HIGH HUMAN DEVELOPMENT")
 
-MEDIUM_HUMAN_DEVELOPMENT <-
+medium_hdi <-
   read_data("A130:O166", "MEDIUM HUMAN DEVELOPMENT")
 
-LOW_HUMAN_DEVELOPMENT <-
+low_hdi <-
   read_data("A168:O200", "LOW HUMAN DEVELOPMENT")
 
-HDI <- bind_rows(VERY_HIGH_HUMAN_DEVELOPMENT, HIGH_HUMAN_DEVELOPMENT, MEDIUM_HUMAN_DEVELOPMENT, LOW_HUMAN_DEVELOPMENT)
+hdi <- bind_rows(very_high_hdi, high_hdi, medium_hdi, low_hdi)
 
-write_csv(HDI, "data/InitialA1/HDIStatus2.csv")
+write_csv(hdi, "data/InitialA1/HDIStatus2.csv")
 ```
 
-```{r}
-data3 <- read_csv("data/InitialA1/HDIStatus2.csv") %>%
+```{r loadtidiedhdidata}
+tidied_hdi_data <- read_csv("data/InitialA1/HDIStatus2.csv") %>%
   rename("Entity" = Country)
 ```
 
-```{r reading data}
-data2 <- read_csv("data/InitialA1/suicide-death-rates.csv")
+```{r suicideratedata}
+suicide_rates <- read_csv("data/InitialA1/suicide-death-rates.csv")
 ```
 
 ```{r}
 # setdiff(data2$Entity, data3$Entity)
 
-change <- data2 %>%
+# rename countries to align with other dataset
+change <- suicide_rates %>%
   mutate(Entity = recode(Entity,
     "American Samoa" = "Samoa",
     "Bolivia" = "Bolivia (Plurinational State of)",
-    "Brunei"= "Brunei Darussalam",
-    "Cape Verde"= "Cabo Verde",
-    "Cote d'Ivoire"="Côte d'Ivoire",
-    "Democratic Republic of Congo"= "Congo (Democratic Republic of the)",
-    "Eswatini"= "Eswatini (Kingdom of)",
-    "Iran"= "Iran (Islamic Republic of)",
-    "Laos"= "Lao People's Democratic Republic",
-    "Micronesia (country)"= "Micronesia (Federated States of)",
-    "North Korea"= "Korea (Republic of)",
-    "Northern Ireland"= "Ireland",
-    "Palestine"= "Palestine, State of",
-    "Russia"= "Russian Federation",
-    "South Sudan"= "Sudan",
-    "Syria"= "Syrian Arab Republic",
-    "Timor"= "Timor-Leste",
-    "Venezuela"= "Venezuela (Bolivarian Republic of)",
-    "Vietnam"= "Viet Nam"
-    ))
+    "Brunei" = "Brunei Darussalam",
+    "Cape Verde" = "Cabo Verde",
+    "Cote d'Ivoire" = "Côte d'Ivoire",
+    "Democratic Republic of Congo" = "Congo (Democratic Republic of the)",
+    "Eswatini" = "Eswatini (Kingdom of)",
+    "Iran" = "Iran (Islamic Republic of)",
+    "Laos" = "Lao People's Democratic Republic",
+    "Micronesia (country)" = "Micronesia (Federated States of)",
+    "North Korea" = "Korea (Republic of)",
+    "Northern Ireland" = "Ireland",
+    "Palestine" = "Palestine, State of",
+    "Russia" = "Russian Federation",
+    "South Sudan" = "Sudan",
+    "Syria" = "Syrian Arab Republic",
+    "Timor" = "Timor-Leste",
+    "Venezuela" = "Venezuela (Bolivarian Republic of)",
+    "Vietnam" = "Viet Nam"
+  ))
 ```
 
-
 ```{r}
-filtered <- change %>% filter(Year > 2007) %>% 
-  group_by(Entity) %>% 
-  summarise(avg_rate=mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))
+# calculate the average death rate over 2008 to latest
+filtered <- change %>%
+  filter(Year > 2007) %>%
+  group_by(Entity) %>%
+  summarise(avg_rate = mean(
+    `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))
 ```
 
-
 ```{r}
-join <- full_join(filtered, data3) %>% 
-  arrange(desc(avg_rate)) %>% na.omit() %>% 
-  rename(`Development status` = y) %>% 
-  mutate(avg_rate= round(avg_rate, digits=2))
-
+join <- full_join(filtered, tidied_hdi_data) %>%
+  arrange(desc(avg_rate)) %>%
+  na.omit() %>%
+  rename(`Development status` = Degree_of_Human_Development) %>%
+  mutate(avg_rate = round(avg_rate, digits = 2))
 ```
 
 ### Visualization for top 30 countries with maximum suicide rates
 
 ```{r}
 plot1 <- join %>% head(30)
-ggplot(plot1, aes(x=reorder(Entity, -avg_rate), y=avg_rate, fill=`Development status`))+
-  geom_col()+
-geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size=3)+
-  theme(legend.position="bottom",
-        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
-  labs(title="Top 30 countries with maximum suicides, 2008-2019",
-         x=substitute(paste(bold("Country"))),
-      y=substitute(paste(bold("Suicide rate per 100,000 people"))))+
-  scale_fill_manual(values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))+
-   theme(plot.title = element_text(face="bold"))
+ggplot(plot1,
+  aes(x = reorder(Entity, -avg_rate), y = avg_rate,
+    fill = `Development status`)) +
+  geom_col() +
+  geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size = 3) +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1)
+  ) +
+  labs(
+    title = "Top 30 countries by average suicide rate (2008-2019)",
+    x = substitute(paste(bold("Country"))),
+    y = substitute(paste(bold("Suicide rate per 100,000 people")))
+  ) +
+  scale_fill_manual(
+    values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61")) +
+  theme(plot.title = element_text(face = "bold"))
 ```
 
 # Initial Analysis 2
@@ -155,89 +158,91 @@ Data source: https://data.worldbank.org/indicator/SH.STA.SUIC.P5?locations=IN
 https://ourworldindata.org/mental-health
 
 ```{r}
-Anyl2 <- data2 %>% filter(Entity == "India") %>% 
-  filter(Year >1999)
+india_suicide_rates <- suicide_rates %>%
+  filter(Entity == "India") %>%
+  filter(Year > 1999)
 
-data4 <- read_csv("data/InitialA1/share-with-mental-and-substance-disorders.csv")%>% 
-  filter(Entity == "India")  %>% 
-  filter(Year >1999)
+india_mental_substence_disorder_rates <- read_csv("data/InitialA1/share-with-mental-and-substance-disorders.csv") %>%
+  filter(Entity == "India") %>%
+  filter(Year > 1999)
 
-change_join <- full_join(Anyl2, data4, by = c("Year", "Code", "Entity")) %>%  
+india_all_rates <-
+  full_join(
+    india_suicide_rates,
+    india_mental_substence_disorder_rates,
+    by = c("Year", "Code", "Entity")) %>%
   select(-c(Entity, Code))
-final_join <-  melt(change_join, id.vars = "Year") %>%
+
+india_all_rates_long <-
+  pivot_longer(india_all_rates, cols = -Year, names_to = "variable") %>%
   mutate(variable = recode(variable,
-    "Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)" = "Suicide",
-    "Prevalence - Mental disorders - Sex: Both - Age: Age-standardized (Percent)"= "Mental Health disorder"
-    ))
+    "Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)" =
+      "Suicide",
+    "Prevalence - Mental disorders - Sex: Both - Age: Age-standardized (Percent)" =
+      "Mental Health disorder"
+  ))
 ```
 
 
 ```{r}
-ggplot(final_join, aes(x=Year, y=value, col=variable))+
-  geom_line()+
-  ylab(substitute(paste(bold("Rate per 100,000 people"))))+
-  xlab(substitute(paste(bold(Year))))+
-  geom_point(color="brown", size=1.5)+
-  ggtitle("Time-series for India, 2000-2019")+
- theme_economist()+
-   theme(plot.title = element_text(size=14, lineheight=.8))+
-
-  geom_vline(xintercept = 2017, linetype = "dashed")+
-  scale_x_continuous(breaks = seq(from= 2000,to=2019, by =1 ))+
-scale_color_manual(values=c('Brown','Purple', 'Black'))+
-  geom_text(aes(x = 2005 , y = 18.5, label = "Suicide Rate", colour = "Black")) +
-geom_text(aes(x = 2010, y = 14.2, label = "Mental Disorder rate", colour= "Black"))+
-  theme(legend.position = "none")
+ggplot(india_all_rates_long, aes(x = Year, y = value, col = variable)) +
+  geom_line() +
+  geom_point(color = "brown", size = 1.5) +
+  geom_vline(xintercept = 2017, linetype = "dashed") +
+  geom_text(aes(x = 2005, y = 18.5, label = "Suicide Rate", colour = "Black")) +
+  geom_text(aes(x = 2010, y = 14.2, label = "Mental Disorder rate", colour = "Black")) +
+  scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
+  scale_color_manual(values = c("brown", "purple", "black")) +
+  labs(
+    x = Year,
+    y = "Rate per 100,000 people",
+    title = "Time-series for India, 2000-2019"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title = element_text(face = "bold"),
+    plot.title = element_text(size = 14, lineheight = .8)
+    )
 ```
 
+Data sources:
 
-Data sources: https://data.gov.in/catalog/stateut-wise-distribution-suicides-causes
-http://www.diva-gis.org/datadown
+* https://data.gov.in/catalog/stateut-wise-distribution-suicides-causes
+* http://www.diva-gis.org/datadown
 
 # Initial Analysis 3
 
 ## 2014 statewise and Union terr India suicide rate
 
 ```{r}
-datafile <- read_excel("data/map/datafile.xls") %>% 
-  select(`States/UTs`, `Grand Total`) %>% 
-  group_by(`States/UTs`) %>% 
-  summarise(Average_suicide_rate= mean(`Grand Total`)) %>% 
-  slice(-c(33,34,35))
-datafile$id <- seq.int(nrow(datafile))
-```
-
-
-```{r}
-states_shape = readShapeSpatial("data/map/IND_adm/IND_adm1.shp")
-class(states_shape)
-names(states_shape)
-print(states_shape$ID_1)
-print(states_shape$NAME_1)
-#plot(states_shape, main = "Administrative Map of India")
+india_regional_2014 <-
+  read_excel("data/map/datafile.xls") %>%
+  select(`States/UTs`, `Grand Total`) %>%
+  group_by(`States/UTs`) %>%
+  summarise(Average_suicide_rate = mean(`Grand Total`)) %>%
+  filter(str_detect(`States/UTs`, "Total ", negate = TRUE)) %>%
+  mutate(id = seq.int(nrow(.)))
 ```
 
 ```{r}
-fortify_shape = fortify(states_shape, region = "ID_1")
-class(fortify_shape)
-```
-
-```{r}
-Merged_data = merge(fortify_shape, datafile, by="id", all.x=TRUE)
-Map_plot = Merged_data[order(Merged_data$order), ]
+states_shape_sf <- read_sf("data/map/IND_adm/IND_adm1.shp")
+Merged_data <- inner_join(states_shape_sf, india_regional_2014,
+  by = c("ID_1" = "id"))
 ```
 
 ```{r}
 ggplot() +
-  geom_polygon(data = Map_plot,
-           	aes(x = long, y = lat, group = group, fill = Average_suicide_rate),
-      	     color = "black", linewidth = 0.25) +
-  coord_map()+
-  scale_fill_gradient(name="Suicide Rate", low = 'white', high = 'red')+
-  labs(title="Region-wise 2014 data:India")+
-  xlab('Longitude')+
-  ylab('Latitude')
-  # geom_text(data=cnames, aes(long, lat, label = id), size=3, fontface="bold")
+  geom_sf(
+    aes(fill = Average_suicide_rate),
+    data = Merged_data,
+    color = "black",
+    linewidth = 0.25
+  ) +
+  coord_sf() +
+  scale_fill_gradient(name = "Suicide Rate", low = "white", high = "red") +
+  labs(title = "Region-wise 2014 data:India") +
+# geom_text(data=cnames, aes(long, lat, label = id), size=3, fontface="bold")
 ```
 
 
