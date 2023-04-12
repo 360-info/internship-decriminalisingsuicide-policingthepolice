@@ -21,8 +21,23 @@ https://ourworldindata.org/suicide
 
 ```{r libraries}
 library(readr)
-library(tidyverse)
 library(readxl)
+library(tidyverse)
+library(hrbrthemes)
+library(viridis)
+library(ggthemes)
+library(reshape2)
+library(lubridate)
+library(ggplot2)
+library(RColorBrewer)
+library(ggmap)
+library(maps)
+library(mapproj)
+# library(rgdal)
+# library(scales)
+library(maptools)
+# library(gridExtra)
+library(rgeos)
 ```
 
 ```{r cleaning}
@@ -139,9 +154,6 @@ Data source: https://data.worldbank.org/indicator/SH.STA.SUIC.P5?locations=IN
 https://ourworldindata.org/mental-health
 
 ```{r}
-library(ggthemes)
-library(reshape2)
-
 Anyl2 <- data2 %>% filter(Entity == "India") %>% 
   filter(Year >1999)
 
@@ -175,6 +187,151 @@ scale_color_manual(values=c('Brown','Purple', 'Black'))+
   geom_text(aes(x = 2005 , y = 18.5, label = "Suicide Rate", colour = "Black")) +
 geom_text(aes(x = 2010, y = 14.2, label = "Mental Disorder rate", colour= "Black"))+
   theme(legend.position = "none")
+```
+
+
+Data sources: https://data.gov.in/catalog/stateut-wise-distribution-suicides-causes
+http://www.diva-gis.org/datadown
+
+# Initial Analysis 3
+
+## 2014 statewise and Union terr India suicide rate
+
+```{r}
+datafile <- read_excel("data/map/datafile.xls") %>% 
+  select(`States/UTs`, `Grand Total`) %>% 
+  group_by(`States/UTs`) %>% 
+  summarise(Average_suicide_rate= mean(`Grand Total`)) %>% 
+  slice(-c(33,34,35))
+datafile$id <- seq.int(nrow(datafile))
+```
+
+
+```{r}
+states_shape = readShapeSpatial("data/map/IND_adm/IND_adm1.shp")
+class(states_shape)
+names(states_shape)
+print(states_shape$ID_1)
+print(states_shape$NAME_1)
+#plot(states_shape, main = "Administrative Map of India")
+```
+
+```{r}
+fortify_shape = fortify(states_shape, region = "ID_1")
+class(fortify_shape)
+```
+
+```{r}
+Merged_data = merge(fortify_shape, datafile, by="id", all.x=TRUE)
+Map_plot = Merged_data[order(Merged_data$order), ]
+```
+
+```{r}
+ggplot() +
+  geom_polygon(data = Map_plot,
+           	aes(x = long, y = lat, group = group, fill = Average_suicide_rate),
+      	     color = "black", linewidth = 0.25) +
+  coord_map()+
+  scale_fill_gradient(name="Suicide Rate", low = 'white', high = 'red')+
+  labs(title="Region-wise 2014 data:India")+
+  xlab('Longitude')+
+  ylab('Latitude')
+  # geom_text(data=cnames, aes(long, lat, label = id), size=3, fontface="bold")
+```
+
+
+# Initial Analysis 5
+
+Data from WHO- https://www.who.int/data/gho/data/themes/mental-health/suicide-rates
+
+```{r}
+data <- data <- read_csv("data/Article-wise/data.csv") %>% 
+  select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric) %>% 
+  filter(Dim1 == "Both sexes") 
+```
+
+```{r}
+# names <- unique(data$Location)
+# view(names)
+# 
+#Identifying countries with data gaps
+# data %>% 
+#   ggplot( aes(x=Location, y=FactValueNumeric, fill=Location)) +
+#     geom_boxplot()
+```
+
+
+## Countries with outliers in data
+
+```{r}
+data %>%  filter(Location %in% c( "Kiribati", "Central African Republic", "Latvia", "Republic of Korea", "Fiji", "Rwanda", "Poland", "Comoros", "Uzbekistan", "Bosnia and Herzegovina", "Grenada", "Niger", "Cuba", "Equatorial Guinea", "Burkina Faso", "Samoa", "Latvia", "Sao Tome and Principe", "Honduras", "Lebanon", "Maldives", "Bahamas", "Timor-Leste", "Iraq", "Dominican Republic", "Iran (Islamic Republic of)", "Brazil", "Bolivia (Plurinational State of)", "The former Yugoslav Republic of Macedonia", "Portugal", "Belize", "Serbia", "Mali", "Argentina", "United Republic of Tanzania", "Democratic People's Republic of Korea")) %>% 
+  ggplot( aes(x=Location, y=FactValueNumeric, fill=Location)) +
+    geom_boxplot() +
+  theme(legend.position = "none")+
+  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
+theme(text = element_text(size=8),
+        axis.text.x = element_text(angle=45, hjust=1),
+      plot.title = element_text(size=14, lineheight=8)) +
+  xlab(substitute(paste(bold("Country"))))+
+  ylab(substitute(paste(bold("Suicide Rates"))))+
+  ggtitle(substitute(paste(bold("Irregularity in Data Collection"))))
+
+```
+
+# Suicide prevention in Bangladesh: The current state and the way forward
+
+```{r}
+Bangladesh <- data %>% filter(Location == "Bangladesh")
+ggplot(Bangladesh, aes(x=Period, y=FactValueNumeric))+
+  geom_line(color="steelblue")+
+  geom_point()+
+  ylab("Suicide Rate")+
+  ggtitle("Bangladesh")+
+theme_classic()
+
+```
+
+Suicides started increasin from 2016
+
+In 2016, the government of Bangladesh introduced a pilot project to strengthen the civil registration and vital statistics system and generate cause of death data in Kaliganj Upazila. Community-based health workers were trained to notify births and deaths to the civil registrar, and to conduct verbal autopsy interviews with family members of a deceased person
+
+source- https://pubmed.ncbi.nlm.nih.gov/31474777/
+
+# Initial Analysis 6
+
+## Visualization for South Asian countries
+
+```{r}
+filtered <- data %>% 
+  filter(Location %in% c("India", "Maldives", "Afghanistan", "Nepal", "Bangladesh", "Bhutan", "Sri Lanka", "Pakistan"))
+
+ggplot(filtered, aes(colour=Location, y=FactValueNumeric, x=Period ))+
+  geom_line()+
+  geom_point()+
+  ylab("Suicide rate")+
+  ggtitle("South Asian Countries")+
+  scale_colour_brewer(type = "seq", palette = "Dark2")+
+  theme_classic()
+```
+
+```{r}
+article3 <- filtered %>% 
+  filter(Location== "Pakistan")
+
+ggplot(article3, aes(colour=Location, y=FactValueNumeric, x=Period ))+
+  geom_line()
+```
+
+# Initial Analysis 6
+
+## Countries where suicide is illegal
+
+```{r}
+illegal <- data %>% 
+  filter(Location %in% c("Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia", "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar", "Saint Lucia", "Somalia", "South Sudan", "Sudan", "Tanzania", "Tonga", "Uganda", "Brunei"))
+
+ggplot(illegal, aes(colour=Location, y=FactValueNumeric, x=Period ))+
+  geom_line()
 ```
 
 
