@@ -342,7 +342,7 @@ ggplot(
 ```{r}
 pakistan_suicide_rates <-
   selected_suicide_rates %>%
-  filter(Location== "Pakistan")
+  filter(Location == "Pakistan")
 
 ggplot(
   pakistan_suicide_rates,
