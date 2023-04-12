@@ -331,10 +331,13 @@ illegal <- data %>%
   filter(Location %in% c("Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia", "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar", "Saint Lucia", "Somalia", "South Sudan", "Sudan", "Tanzania", "Tonga", "Uganda", "Brunei"))
 
 ggplot(illegal, aes(colour=Location, y=FactValueNumeric, x=Period ))+
-  geom_line()
+  theme_360()
 ```
 
 
+```{r}
+library(themes360info)
+```
 
 
 
