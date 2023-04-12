@@ -25,7 +25,8 @@ library(readxl)
 Bangladesh suicide rate for 2019 was 3.70, a 2.78% increase from 2018.
 
 ```{r}
-death_rate_from_suicides_gho <- read_csv("data/branch2/death-rate-from-suicides-gho.csv")
+death_rate_from_suicides_gho <- read_csv(
+  "data/branch2/death-rate-from-suicides-gho.csv")
 ```
 
 ```{r}
@@ -42,13 +43,12 @@ str(Bangladesh)
 
 
 ```{r}
-ggplot(Bangladesh, aes(x=Year, y=`Age-standardized suicide rate - Sex: both sexes` ))+
-  geom_line(color="steelblue")+
-  geom_point()+
-  ylab("Suicide Rate")+
-  ggtitle("Bangladesh")+
-theme_classic()
-
+ggplot(Bangladesh, aes(x = Year, y = `Age-standardized suicide rate - Sex: both sexes`)) +
+  geom_line(color = "steelblue") +
+  geom_point() +
+  ylab("Suicide Rate") +
+  ggtitle("Bangladesh") +
+  theme_classic()
 ```
 
 Suicides started increasin from 2016
