@@ -38,6 +38,7 @@ library(mapproj)
 library(maptools)
 # library(gridExtra)
 library(rgeos)
+library(themes360info)
 ```
 
 ```{r cleaning}
@@ -334,10 +335,32 @@ ggplot(illegal, aes(colour=Location, y=FactValueNumeric, x=Period ))+
   theme_360()
 ```
 
+# Initial Analysis 6
+
+## Nepal
 
 ```{r}
-library(themes360info)
+nepal <- data2 %>% filter(Entity == "Nepal") %>% filter(Year > 1999)
+
+ggplot(nepal, aes(x=Year, y=`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))+
+  geom_line()+
+  ylab(substitute(paste(bold("Rate per 100,000 people"))))+
+  xlab(NULL)+
+  geom_point(color="brown", size=1.5)+
+  ggtitle("Time-series for Nepal, 1990-2019")+
+ theme_economist()+
+   theme(plot.title = element_text(size=14, lineheight=.8))+
+
+  geom_vline(xintercept = 2005, linetype = "dashed")+
+  scale_x_continuous(breaks = seq(from= 1990,to=2019, by =1 ))+
+scale_color_manual(values=c('Brown','Purple', 'Black'))+
+  theme(legend.position = "none")+
+  theme(text = element_text(size=8),
+        axis.text.x = element_text(angle=45, hjust=1),
+      plot.title = element_text(size=14, lineheight=8))
 ```
+
+
 
 
 
