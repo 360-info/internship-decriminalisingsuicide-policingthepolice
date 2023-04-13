@@ -360,6 +360,45 @@ scale_color_manual(values=c('Brown','Purple', 'Black'))+
       plot.title = element_text(size=14, lineheight=8))
 ```
 
+```{r}
+plot_nepal <- ggplot(nepal, aes(x = Year, y = `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`)) +
+  geom_line(color="brown") +
+  geom_point(color = "brown", size = 1.5) +
+  geom_vline(xintercept = 2007, linetype = "dashed") +
+  # geom(aes(x = 2005, y = 18.5, label = "Suicide Rate", colour = "Black")) +
+  # scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
+  # scale_color_manual(values = c("brown", "purple", "black")) +
+  labs(
+    x = NULL,
+    y = "Rate per 100,000 people",
+    title = "SUICIDE IN NEPAL",
+    subtitle="Suicide rates in Nepal have fallen by about one third over the last 20 years",
+    caption = paste(
+      "**CHART:** Nishtha Arora & James Goldie, 360info",
+      "**DATA:** Our World in Data",
+      sep = "<br>"
+      )
+  ) +
+  theme_360()+
+  theme(
+    legend.position = "none",
+    axis.title = element_text(face = "bold"),
+     panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+    
+    )+
+  theme( panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank() )+
+    annotate_360_light(x = 2015, y = 20, label = "There is a significant increase
+                 in the suicide rate in 2017
+                 where India also introducted its
+                 Mental Healthcare Act 2017",hjust=1, size=7)
+
+save_360plot(plot, "indiatimeseries.png")
+knitr::include_graphics("indiatimeseries.png")
+```
+
+
 
 
 
