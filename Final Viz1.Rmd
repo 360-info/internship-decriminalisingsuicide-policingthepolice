@@ -25,7 +25,7 @@ library(maps)
 library(mapproj)
 library(maptools)
 library(rgeos)
-library(themes360info)
+library(themes360info)#
 library(sf)
 ```
 
@@ -88,6 +88,8 @@ states_merged <- inner_join(states_shape_sf, join_newid,
 ```
 
 ```{r map_plot_article2}
+colors <- c('#C6B7F7', "#744BF7", "#6B96EC", "#103E99")
+b <- c(0, 10000, 18000, 140000)
 ggplot() +
   geom_sf(
     aes(fill = Total),
@@ -95,25 +97,38 @@ ggplot() +
     color = "black",
     linewidth = 0.25
   )+
+geom_sf_text(
+    data = states_merged,
+    aes(label = NAME_1),
+    size = 3,
+    color = "black",
+    fontface = "bold"
+  )+
   coord_sf() +
-  scale_fill_gradient(name = "Suicide Rate", low = "lightblue", high = "#B99AFC") 
+  scale_fill_gradientn(colors = colors, breaks = b, labels = format(b)) +
 
-#   labs(
-#     title = "Region-wise: SUICIDE IN INDIA 2019",
-#     subtitle="No. of suicides were maximum in Andhra Pradesh and Arunachal Pradesh",
+
+  labs(
+    title = "Region-wise: SUICIDE IN INDIA 2019",
+    subtitle="No. of suicides were maximum in Andhra Pradesh and Arunachal Pradesh")+
 #     caption = paste(
 #       "**CHART:** Nishtha Arora & James Goldie, 360info",
 #       "**DATA:** Our World in Data",
 #       sep = "<br>")) +
 #   theme_360()+
-# theme(
-#   axis.title = element_text(face = "bold"),
-#    panel.grid.major.x = element_blank(),
-#       panel.grid.minor.x = element_blank())
+theme(
+  axis.title = element_text(face = "bold"),
+   panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank())
 # 
 # save_360plot(plot_india, "indiamap.png")
 # knitr::include_graphics("indiamap.png")
 
 ```
 
+1. How to correct the overlapping
+2. Add 360 theme
+3. Help needed with colouring according to range.
 
+# Visualization for India NCRB Data 
+*(Use Webscraping to extract data from .pdf)*
