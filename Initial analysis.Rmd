@@ -1,22 +1,24 @@
 ---
-title: "De-Criminalizing Suicide:  Initial Analysis"
+title: "De-Criminalizing Suicide:  Visualizations"
 author: "Nishtha Arora"
 output: html_document
 date: "2023-03-19"
 ---
-# Initial Analysis 1
-
-## COMPARISON WITH DEVELOPMENT STATUS. 2008-2019.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=12, fig.height=8)
 ```
 
+# Visualization 1
+
+## WORLD SUICIDE RATE'S COMPARISON WITH DEVELOPMENT STATUS.
+
 ### Data sources 
-1. Using data from 2008-2019 (12 years), worldwide suicide rates- 
+1.Worldwide suicide rates OWID (filtering from 2000-2019, i.e. 10 years)
 https://ourworldindata.org/suicide
 
-2. Using HDI data for High, Very high and medium development country recognition- http://hdr.undp.org/en/composite/HDI
+2.HDI Data- Values recorded in 2021, rank (2020).
+http://hdr.undp.org/en/composite/HDI
 
 
 ```{r libraries}
@@ -33,10 +35,7 @@ library(RColorBrewer)
 library(ggmap)
 library(maps)
 library(mapproj)
-# library(rgdal)
-# library(scales)
 library(maptools)
-# library(gridExtra)
 library(rgeos)
 library(themes360info)
 ```
@@ -77,16 +76,16 @@ HDI <- bind_rows(VERY_HIGH_HUMAN_DEVELOPMENT,HIGH_HUMAN_DEVELOPMENT,MEDIUM_HUMAN
 write_csv(HDI, "data/InitialA1/HDIStatus2.csv")
 ```
 
-```{r}
+```{r saving_cleaned_data}
 data3 <- read_csv("data/InitialA1/HDIStatus2.csv") %>% 
   rename("Entity"= Country)
 ```
 
-```{r reading data}
+```{r reading data_suicides}
 data2 <- read_csv("data/InitialA1/suicide-death-rates.csv")
 ```
 
-```{r}
+```{r matching_column_names}
 # setdiff(data2$Entity, data3$Entity)
 
 change <- data2 %>%
@@ -113,159 +112,118 @@ change <- data2 %>%
     ))
 ```
 
-
-```{r}
-filtered <- change %>% filter(Year > 2007) %>% 
+```{r preparing_for_plot}
+filtered <- change %>% filter(Year > 1999) %>% 
   group_by(Entity) %>% 
   summarise(avg_rate=mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))
-```
 
-
-```{r}
 join <- full_join(filtered, data3) %>% 
   arrange(desc(avg_rate)) %>% na.omit() %>% 
   rename(`Development status` = y) %>% 
   mutate(avg_rate= round(avg_rate, digits=2))
-
 ```
 
-### Visualization for top 30 countries with maximum suicide rates
 
-```{r}
+### Visualization for top 30 countries with the most suicide rates (average), 2000-2019 and their development status.
+
+```{r plot1}
 plot1 <- join %>% head(30)
 ggplot(plot1, aes(x=reorder(Entity, -avg_rate), y=avg_rate, fill=`Development status`))+
   geom_col()+
 geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size=3)+
   theme(legend.position="bottom",
         axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
-  labs(title="Top 30 countries with maximum suicides, 2008-2019",
+  labs(title="Top 30 countries with maximum suicides for 10 years, 2000-2019",
          x=substitute(paste(bold("Country"))),
       y=substitute(paste(bold("Suicide rate per 100,000 people"))))+
   scale_fill_manual(values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))+
    theme(plot.title = element_text(face="bold"))
 ```
 
-# Initial Analysis 2
+# Visualization 2
 
-## India's Mental Health Act 2017
+## CHANGES BEFORE AND AFTER INDIA'S MENTAL HEALTH ACT 2017.
 
-### Suicide Rates & reported mental health issues before and after 2017
+### Data sources
+1. WHO
+https://www.who.int/data/gho/data/themes/mental-health/suicide-rates
 
-Data source: https://data.worldbank.org/indicator/SH.STA.SUIC.P5?locations=IN
-https://ourworldindata.org/mental-health
-
-```{r}
-Anyl2 <- data2 %>% filter(Entity == "India") %>% 
-  filter(Year >1999)
-
-data4 <- read_csv("data/InitialA1/share-with-mental-and-substance-disorders.csv")%>% 
-  filter(Entity == "India")  %>% 
-  filter(Year >1999)
-
-change_join <- full_join(Anyl2, data4, by = c("Year", "Code", "Entity")) %>%  
-  select(-c(Entity, Code))
-final_join <-  melt(change_join, id.vars = "Year") %>%
-  mutate(variable = recode(variable,
-    "Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)" = "Suicide",
-    "Prevalence - Mental disorders - Sex: Both - Age: Age-standardized (Percent)"= "Mental Health disorder"
-    ))
+```{r who_data}
+who_data <-read_csv("data/InitialA1/data-2.csv") %>% 
+  filter(Dim1=="Both sexes") %>% 
+  select(Location, Period, FactValueNumeric)
 ```
 
+### Visualization for India's suicide rates over time.
 
-```{r}
-ggplot(final_join, aes(x=Year, y=value, col=variable))+
+```{r plot2}
+who_data %>% filter(Location=="India") %>% 
+ggplot(aes(x=Period, y=FactValueNumeric))+
   geom_line()+
+  xlab(NULL)+
   ylab(substitute(paste(bold("Rate per 100,000 people"))))+
-  xlab(substitute(paste(bold(Year))))+
   geom_point(color="brown", size=1.5)+
   ggtitle("Time-series for India, 2000-2019")+
  theme_economist()+
    theme(plot.title = element_text(size=14, lineheight=.8))+
-
   geom_vline(xintercept = 2017, linetype = "dashed")+
-  scale_x_continuous(breaks = seq(from= 2000,to=2019, by =1 ))+
 scale_color_manual(values=c('Brown','Purple', 'Black'))+
-  geom_text(aes(x = 2005 , y = 18.5, label = "Suicide Rate", colour = "Black")) +
-geom_text(aes(x = 2010, y = 14.2, label = "Mental Disorder rate", colour= "Black"))+
   theme(legend.position = "none")
 ```
 
+# Visualization 3
 
-Data sources: https://data.gov.in/catalog/stateut-wise-distribution-suicides-causes
+## 2019 State/UT-wise India's suicide rate.
+
+### Data sources
+1. Registered cases with data.gov
+https://data.gov.in/resource/stateut-wise-suicides-registered-during-2019-ministry-home-affairs
+
+2.Spatial data
 http://www.diva-gis.org/datadown
 
-# Initial Analysis 3
+```{r reading_region_wise_data_mapfiles}
+options(scipen=999)
 
-## 2014 statewise and Union terr India suicide rate
+region_cases_2019 <- read_csv("data/InitialA1/RS_Session_253_A_211.1.csv") %>% 
+  filter(str_detect(`State/UT`, "Total ", negate = TRUE)) %>% 
+  select(`State/UT`, Total )
 
-```{r}
-datafile <- read_excel("data/map/datafile.xls") %>% 
-  select(`States/UTs`, `Grand Total`) %>% 
-  group_by(`States/UTs`) %>% 
-  summarise(Average_suicide_rate= mean(`Grand Total`)) %>% 
-  slice(-c(33,34,35))
-datafile$id <- seq.int(nrow(datafile))
+df_newid=data.frame(id=c(2,3,4, 5,7,11,12,13,14,15,16,17,18,20, 21,22,23,24,25,26, 28,29,30, 31,32,33,34, 35,36, 1, 6, 8,9,10,19, 27))
+
+join_newid <- cbind(region_cases_2019, df_newid) %>% 
+    mutate(id=as.numeric(id))
+
+spatial_state <- readShapeSpatial("data/InitialA1/IND_adm/IND_adm1.shp")
+fortify_spatial = fortify(spatial_state, region = "ID_1")
+
+Merge = merge(fortify_spatial, join_newid, by="id", all.x=TRUE)
+Map_plot = Merge[order(Merge$order), ]
 ```
 
+### Map of India showing region wise suicide count in 2019.
 
-```{r}
-states_shape = readShapeSpatial("data/map/IND_adm/IND_adm1.shp")
-class(states_shape)
-names(states_shape)
-print(states_shape$ID_1)
-print(states_shape$NAME_1)
-#plot(states_shape, main = "Administrative Map of India")
-```
+```{r plot3}
 
-```{r}
-fortify_shape = fortify(states_shape, region = "ID_1")
-class(fortify_shape)
-```
-
-```{r}
-Merged_data = merge(fortify_shape, datafile, by="id", all.x=TRUE)
-Map_plot = Merged_data[order(Merged_data$order), ]
-```
-
-```{r}
 ggplot() +
   geom_polygon(data = Map_plot,
-           	aes(x = long, y = lat, group = group, fill = Average_suicide_rate),
+           	aes(x = long, y = lat, group = group, fill = Total),
       	     color = "black", linewidth = 0.25) +
   coord_map()+
-  scale_fill_gradient(name="Suicide Rate", low = 'white', high = 'red')+
-  labs(title="Region-wise 2014 data:India")+
-  xlab('Longitude')+
-  ylab('Latitude')
-  # geom_text(data=cnames, aes(long, lat, label = id), size=3, fontface="bold")
+  scale_fill_gradient(name="State/UT", low = 'white', high = 'orange')+
+  labs(title="Region-wise 2019 data:India")
 ```
 
 
-# Initial Analysis 5
+# Visulaization 4
 
-Data from WHO- https://www.who.int/data/gho/data/themes/mental-health/suicide-rates
+## Data source
+1. WHO- https://www.who.int/data/gho/data/themes/mental-health/suicide-rates
 
-```{r}
-data <- data <- read_csv("data/Article-wise/data.csv") %>% 
-  select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric) %>% 
-  filter(Dim1 == "Both sexes") 
-```
+### Countries with outliers in data
 
-```{r}
-# names <- unique(data$Location)
-# view(names)
-# 
-#Identifying countries with data gaps
-# data %>% 
-#   ggplot( aes(x=Location, y=FactValueNumeric, fill=Location)) +
-#     geom_boxplot()
-```
-
-
-## Countries with outliers in data
-
-```{r}
-data %>%  filter(Location %in% c( "Kiribati", "Central African Republic", "Latvia", "Republic of Korea", "Fiji", "Rwanda", "Poland", "Comoros", "Uzbekistan", "Bosnia and Herzegovina", "Grenada", "Niger", "Cuba", "Equatorial Guinea", "Burkina Faso", "Samoa", "Latvia", "Sao Tome and Principe", "Honduras", "Lebanon", "Maldives", "Bahamas", "Timor-Leste", "Iraq", "Dominican Republic", "Iran (Islamic Republic of)", "Brazil", "Bolivia (Plurinational State of)", "The former Yugoslav Republic of Macedonia", "Portugal", "Belize", "Serbia", "Mali", "Argentina", "United Republic of Tanzania", "Democratic People's Republic of Korea")) %>% 
+```{r outliers_indatacollection}
+who_data %>% filter(Location %in% c( "Kiribati", "Central African Republic", "Latvia", "Republic of Korea", "Fiji", "Rwanda", "Poland", "Comoros", "Uzbekistan", "Bosnia and Herzegovina", "Grenada", "Niger", "Cuba", "Equatorial Guinea", "Burkina Faso", "Samoa", "Latvia", "Sao Tome and Principe", "Honduras", "Lebanon", "Maldives", "Bahamas", "Timor-Leste", "Iraq", "Dominican Republic", "Iran (Islamic Republic of)", "Brazil", "Bolivia (Plurinational State of)", "The former Yugoslav Republic of Macedonia", "Portugal", "Belize", "Serbia", "Mali", "Argentina", "United Republic of Tanzania", "Democratic People's Republic of Korea")) %>% 
   ggplot( aes(x=Location, y=FactValueNumeric, fill=Location)) +
     geom_boxplot() +
   theme(legend.position = "none")+
@@ -279,31 +237,15 @@ theme(text = element_text(size=8),
 
 ```
 
-# Suicide prevention in Bangladesh: The current state and the way forward
+# Visulaization 5
+
+## Data source
+1. WHO- https://www.who.int/data/gho/data/themes/mental-health/suicide-rates
+
+## South Asian countries-Suicide rate trend.
 
 ```{r}
-Bangladesh <- data %>% filter(Location == "Bangladesh")
-ggplot(Bangladesh, aes(x=Period, y=FactValueNumeric))+
-  geom_line(color="steelblue")+
-  geom_point()+
-  ylab("Suicide Rate")+
-  ggtitle("Bangladesh")+
-theme_classic()
-
-```
-
-Suicides started increasin from 2016
-
-In 2016, the government of Bangladesh introduced a pilot project to strengthen the civil registration and vital statistics system and generate cause of death data in Kaliganj Upazila. Community-based health workers were trained to notify births and deaths to the civil registrar, and to conduct verbal autopsy interviews with family members of a deceased person
-
-source- https://pubmed.ncbi.nlm.nih.gov/31474777/
-
-# Initial Analysis 6
-
-## Visualization for South Asian countries
-
-```{r}
-filtered <- data %>% 
+filtered <- who_data %>% 
   filter(Location %in% c("India", "Maldives", "Afghanistan", "Nepal", "Bangladesh", "Bhutan", "Sri Lanka", "Pakistan"))
 
 ggplot(filtered, aes(colour=Location, y=FactValueNumeric, x=Period ))+
@@ -314,95 +256,4 @@ ggplot(filtered, aes(colour=Location, y=FactValueNumeric, x=Period ))+
   scale_colour_brewer(type = "seq", palette = "Dark2")+
   theme_classic()
 ```
-
-```{r}
-article3 <- filtered %>% 
-  filter(Location== "Pakistan")
-
-ggplot(article3, aes(colour=Location, y=FactValueNumeric, x=Period ))+
-  geom_line()
-```
-
-# Initial Analysis 6
-
-## Countries where suicide is illegal
-
-```{r}
-illegal <- data %>% 
-  filter(Location %in% c("Bahamas", "Bangladesh", "Guyana", "Ghana", "Kenya", "Malawi", "Malaysia", "Myanmar", "Nigeria", "Pakistan", "Papua New Guinea", "Qatar", "Saint Lucia", "Somalia", "South Sudan", "Sudan", "Tanzania", "Tonga", "Uganda", "Brunei"))
-
-ggplot(illegal, aes(colour=Location, y=FactValueNumeric, x=Period ))+
-  theme_360()
-```
-
-# Initial Analysis 6
-
-## Nepal
-
-```{r}
-nepal <- data2 %>% filter(Entity == "Nepal") %>% filter(Year > 1999)
-
-ggplot(nepal, aes(x=Year, y=`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))+
-  geom_line()+
-  ylab(substitute(paste(bold("Rate per 100,000 people"))))+
-  xlab(NULL)+
-  geom_point(color="brown", size=1.5)+
-  ggtitle("Time-series for Nepal, 1990-2019")+
- theme_economist()+
-   theme(plot.title = element_text(size=14, lineheight=.8))+
-
-  geom_vline(xintercept = 2005, linetype = "dashed")+
-  scale_x_continuous(breaks = seq(from= 1990,to=2019, by =1 ))+
-scale_color_manual(values=c('Brown','Purple', 'Black'))+
-  theme(legend.position = "none")+
-  theme(text = element_text(size=8),
-        axis.text.x = element_text(angle=45, hjust=1),
-      plot.title = element_text(size=14, lineheight=8))
-```
-
-```{r}
-plot_nepal <- ggplot(nepal, aes(x = Year, y = `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`)) +
-  geom_line(color="brown") +
-  geom_point(color = "brown", size = 1.5) +
-  geom_vline(xintercept = 2007, linetype = "dashed") +
-  # geom(aes(x = 2005, y = 18.5, label = "Suicide Rate", colour = "Black")) +
-  # scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
-  # scale_color_manual(values = c("brown", "purple", "black")) +
-  labs(
-    x = NULL,
-    y = "Rate per 100,000 people",
-    title = "SUICIDE IN NEPAL",
-    subtitle="Suicide rates in Nepal have fallen by about one third over the last 20 years",
-    caption = paste(
-      "**CHART:** Nishtha Arora & James Goldie, 360info",
-      "**DATA:** Our World in Data",
-      sep = "<br>"
-      )
-  ) +
-  theme_360()+
-  theme(
-    legend.position = "none",
-    axis.title = element_text(face = "bold"),
-     panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-    
-    )+
-  theme( panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank() )+
-    annotate_360_light(x = 2015, y = 20, label = "There is a significant increase
-                 in the suicide rate in 2017
-                 where India also introducted its
-                 Mental Healthcare Act 2017",hjust=1, size=7)
-
-save_360plot(plot, "indiatimeseries.png")
-knitr::include_graphics("indiatimeseries.png")
-```
-
-
-
-
-
-
-
-
 

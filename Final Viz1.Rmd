@@ -1,5 +1,5 @@
 ---
-title: "Final Visualizations 1"
+title: "Adding themes360 and Modifications"
 author: "Nishtha Arora"
 date: "2023-04-12"
 output: html_document
@@ -9,39 +9,38 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=12, fig.height=8)
 ```
 
-# Data sources 
-https://ourworldindata.org/suicide
-
-https://data.worldbank.org/indicator/SH.STA.SUIC.P5?locations=IN
-
-
 ```{r libraries}
+library(readr)
 library(readxl)
-library(rsvg)
 library(tidyverse)
 library(hrbrthemes)
+library(viridis)
 library(ggthemes)
+library(reshape2)
 library(lubridate)
-library(sf)
-# library(gridExtra)
+library(ggplot2)
+library(RColorBrewer)
+library(ggmap)
+library(maps)
+library(mapproj)
+library(maptools)
 library(rgeos)
 library(themes360info)
+library(sf)
 ```
 
-```{r}
-suicide_rates <- read_csv("data/InitialA1/suicide-death-rates.csv")
+# Time-Series
 
-india_suicide_rates <- suicide_rates %>%
-  filter(Entity == "India") %>%
-  filter(Year > 1999)
+```{r final_article_plot}
+who_data <-read_csv("data/InitialA1/data-2.csv") %>% 
+  filter(Dim1=="Both sexes") %>% 
+  select(Location, Period, FactValueNumeric)
+india_suicide_rates <- who_data %>% filter(Location=="India")
 
-plot_india <- ggplot(india_suicide_rates, aes(x = Year, y = `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`)) +
+plot_india <- ggplot(india_suicide_rates, aes(x=Period, y=FactValueNumeric)) +
   geom_line(color="brown") +
   geom_point(color = "brown", size = 1.5) +
   geom_vline(xintercept = 2017, linetype = "dashed") +
-  # geom(aes(x = 2005, y = 18.5, label = "Suicide Rate", colour = "Black")) +
-  # scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
-  # scale_color_manual(values = c("brown", "purple", "black")) +
   labs(
     x = NULL,
     y = "Rate per 100,000 people",
@@ -50,188 +49,71 @@ plot_india <- ggplot(india_suicide_rates, aes(x = Year, y = `Deaths - Self-harm 
     caption = paste(
       "**CHART:** Nishtha Arora & James Goldie, 360info",
       "**DATA:** Our World in Data",
-      sep = "<br>"
-      )
-  ) +
+      sep = "<br>")) +
   theme_360()+
   theme(
     legend.position = "none",
     axis.title = element_text(face = "bold"),
      panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-    
-    )+
-  theme( panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank() )+
-    annotate_360_light(x = 2016.9, y = 20, label = paste( "Suicide rates slightly increased",
-    "after the introduction of the ",
-                                                          "Mental Healthcare Act
-                                                          in 2017.",
-                  sep="<br>")
-               ,hjust=1, size=5)
+        panel.grid.minor.x = element_blank())+
+    annotate_360_light(x = 2016.9, y = 19, label = paste( "Suicide rates slightly increased", "after the introduction of the ", "Mental Healthcare Act in 2017.",
+                  sep="<br>") ,hjust=1, size=5)
 
-save_360plot(plot_india, "indiatimeseries.pdf")
+save_360plot(plot_india, "indiatimeseries.png")
 knitr::include_graphics("indiatimeseries.png")
 ```
 
-#Plot 2
-https://data.gov.in/resource/stateut-wise-suicides-registered-during-2019-ministry-home-affairs
-for sf- http://www.diva-gis.org/datadown
+# Map of Indian States and UT's.
 
-```{r}
-library('rvest')
-url <- 'https://statisticstimes.com/demographics/india/indian-states-population.php'
-webpage <- read_html(url)
-```
-
-
-
-
-
-
-
-```{r}
-india_regional_2019 <-
-read_csv("data/map/RS_Session_253_A_211.1.csv") %>%
-  select(`State/UT`, `Total`) %>%
-  filter(str_detect(`State/UT`, "Total ", negate = TRUE)) %>%
-  mutate(id = seq.int(nrow(.)))
-```
-
-```{r}
-states_shape_sf <- read_sf("data/map/IND_adm/IND_adm1.shp")
-states_merged <- inner_join(states_shape_sf, india_regional_2019,
-  by = c("ID_1" = "id"))
-```
-
-```{r}
+```{r data_correction}
 options(scipen=999)
+
+region_cases_2019 <- read_csv("data/InitialA1/RS_Session_253_A_211.1.csv") %>% 
+  filter(str_detect(`State/UT`, "Total ", negate = TRUE)) %>% 
+  select(`State/UT`, Total ) 
+
+    
+states_shape_sf <- read_sf("data/InitialA1/IND_adm/IND_adm1.shp") 
+
+#Correcting the data by manually looking at Id's as geometry was matching with wrong id's.
+
+df_newid=data.frame(id=c(2,3,4, 5,7,11,12,13,14,15,16,17,18,20, 21,22,23,24,25,26, 28,29,30, 31,32,33,34, 35,36, 1, 6, 8,9,10,19, 27))
+
+join_newid <- cbind(region_cases_2019, df_newid) %>% 
+    mutate(id=as.numeric(id))
+
+states_merged <- inner_join(states_shape_sf, join_newid,
+  by = c("ID_1" = "id"))
+              
 ```
 
-```{r}
-map_india <- ggplot() +
+```{r map_plot_article2}
+ggplot() +
   geom_sf(
     aes(fill = Total),
     data = states_merged,
     color = "black",
-    linewidth = 0.25,
-
- ) +
-  theme_360()+
-  labs(
-    title = "Region Map: India",
-    subtitle = "Registered suicides in 2019",
-      caption = paste(
-      "**CHART:** Nishtha Arora & James Goldie, 360info",
-      "**DATA:** data.gov.in",
-      sep = "<br>")
-      )+
+    linewidth = 0.25
+  )+
   coord_sf() +
-  theme(axis.text.x = element_blank(),
-          axis.text.y = element_blank())+
-  scale_fill_continuous(name = "No. of suicides", low = "lightblue", high = "#A076F8") 
-# geom_text(data=cnames, aes(long, lat, label = id), size=3, fontface="bold")
+  scale_fill_gradient(name = "Suicide Rate", low = "lightblue", high = "#B99AFC") 
 
-save_360plot(map_india, "indiamap.png")
-knitr::include_graphics("indiamap.png")
-```
-
-## Nepal
-
-```{r}
-nepal <- suicide_rates %>% filter(Entity == "Nepal") 
-
-# ggplot(nepal, aes(x=Year, y=`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))+
-#   geom_line()+
-#   ylab(substitute(paste(bold("Rate per 100,000 people"))))+
-#   xlab(NULL)+
-#   geom_point(color="brown", size=1.5)+
-#   ggtitle("Time-series for Nepal, 1990-2019")+
-#  theme_economist()+
-#    theme(plot.title = element_text(size=14, lineheight=.8))+
+#   labs(
+#     title = "Region-wise: SUICIDE IN INDIA 2019",
+#     subtitle="No. of suicides were maximum in Andhra Pradesh and Arunachal Pradesh",
+#     caption = paste(
+#       "**CHART:** Nishtha Arora & James Goldie, 360info",
+#       "**DATA:** Our World in Data",
+#       sep = "<br>")) +
+#   theme_360()+
+# theme(
+#   axis.title = element_text(face = "bold"),
+#    panel.grid.major.x = element_blank(),
+#       panel.grid.minor.x = element_blank())
 # 
-#   geom_vline(xintercept = 2005, linetype = "dashed")+
-#   scale_x_continuous(breaks = seq(from= 1990,to=2019, by =1 ))+
-# scale_color_manual(values=c('Brown','Purple', 'Black'))+
-#   theme(legend.position = "none")+
-#   theme(text = element_text(size=8),
-#         axis.text.x = element_text(angle=45, hjust=1),
-#       plot.title = element_text(size=14, lineheight=8))
+# save_360plot(plot_india, "indiamap.png")
+# knitr::include_graphics("indiamap.png")
+
 ```
 
-```{r}
-plot_nepal <- ggplot(nepal, aes(x = Year, y = `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`)) +
-  geom_line(color="brown") +
-  geom_point(color = "brown", size = 1.5) +
-  # geom_vline(xintercept = 2007, linetype = "dashed") +
-  # geom(aes(x = 2005, y = 18.5, label = "Suicide Rate", colour = "Black")) +
-  # scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
-  # scale_color_manual(values = c("brown", "purple", "black")) +
-  labs(
-    x = NULL,
-    y = "Rate per 100,000 people",
-    title = "SUICIDE IN NEPAL",
-    subtitle="Suicide rates in Nepal have fallen by about one third over the last 30 years",
-    caption = paste(
-      "**CHART:** Nishtha Arora & James Goldie, 360info",
-      "**DATA:** Our World in Data",
-      sep = "<br>"
-      )
-  ) +
-  theme_360()+
-  theme(
-    legend.position = "none",
-    axis.title = element_text(face = "bold"),
-     panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-    
-    )+
-  theme( panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank() )
-    # annotate_360_light(x = 2015, y = 20, label = "something",hjust=1, size=7)
-
-save_360plot(plot_nepal, "nepaltimeseries.pdf")
-knitr::include_graphics("nepaltimeseries.png")
-```
-
-## Pakistan
-
-```{r}
-pakistan <- suicide_rates %>% filter(Entity == "Pakistan") 
-```
-
-```{r}
-plot_pak <- ggplot(pakistan, aes(x = Year, y = `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`)) +
-  geom_line(color="brown") +
-  geom_point(color = "brown", size = 1.5) +
-  # geom_vline(xintercept = 2007, linetype = "dashed") +
-  # geom(aes(x = 2005, y = 18.5, label = "Suicide Rate", colour = "Black")) +
-  # scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
-  # scale_color_manual(values = c("brown", "purple", "black")) +
-  labs(
-    x = NULL,
-    y = "Rate per 100,000 people",
-    title = "SUICIDE IN PAKISTAN",
-    subtitle="Suicide rates in Pakistan have fallen/grown by ________",
-    caption = paste(
-      "**CHART:** Nishtha Arora & James Goldie, 360info",
-      "**DATA:** Our World in Data",
-      sep = "<br>"
-      )
-  ) +
-  theme_360()+
-  theme(
-    legend.position = "none",
-    axis.title = element_text(face = "bold"),
-     panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-    
-    )+
-  theme( panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank() )
-    # annotate_360_light(x = 2015, y = 20, label = "something",hjust=1, size=7)
-
-save_360plot(plot_pak, "paktimeseries.pdf")
-knitr::include_graphics("paktimeseries.png")
-```
 
