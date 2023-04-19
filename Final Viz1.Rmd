@@ -50,7 +50,7 @@ plot_india <- ggplot(india_suicide_rates, aes(x=Period, y=FactValueNumeric)) +
       "**CHART:** Nishtha Arora & James Goldie, 360info",
       "**DATA:** Our World in Data",
       sep = "<br>")) +
-  theme_360()+
+  theme_360() +
   theme(
     legend.position = "none",
     axis.title = element_text(face = "bold"),
@@ -90,7 +90,7 @@ states_merged <- inner_join(states_shape_sf, join_newid,
 ```{r map_plot_article2}
 colors <- c('#C6B7F7', "#744BF7", "#6B96EC", "#103E99")
 b <- c(0, 10000, 18000, 140000)
-ggplot() +
+india_map <- ggplot() +
   geom_sf(
     aes(fill = Total),
     data = states_merged,
@@ -105,23 +105,22 @@ geom_sf_text(
     fontface = "bold"
   )+
   coord_sf() +
-  scale_fill_gradientn(colors = colors, breaks = b, labels = format(b)) +
-
-
+  scale_fill_fermenter(palette = "YlGnBu", direction = -1, trans = "log10",
+    labels = scales::label_number_si()) +
   labs(
-    title = "Region-wise: SUICIDE IN INDIA 2019",
-    subtitle="No. of suicides were maximum in Andhra Pradesh and Arunachal Pradesh")+
-#     caption = paste(
-#       "**CHART:** Nishtha Arora & James Goldie, 360info",
-#       "**DATA:** Our World in Data",
-#       sep = "<br>")) +
-#   theme_360()+
+    title = "REGION-WISE: SUICIDE IN INDIA 2019",
+    subtitle="No. of suicides were maximum in Andhra Pradesh and Arunachal Pradesh",
+    caption = paste(
+      "**CHART:** Nishtha Arora & James Goldie, 360info",
+      "**DATA:** Our World in Data",
+      sep = "<br>")) +
+  theme_360()+
 theme(
   axis.title = element_text(face = "bold"),
-   panel.grid.major.x = element_blank(),
-      panel.grid.minor.x = element_blank())
+  panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank())
 # 
-# save_360plot(plot_india, "indiamap.png")
+save_360plot(india_map, "indiamap.png")
 # knitr::include_graphics("indiamap.png")
 
 ```
