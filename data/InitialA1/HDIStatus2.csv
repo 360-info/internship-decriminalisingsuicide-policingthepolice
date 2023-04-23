@@ -1,4 +1,4 @@
-HDI_rank_2021,Country,HDI_Value,Life_expectancy,Expected_years_of_schooling,Mean_years_of_schooling,GNI_per_capita,GNI_rank_minus_HDI_rank,HDI_rank_2020,y
+HDI_rank_2021,Country,HDI_Value,Life_expectancy,Expected_years_of_schooling,Mean_years_of_schooling,GNI_per_capita,GNI_rank_minus_HDI_rank,HDI_rank_2020,Degree_of_Human_Development
 1,Switzerland,0.962,83.9872,16.50029945,13.85966015,66933.00454,5,3,VERY HIGH HUMAN DEVELOPMENT
 2,Norway,0.961,83.2339,18.18519974,13.00362968,64660.10622,6,1,VERY HIGH HUMAN DEVELOPMENT
 3,Iceland,0.959,82.6782,19.163059230000002,13.76716995,55782.04981,11,2,VERY HIGH HUMAN DEVELOPMENT

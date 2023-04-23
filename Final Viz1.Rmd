@@ -11,22 +11,14 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=1
 
 ```{r libraries}
 library(readr)
+library(themes360info)
 library(readxl)
 library(tidyverse)
 library(hrbrthemes)
-library(viridis)
 library(ggthemes)
-library(reshape2)
 library(lubridate)
-library(ggplot2)
-library(RColorBrewer)
-library(ggmap)
-library(maps)
-library(mapproj)
-library(maptools)
-library(rgeos)
-library(themes360info)#
 library(sf)
+library(rgeos)
 ```
 
 # Time-Series
@@ -118,16 +110,14 @@ geom_sf_text(
 theme(
   axis.title = element_text(face = "bold"),
   panel.grid.major.x = element_blank(),
-    panel.grid.minor.x = element_blank())
-# 
+    panel.grid.minor.x = element_blank())+
+  xlab(NULL)+
+  ylab(NULL)
+
 save_360plot(india_map, "indiamap.png")
-# knitr::include_graphics("indiamap.png")
+knitr::include_graphics("indiamap.png")
 
 ```
-
-1. How to correct the overlapping
-2. Add 360 theme
-3. Help needed with colouring according to range.
 
 # Visualization for India NCRB Data 
 *(Use Webscraping to extract data from .pdf)*
