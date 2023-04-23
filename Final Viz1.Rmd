@@ -21,7 +21,9 @@ library(sf)
 library(rgeos)
 ```
 
-# Time-Series
+# Adding 360 theme
+
+## Time-Series
 
 ```{r final_article_plot}
 who_data <-read_csv("data/InitialA1/data-2.csv") %>% 
@@ -55,7 +57,7 @@ save_360plot(plot_india, "indiatimeseries.png")
 knitr::include_graphics("indiatimeseries.png")
 ```
 
-# Map of Indian States and UT's.
+## Map of Indian States and UT's.
 
 ```{r data_correction}
 options(scipen=999)
@@ -123,5 +125,66 @@ knitr::include_graphics("indiamap.png")
 
 ```
 
-# Visualization for India NCRB Data 
-*(Use Webscraping to extract data from .pdf)*
+# Comparison with NCRB data
+
+## Time-series
+
+```{r}
+library(pdftools)
+ncrb_pdf <- pdftools::pdf_text(pdf = "https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf") |> 
+str_split("\n")
+```
+
+```{r}
+for(i in 1) { #sets the iteration to go through all 17 pages
+   ncrb_pdf[[i]] <- ncrb_pdf[[i]][11:41]
+} |> 
+  str_squish() 
+
+
+numbers_ex = list()
+k=1
+for(i in 1) {
+    numbers <- ncrb_pdf[[i]]
+    numbers_df <- data.frame(numbers)
+    while(k <= 1000) {
+    numbers_ex[[k]]<- numbers_df
+    k <- k+1
+    break
+    }
+  
+  NH_numbers <- dplyr::bind_rows(numbers_ex)
+}
+
+
+```
+
+```{r}
+new <- NH_numbers |> 
+  separate(numbers, into = c("extra", "id", "year", "count")) |> 
+  na.omit() |> 
+  mutate(year=as.Date(year),
+         count=as.numeric(count))
+
+str(new)
+
+ggplot(new,
+      aes(x=year, y=count))+
+  geom_line()
+```
+
+This time series, is opposite of the plot produced initially. Since NCRB data is more relaiable than OWID, the first plot was rejected.
+
+
+## Map of Indian States and UT's
+
+This visualization is also rejected!
+The data source cant be tracked back. And the id had to be matched manually, which is a bad practice.
+Although the data when corrected, matches the NCRB data for 2019 suicide rates- https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.3%20state-ut-city.pdf
+
+
+
+
+
+
+
