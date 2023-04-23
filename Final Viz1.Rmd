@@ -62,7 +62,10 @@ options(scipen=999)
 
 region_cases_2019 <- read_csv("data/InitialA1/RS_Session_253_A_211.1.csv") %>% 
   filter(str_detect(`State/UT`, "Total ", negate = TRUE)) %>% 
-  select(`State/UT`, Total ) 
+  rename(wrong_total=Total) |> 
+  rowwise() |> # total cases, wrong data
+  mutate(Total= sum(Male, Female, Transgender)) |> 
+  select(`State/UT`, Total )
 
     
 states_shape_sf <- read_sf("data/InitialA1/IND_adm/IND_adm1.shp") 
@@ -81,7 +84,7 @@ states_merged <- inner_join(states_shape_sf, join_newid,
 
 ```{r map_plot_article2}
 colors <- c('#C6B7F7', "#744BF7", "#6B96EC", "#103E99")
-b <- c(0, 10000, 18000, 140000)
+b <- c(0, 1000, 10000, 18000)
 india_map <- ggplot() +
   geom_sf(
     aes(fill = Total),
@@ -97,7 +100,8 @@ geom_sf_text(
     fontface = "bold"
   )+
   coord_sf() +
-  scale_fill_fermenter(palette = "YlGnBu", direction = -1, trans = "log10",
+  scale_fill_fermenter(palette = "YlGnBu", direction = -1, 
+                       # trans = "log10",
     labels = scales::label_number_si()) +
   labs(
     title = "REGION-WISE: SUICIDE IN INDIA 2019",
