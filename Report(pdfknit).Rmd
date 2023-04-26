@@ -1,0 +1,71 @@
+---
+title: "ETC5543 - Business analytics creative activity - S1 2023"
+subtitle: "Internship Report"
+author: "Nishtha Arora, Monash University, Victoria, Australia"
+
+header-includes: |
+ \usepackage{geometry}
+ \geometry{top=0.6in,left=0.80in,bottom=0.6in,right=0.80in}
+ \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \lfoot{Report using: R version 4.2.3 (2023-03-15), by Nishtha Arora, Monash University}
+  \rfoot{\thepage}
+ \fancyfoot[C]
+fontsize: 11pt
+    
+abstract: "This document provides the discussion on visualization process for selected publishing articles; Decrimianlizing Suicide and Policing the Police, for the organization 360info.org. Details such as, data sources, methodology, findings, significance and motivation for analysis are reported."
+
+date: "2023-06-15"
+output:
+  pdf_document:
+    number_sections: false
+    toc: true
+    toc_depth: 2
+    fig_caption: true
+    latex_engine: pdflatex
+# documentclass: report      
+---
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 4)
+```
+
+```{r libraries, include=FALSE}
+library(readr)
+library(themes360info)
+library(readxl)
+library(tidyverse)
+library(hrbrthemes)
+library(ggthemes)
+library(lubridate)
+library(sf)
+library(rgeos)
+```
+\newpage
+
+# About
+
+
+
+# Introduction
+
+
+
+
+\newpage
+
+## Policing the Police
+
+\newpage
+
+
+
+# References
+
+Lua filters in R Markdown. (n.d.). https://rmarkdown.rstudio.com/docs/articles/lua-filters.html
