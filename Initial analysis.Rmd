@@ -1,5 +1,5 @@
 ---
-title: "De-Criminalizing Suicide:  Visualizations"
+title: "Visualizations"
 author: "Nishtha Arora"
 output: html_document
 date: "2023-03-19"
@@ -8,6 +8,8 @@ date: "2023-03-19"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=12, fig.height=8)
 ```
+
+Decriminalizing Suicide
 
 # Visualization 1
 
@@ -297,4 +299,9 @@ ggplot(filtered, aes(colour=Location, y=FactValueNumeric, x=Period ))+
   scale_colour_brewer(type = "seq", palette = "Dark2")+
   theme_classic()
 ```
+
+Policing the Police
+
+# Visualization 1
+
 

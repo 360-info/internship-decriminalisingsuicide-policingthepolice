@@ -1,0 +1,41 @@
+---
+title: "Policing the police"
+author: "Nishtha Arora"
+date: "2023-05-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+library(readxl)
+library(tidyverse)
+```
+
+```{r}
+corruption_UNODC <- read_excel("data/policingthepolice/data_cts_corruption_and_economic_crime.xlsx")
+```
+
+https://ourworldindata.org/corruption
+
+```{r}
+OWID_police <- read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv")
+```
+
+Q calculate the % of corruption done by police
+Q HDI vs corruption countries
+
+Data sources:
+Download from- https://www.ccc.qld.gov.au/corruption/corruption-allegations-data-dashboard
+
+https://data.world/awram/us-police-involved-fatalities
+https://fatalencounters.org
+https://docs.google.com/spreadsheets/d/1dKmaV_JiWcG8XBoRgP8b4e9Eopkpgt7FL7nyspvzAsE/edit#gid=0
+https://www.gunviolencearchive.org
+https://data.world/data-society/fatal-police-shootings
+https://www.washingtonpost.com/graphics/investigations/police-shootings-database/
+https://www.aic.gov.au/publications/rip/rip34
+https://www.fbi.gov/how-we-can-help-you/more-fbi-services-and-information/ucr/use-of-force
