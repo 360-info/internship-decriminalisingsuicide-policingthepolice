@@ -183,7 +183,7 @@ new <- NH_numbers |>
     rate = as.numeric(rate),
     year=as.numeric(year))
 
-str(new)
+
 
 plot_ncrb <- ggplot(new,
       aes(x=year, y=rate))+
@@ -215,7 +215,7 @@ save_360plot(plot_ncrb, "indiatimeseries2.png")
 knitr::include_graphics("indiatimeseries2.png")
 ```
 
-This time series, is opposite of the plot produced initially. Since NCRB data is more relaiable than OWID, the first plot was rejected.
+This time series, has different values than the the plot produced initially. Since NCRB data is more relaiable than OWID, the first plot was rejected.
 
 
 ## Map of Indian States and UT's
