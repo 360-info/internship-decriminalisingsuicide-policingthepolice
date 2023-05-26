@@ -10,32 +10,76 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(readxl)
 library(readr)
 library(readxl)
 library(tidyverse)
 ```
 
+Potential data sets
+
+# UNODC
+
 ```{r}
-corruption_UNODC <- read_excel("data/policingthepolice/data_cts_corruption_and_economic_crime.xlsx")
+corruption_UNODC <- read_excel("data/policingthepolice/data_cts_corruption_and_economic_crime.xlsx") |> slice(-c(1,2))
+colnames(corruption_UNODC) <- c('Iso3_code','Country','Region', 'Subregion','Indicator','Dimension', 'Category','Sex','Age','Year','Unit of measurement','VALUE','Source') 
 ```
 
-https://ourworldindata.org/corruption
+#OWID
 
+Q calculate the % of corruption done by police in 2017.
+Perception of corruption by institution, World, 2017 and Corruption Perception Index, 2012 to 2018- https://ourworldindata.org/corruption
 ```{r}
 OWID_police <- read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv")
+
+TI_corruption_perception_index <- read_csv("data/policingthepolice/TI-corruption-perception-index.csv") |> 
+  filter(Year == "2017")
 ```
 
-Q calculate the % of corruption done by police
-Q HDI vs corruption countries
+# Washington Post/Github
 
-Data sources:
-Download from- https://www.ccc.qld.gov.au/corruption/corruption-allegations-data-dashboard
-
-https://data.world/awram/us-police-involved-fatalities
-https://fatalencounters.org
-https://docs.google.com/spreadsheets/d/1dKmaV_JiWcG8XBoRgP8b4e9Eopkpgt7FL7nyspvzAsE/edit#gid=0
-https://www.gunviolencearchive.org
-https://data.world/data-society/fatal-police-shootings
+Fatal Encounters-USA
 https://www.washingtonpost.com/graphics/investigations/police-shootings-database/
-https://www.aic.gov.au/publications/rip/rip34
-https://www.fbi.gov/how-we-can-help-you/more-fbi-services-and-information/ucr/use-of-force
+https://github.com/washingtonpost/data-police-shootings/tree/master/v1
+```{r}
+fatal_police_shootings_data <- read_csv("data/policingthepolice/fatal-police-shootings-data.csv")
+```
+
+
+# NCRB 
+
+Cases against police-India
+https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?page=21
+```{r}
+Table_16A_5_0 <- read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_0.xlsx") |> 
+  slice(-c(1,2,3,4,5, 35, 36, 44, 45, 46,47)) |> 
+  add_column(Year = "2018")
+colnames(Table_16A_5_0) <- c('S. No.','State/UT','Registered Cases', 'Quashed/ Stayed by Court','Charge-sheeted cases','Final Report Submitted', 'Arrested',' Charge-sheeted police','Cases With-drawn/ Disposed Off','Trials were Completed',' Convicted','Acquitted or Discharged', 'Year') 
+
+Table_16A_5_1 <- read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_1.xlsx") |> 
+  slice(-c(1,2,3,4,5, 35, 36, 44, 45, 46,47)) |> 
+  add_column(Year = "2017")
+colnames(Table_16A_5_1) <- c('S. No.','State/UT','Registered Cases', 'Quashed/ Stayed by Court','Charge-sheeted cases','Final Report Submitted', 'Arrested',' Charge-sheeted police','Cases With-drawn/ Disposed Off','Trials were Completed',' Convicted','Acquitted or Discharged', 'Year') 
+
+Table_16A_5_2 <- read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5-2.xlsx") |> 
+  slice(-c(1,2,3,4,5, 35, 36, 44, 45, 46,47)) |> 
+  add_column(Year = "2020")
+colnames(Table_16A_5_2) <- c('S. No.','State/UT','Registered Cases', 'Quashed/ Stayed by Court','Charge-sheeted cases','Final Report Submitted', 'Arrested',' Charge-sheeted police','Cases With-drawn/ Disposed Off','Trials were Completed',' Convicted','Acquitted or Discharged', 'Year') 
+
+
+Table_16A_5 <- read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5.xlsx")|> 
+    slice(-c(1,2,3,4,5, 35, 36, 44, 45, 46,47)) |> 
+  add_column(Year = "2019")
+colnames(Table_16A_5) <- c('S. No.','State/UT','Registered Cases', 'Quashed/ Stayed by Court','Charge-sheeted cases','Final Report Submitted', 'Arrested',' Charge-sheeted police','Cases With-drawn/ Disposed Off','Trials were Completed',' Convicted','Acquitted or Discharged', 'Year') 
+
+data_policecases <- rbind(Table_16A_5_0, Table_16A_5_1, Table_16A_5_2, Table_16A_5)
+```
+
+
+# Reference
+
+Combine two data frames with the same column names. (n.d.). Stack Overflow. https://stackoverflow.com/questions/20081256/combine-two-data-frames-with-the-same-column-names
+
+Crime in India Table Contents |  National Crime Records Bureau. (n.d.). https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?field_date_value%5Bvalue%5D%5Byear%5D=&field_select_table_title_of_crim_value=18&items_per_page=All
+
+GeeksforGeeks. (2021). Change column name of a given DataFrame in R. GeeksforGeeks. https://www.geeksforgeeks.org/change-column-name-of-a-given-dataframe-in-r/
