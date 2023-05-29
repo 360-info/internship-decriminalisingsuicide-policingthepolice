@@ -1,0 +1,102 @@
+---
+title: "**DATA VISUALIZATION PROJECT**: Understanding trends, outliers and patterns in Data."
+subtitle: "ETC5543- S1 2023"
+author: "Nishtha Arora"
+date: "2023-06-15"
+output:
+  bookdown::html_document2:
+        base_format: rmdformats::readthedown
+        keep_md: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 4)
+```
+
+```{r}
+library(rmdformats)
+```
+
+# Abstract {-}
+
+For decades, computer based reporting has been an integral part of journalism, that uses public records, databases, private and public data sources to investigate patterns, trends or even anomalies in the data collected. The integration of data analysis in the reporting industry brings challenges with it, i.e., data manipulation, wrangling, access to platforms supporting visualization reorganization, etc.(Halevy & McGregor, 2012).
+
+The aim of the project is to support the journalism team of authors and editors with compelling visualization to support their claims and research, or creation of an analysis via a visual related to the topic selected.
+
+The first package, **'Decriminalizing Suicide'** focuses on *India's Mental Health Act 2017* and opposite results are observed due to different data sources, an increase and decrease after 2017, which is discussed in the report.
+
+The second package, **'Policing he Police'** takes an angle of ________
+
+The project uses methods of data wrangling, exploration, pdf scraping, spatial analysis and basics of functions of tidyverse, in R language and uses 'themes360info' package for the theme.
+
+The report is divided into two sections, i.e., the topics of published articles. The workflow for both starts with initial analysis for the topic, the shortlisted/selected visualizations with 360info theme added, reasons for selection or rejection of a particular visualization and the challenges faced during the process.
+
+The overall analysis shows that ____
+
+# About  {-}
+
+[360info](https://360info.org) is a not-for-profit open access agency that provides global information regarding world's issues and provides solutions for the same. This content is forwarded to re-publishers without charge, under Creative Commons.
+
+The content published is based on research, and each week a special report is published, focusing on a global problem, which consists of 5-10 articles covering different aspects in the problem. These articles are contributions from academics across various fields of study, depending on the article.
+
+Each report is supported by visuals, can be images, graphics or interactives. Any story telling can be made better with a data-driven analysis along with it and hence, this internship has given me a chance to work in the data and digital story telling team, produce data visualizations, collaborating with the authors and editors.
+
+All the published work is reproducible for media partners and is published under Creative Commons licences, which is good for art, educational and entertainment works. 360info uses Creative Commons attribution 4.0 because it allows the user's rights under the licence to be reinstated, if the user comes in compliance within 30 days of discovering that they were in violation of the rights.
+
+
+
+# Decrimanlizing Suicide  
+
+## Background 
+
+Suicide is a worldwide public health problem. There have been over 700,000 deaths from suicide worldwide in 2019. Overtime, there have been a no. of theories if decriminalizing suicide is a boon or a bane? Will it increase the suicide rate or decrease it? It may decrease the overall rates because then people will start talking about it openly, which will improve mental health and therefore, less suicides, or it may increase the attempt to suicide rate. According to WHO, there are still 20 countries that have criminalized suicide (World Health Organization: WHO, 2021).
+
+## Motivation and Significance
+
+The suicides rates have been increasing in certain countries and decreasing in certain. There are data gaps, the change of governments at times, have hampered with the data collection methods and hence, the decline in suicides cant be trusted every time. Different data sources provide opposite results all together.
+
+
+## Objectives
+
+## Methodology
+
+### Data
+
+
+
+### Results
+
+### Discussion
+
+# Policing the Police
+
+## Background 
+
+## Motivation and Significance
+
+## Objectives
+
+## Methodology
+
+### Data
+
+### Results 
+
+### Discussion
+
+# Conclusion  {-}
+
+# References  {-}
+
+360info. (n.d.). https://360info.org
+
+
+Halevy, A., & McGregor, S. E. (2012). Data Management for Journalism. IEEE Data(Base) Engineering Bulletin, 35, 7–15. http://sites.computer.org/debull/A12sept/p7.pdf
+
+Lua filters in R Markdown. (n.d.). https://rmarkdown.rstudio.com/docs/articles/lua-filters.html
+
+World Health Organization: WHO. (2021). Suicide. www.who.int. https://www.who.int/news-room/fact-sheets/detail/suicide
+
+
+
+
