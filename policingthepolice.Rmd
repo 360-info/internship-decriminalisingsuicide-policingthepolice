@@ -29,23 +29,23 @@ library(scales)
 
 ```{r daya_unodc_plot1,2}
 corruption_UNODC <-
-  read_excel("data/policingthepolice/data_cts_corruption_and_economic_crime.xlsx") |> slice(-c(1, 2))
-colnames(corruption_UNODC) <-
-  c(
-    'Iso3_code',
-    'Country',
-    'Region',
-    'Subregion',
-    'Indicator',
-    'Dimension',
-    'Category',
-    'Sex',
-    'Age',
-    'Year',
-    'Unit of measurement',
-    'VALUE',
-    'Source'
-  )
+  read_excel("data/policingthepolice/data_cts_corruption_and_economic_crime.xlsx") |>
+  slice(-c(1, 2)) |>
+  set_names(c(
+    "Iso3_code",
+    "Country",
+    "Region",
+    "Subregion",
+    "Indicator",
+    "Dimension",
+    "Category",
+    "Sex",
+    "Age",
+    "Year",
+    "Unit of measurement",
+    "VALUE",
+    "Source"
+  ))
 
 data_clean <- corruption_UNODC |>
   filter(`Unit of measurement` == "Counts") |>
@@ -206,86 +206,82 @@ state_plot5
 Table_16A_5_0 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_0.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
-  add_column(Year = "2018")
-colnames(Table_16A_5_0) <-
-  c(
-    'S. No.',
-    'State/UT',
-    'Registered Cases',
-    'Quashed/ Stayed by Court',
-    'Charge-sheeted cases',
-    'Final Report Submitted',
-    'Arrested',
-    ' Charge-sheeted police',
-    'Cases With-drawn/ Disposed Off',
-    'Trials were Completed',
-    ' Convicted',
-    'Acquitted or Discharged',
-    'Year'
-  )
+  mutate(Year = "2018") |>
+  set_names(c(
+    "S. No.",
+    "State/UT",
+    "Registered Cases",
+    "Quashed/ Stayed by Court",
+    "Charge-sheeted cases",
+    "Final Report Submitted",
+    "Arrested",
+    " Charge-sheeted police",
+    "Cases With-drawn/ Disposed Off",
+    "Trials were Completed",
+    " Convicted",
+    "Acquitted or Discharged",
+    "Year"
+  ))
 
 Table_16A_5_1 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_1.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
-  add_column(Year = "2017")
-colnames(Table_16A_5_1) <-
-  c(
-    'S. No.',
-    'State/UT',
-    'Registered Cases',
-    'Quashed/ Stayed by Court',
-    'Charge-sheeted cases',
-    'Final Report Submitted',
-    'Arrested',
-    ' Charge-sheeted police',
-    'Cases With-drawn/ Disposed Off',
-    'Trials were Completed',
-    ' Convicted',
-    'Acquitted or Discharged',
-    'Year'
-  )
+  add_column(Year = "2017") |>
+  set_names(c(
+    "S. No.",
+    "State/UT",
+    "Registered Cases",
+    "Quashed/ Stayed by Court",
+    "Charge-sheeted cases",
+    "Final Report Submitted",
+    "Arrested",
+    " Charge-sheeted police",
+    "Cases With-drawn/ Disposed Off",
+    "Trials were Completed",
+    " Convicted",
+    "Acquitted or Discharged",
+    "Year"
+  ))
 
 Table_16A_5_2 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5-2.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 34, 35, 44, 45, 46, 47)) |>
-  add_column(Year = "2020")
-colnames(Table_16A_5_2) <-
-  c(
-    'S. No.',
-    'State/UT',
-    'Registered Cases',
-    'Quashed/ Stayed by Court',
-    'Charge-sheeted cases',
-    'Final Report Submitted',
-    'Arrested',
-    ' Charge-sheeted police',
-    'Cases With-drawn/ Disposed Off',
-    'Trials were Completed',
-    ' Convicted',
-    'Acquitted or Discharged',
-    'Year'
-  )
+  add_column(Year = "2020") |>
+  set_names(c(
+    "S. No.",
+    "State/UT",
+    "Registered Cases",
+    "Quashed/ Stayed by Court",
+    "Charge-sheeted cases",
+    "Final Report Submitted",
+    "Arrested",
+    " Charge-sheeted police",
+    "Cases With-drawn/ Disposed Off",
+    "Trials were Completed",
+    " Convicted",
+    "Acquitted or Discharged",
+    "Year"
+  ))
 
 Table_16A_5 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
-  add_column(Year = "2019")
-colnames(Table_16A_5) <-
-  c(
-    'S. No.',
-    'State/UT',
-    'Registered Cases',
-    'Quashed/ Stayed by Court',
-    'Charge-sheeted cases',
-    'Final Report Submitted',
-    'Arrested',
-    ' Charge-sheeted police',
-    'Cases With-drawn/ Disposed Off',
-    'Trials were Completed',
-    ' Convicted',
-    'Acquitted or Discharged',
-    'Year'
-  )
+  add_column(Year = "2019") |>
+  set_names(c(
+    "S. No.",
+    "State/UT",
+    "Registered Cases",
+    "Quashed/ Stayed by Court",
+    "Charge-sheeted cases",
+    "Final Report Submitted",
+    "Arrested",
+    " Charge-sheeted police",
+    "Cases With-drawn/ Disposed Off",
+    "Trials were Completed",
+    " Convicted",
+    "Acquitted or Discharged",
+    "Year"
+  ))
 
 options(digits = 2)
 
