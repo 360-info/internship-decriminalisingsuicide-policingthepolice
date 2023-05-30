@@ -188,7 +188,9 @@ state_plot5 <- fatal_police_shootings_data |>
     stroke = 2
   ) +
   theme_wsj() +
-  ggtitle("USA States with Highest Killings, 2015-2022")
+  labs(
+    title = "USA States with Highest Killings",
+    subtitle = "2015-2022")
 state_plot5
 ```
 
