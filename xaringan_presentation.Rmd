@@ -1,0 +1,80 @@
+---
+title: "Presentation"
+subtitle: "with xaringan"
+author: "Nishtha Arora"
+date: "2023/05/30"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(xaringan)
+
+library(readr)
+library(themes360info)
+library(readxl)
+library(tidyverse)
+library(hrbrthemes)
+library(ggthemes)
+library(lubridate)
+library(sf)
+library(rgeos)
+library(pdftools)
+library(kableExtra)
+library(packcircles)
+library(bookdown)
+
+```
+
+
+# DECRIMANALIZING SUICIDE
+
+- Worldwide Public Health Problem
+
+- over 700,000 deaths from suicide worldwide in 2019
+
+- decriminalizing suicide is a boon or a bane?
+
+- still 20 countries that have criminalized suicide
+
+## History
+
+With the advancement of science in the 19th and 20th century, it was discovered that suicidal tendencies are caused by biological factors as well and hence, continents like Europe and North America revoked the laws reagrding crimanlizng suicide.
+
+---
+
+### Initial Visualizations
+
+```{r saving_cleaned_data, echo=FALSE}
+suicide_hdi_data <- read_csv("data/join_HDI_suicide.csv")
+
+plot1 <- suicide_hdi_data %>% head(30)
+ggplot(plot1,
+  aes(x = reorder(Entity, -avg_rate), y = avg_rate,
+    fill = `Development status`)) +
+  geom_col() +
+  geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size = 1.5) +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1),
+    plot.title = element_text(face = "bold")
+  ) +
+  labs(
+    title = "Top 30 countries by average suicide rate (2008-2019)",
+    x = substitute(paste(bold("Country"))),
+    y = substitute(paste(bold("Suicide rate per 100,000 people")))
+  ) +
+  scale_fill_manual(
+    values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
+```
+
+
+

@@ -72,7 +72,7 @@ knitr::include_graphics("images/images.png")
 
 
 
-# Decrimanlizing Suicide  
+# Decrimanalizing Suicide  
 
 ## Background 
 
@@ -229,6 +229,8 @@ join <- full_join(selected_suicide_rates_OWID, tidied_hdi_data) |>
   na.omit() |> 
   rename(`Development status` = Degree_of_Human_Development) |> 
   mutate(avg_rate = round(avg_rate, digits = 2))
+
+write_csv(join, "data/join_HDI_suicide.csv") #for presentation
 ```
 
 ```{r plot1, echo=FALSE, fig.width= 7, fig.height=5}
@@ -299,11 +301,11 @@ It is observed that the WHO data values are higher than OWID values for the year
 
 Here, the objective of the visualization is to confirm significant errors in any data and why any data source cannot be fully trusted. This is done by observing outliers in the data set. *Stephen Hawkins described Outliers as a point that deviates so much from the other observations that it arises a suspicion about a different mechanism being used for its generation*(G, 1987).
 
-These data points vary differently and could be due to no. of reasons, for example, variability in measurement, hampering of data, misreporting, underreporting, duplication, sampling errors, unusual events, human errors of recording incorrect data or miskeyed upon data entry, etc.
+These data points vary differently and could be due to no. of reasons, for example, variability in measurement, hampering of data, misreporting, under reporting, duplication, sampling errors, unusual events, human errors of recording incorrect data or miskeyed upon data entry, etc.
 
 Outliers are highly underestimated! A small proportion of outliers can affect a simple analysis, giving rise to inflated error rates and distortions in statistical estimates and removal of these can help improve the accuracy significantly(Osborne & Overbay, 2004).
 
-Here,  initially the complete data set was observed for observing outliers, but due to it being a large dataset, text overlapping and squeezed observations made the visualization hard to read, hence, countries with significant outliers were selected for visualization.
+Here,  initially the complete data set was observed for observing outliers, but due to it being a large data set, text overlapping and squeezed observations made the visualization hard to read, hence, countries with significant outliers were selected for visualization.
 
 
 ```{r, echo=FALSE}
