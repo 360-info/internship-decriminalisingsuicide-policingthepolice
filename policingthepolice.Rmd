@@ -104,14 +104,11 @@ plot_usa
 ```{r data_owid_plot3}
 OWID_police <-
   read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") |>
-  summarise_if(is.numeric, mean, na.rm = TRUE) |> select(-c(Year))
+  group_by(Year) |>
+  summarise_if(is.numeric, mean, na.rm = TRUE) |>
+  pivot_longer(cols = -Year, names_to = "Institution", values_to = "Count")
 
-#transpose of the data
-t_data_OWID <- data.frame(t(OWID_police)) |>
-  rename(Count = t.OWID_police.)
-
-
-ggplot(t_data_OWID, aes(
+ggplot(OWID_police, aes(
   x = reorder(rownames(t_data_OWID),-Count),
   y = Count,
   fill = rownames(t_data_OWID)
