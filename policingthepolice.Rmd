@@ -213,90 +213,48 @@ state_plot5
 - https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?page=21
 
 ```{r data_india_bind}
+
+ncrb_col_names <- c(
+  "S. No.",
+  "State/UT",
+  "Registered Cases",
+  "Quashed/ Stayed by Court",
+  "Charge-sheeted cases",
+  "Final Report Submitted",
+  "Arrested",
+  " Charge-sheeted police",
+  "Cases With-drawn/ Disposed Off",
+  "Trials were Completed",
+  " Convicted",
+  "Acquitted or Discharged",
+  "Year")
+
 Table_16A_5_0 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_0.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
   mutate(Year = "2018") |>
-  set_names(c(
-    "S. No.",
-    "State/UT",
-    "Registered Cases",
-    "Quashed/ Stayed by Court",
-    "Charge-sheeted cases",
-    "Final Report Submitted",
-    "Arrested",
-    " Charge-sheeted police",
-    "Cases With-drawn/ Disposed Off",
-    "Trials were Completed",
-    " Convicted",
-    "Acquitted or Discharged",
-    "Year"
-  ))
+  set_names(ncrb_col_names)
 
 Table_16A_5_1 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_1.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
   add_column(Year = "2017") |>
-  set_names(c(
-    "S. No.",
-    "State/UT",
-    "Registered Cases",
-    "Quashed/ Stayed by Court",
-    "Charge-sheeted cases",
-    "Final Report Submitted",
-    "Arrested",
-    " Charge-sheeted police",
-    "Cases With-drawn/ Disposed Off",
-    "Trials were Completed",
-    " Convicted",
-    "Acquitted or Discharged",
-    "Year"
-  ))
+  set_names(ncrb_col_names)
 
 Table_16A_5_2 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5-2.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 34, 35, 44, 45, 46, 47)) |>
   add_column(Year = "2020") |>
-  set_names(c(
-    "S. No.",
-    "State/UT",
-    "Registered Cases",
-    "Quashed/ Stayed by Court",
-    "Charge-sheeted cases",
-    "Final Report Submitted",
-    "Arrested",
-    " Charge-sheeted police",
-    "Cases With-drawn/ Disposed Off",
-    "Trials were Completed",
-    " Convicted",
-    "Acquitted or Discharged",
-    "Year"
-  ))
+  set_names(ncrb_col_names)
 
 Table_16A_5 <-
   read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5.xlsx") |>
   slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
   add_column(Year = "2019") |>
-  set_names(c(
-    "S. No.",
-    "State/UT",
-    "Registered Cases",
-    "Quashed/ Stayed by Court",
-    "Charge-sheeted cases",
-    "Final Report Submitted",
-    "Arrested",
-    " Charge-sheeted police",
-    "Cases With-drawn/ Disposed Off",
-    "Trials were Completed",
-    " Convicted",
-    "Acquitted or Discharged",
-    "Year"
-  ))
-
-options(digits = 2)
+  set_names(ncrb_col_names)
 
 data_policecases <-
-  rbind(Table_16A_5_0, Table_16A_5_1, Table_16A_5_2, Table_16A_5) |>
+  bind_rows(Table_16A_5_0, Table_16A_5_1, Table_16A_5_2, Table_16A_5) |>
   mutate(
     Arrested = as.numeric(Arrested),
     `Registered Cases` = as.numeric(`Registered Cases`)
