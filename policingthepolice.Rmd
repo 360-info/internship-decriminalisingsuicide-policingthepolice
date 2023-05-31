@@ -59,7 +59,7 @@ plot_global <- corruption_UNODC_clean |>
   arrange(desc(VALUE)) |>
   head(10) |>
   mutate(ToHighlight = ifelse(VALUE > 30000, "yes", "no")) |>
-  ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
+  ggplot(aes(reorder(x = Country, -VALUE), y = VALUE, fill = ToHighlight)) +
   geom_col() +
   theme(legend.position = "none") +
   theme_dark() +
@@ -73,12 +73,15 @@ plot_global <- corruption_UNODC_clean |>
     legend.position = "none"
   ) +
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
+
 plot_global
 
 plot_usa <- corruption_UNODC_clean |>
   filter(Country == "United States of America") |>
-  mutate(Year = as.Date(as.character(Year), format = "%Y"),
-         Year = year(Year)) |>
+  mutate(
+    Year = as.Date(as.character(Year), format = "%Y"),
+    Year = year(Year)
+  ) |>
   ggplot(aes(x = Year, y = VALUE)) +
   geom_col(fill = "lightblue", width = 0.4) +
   geom_line(size = 1, colour = "#811B0F") +
@@ -90,6 +93,7 @@ plot_usa <- corruption_UNODC_clean |>
     axis.title.x = element_text(face = "bold"),
     axis.title.y = element_text(face = "bold")
   )
+
 plot_usa
 ```
 
@@ -109,7 +113,7 @@ OWID_police <-
   pivot_longer(cols = -Year, names_to = "Institution", values_to = "Count")
 
 ggplot(OWID_police, aes(
-  x = reorder(rownames(t_data_OWID),-Count),
+  x = reorder(rownames(t_data_OWID), -Count),
   y = Count,
   fill = rownames(t_data_OWID)
 )) +
@@ -171,7 +175,7 @@ state_plot5 <- fatal_police_shootings_data |>
   head(10) |>
   ggplot(aes(x = state, y = count)) +
   geom_segment(aes(
-    x = reorder(state,-count),
+    x = reorder(state, -count),
     xend = state,
     y = 0,
     yend = count
@@ -187,7 +191,8 @@ state_plot5 <- fatal_police_shootings_data |>
   theme_wsj() +
   labs(
     title = "USA States with Highest Killings",
-    subtitle = "2015-2022")
+    subtitle = "2015-2022"
+  )
 state_plot5
 ```
 
@@ -284,17 +289,20 @@ options(digits = 2)
 
 data_policecases <-
   rbind(Table_16A_5_0, Table_16A_5_1, Table_16A_5_2, Table_16A_5) |>
-  mutate(Arrested = as.numeric(Arrested),
-         `Registered Cases` = as.numeric(`Registered Cases`)) |>
+  mutate(
+    Arrested = as.numeric(Arrested),
+    `Registered Cases` = as.numeric(`Registered Cases`)
+  ) |>
   select(`State/UT`, `Registered Cases`, Arrested, Year) |>
   mutate(
     sum = rowSums(across(where(is.numeric))),
     percentage_arrested = (Arrested / sum) * 100,
     `State/UT` = trimws(`State/UT`),
     `State/UT` = recode(`State/UT`,
-                        "Delhi UT" = "Delhi")
+      "Delhi UT" = "Delhi"
+    )
   ) |>
-  select(-c(sum)) 
+  select(-c(sum))
 ```
   
 ```{r plot6}
@@ -311,9 +319,11 @@ plot6_percentage <- data_policecases |>
       fill = `State/UT`
     )
   ) +
-  geom_point(alpha = 0.5,
-             shape = 21,
-             color = "black") +
+  geom_point(
+    alpha = 0.5,
+    shape = 21,
+    color = "black"
+  ) +
   scale_size(range = c(.1, 24), name = "No. of police Personnel Arrested") +
   ggtitle("Top 15 States with Highest Registeres Cases, 2020") +
   ylab("Percentage of Police arrested out of Registered Cases") +
@@ -325,22 +335,24 @@ plot6_percentage
 plot7_kar <- data_policecases |>
   filter(`State/UT` == "Karnataka") |>
   ggplot() +
-  geom_col(aes(x = reorder(Year,-`Registered Cases`), y = `Registered Cases`), fill = "#86BCD9") +
+  geom_col(aes(x = reorder(Year, -`Registered Cases`), y = `Registered Cases`), fill = "#86BCD9") +
   geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
   ggtitle("Registered Cases vs Police Arrested: Karnataka") +
   ylab("Regestered Cases & Arrested (Red") +
   xlab("Year") +
   theme_minimal() +
   annotate("text",
-           x = 1,
-           y = 10,
-           label = "12% Arrested") +
+    x = 1,
+    y = 10,
+    label = "12% Arrested"
+  ) +
   annotate("text",
-           x = 3,
-           y = 8,
-           label = "34% Arrested")
+    x = 3,
+    y = 8,
+    label = "34% Arrested"
+  )
 
-plot7_kar 
+plot7_kar
 ```
 
 # Visualization 8
@@ -364,17 +376,20 @@ ggplot(
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
   annotate("text",
-           x = 6,
-           y = 110000,
-           label = "Luxembourg") +
+    x = 6,
+    y = 110000,
+    label = "Luxembourg"
+  ) +
   annotate("text",
-           x = 7.4,
-           y = 69877,
-           label = "Switzerland") +
+    x = 7.4,
+    y = 69877,
+    label = "Switzerland"
+  ) +
   annotate("text",
-           x = 6.4,
-           y = 45000,
-           label = "UK") +
+    x = 6.4,
+    y = 45000,
+    label = "UK"
+  ) +
   theme_bw()
 ```
 
@@ -390,7 +405,7 @@ ggplot(
 ```{r plot9}
 Police_reserves_data_2018 <-
   read_csv("data/policingthepolice/financial_reserves_data/Police reserves data 2018.csv") |>
-  slice(-c(1, 2, 3, 4, 47, 48, 49, 50, 51, 52, 53, 54)) 
+  slice(-c(1, 2, 3, 4, 47, 48, 49, 50, 51, 52, 53, 54))
 ```
 
 
@@ -411,17 +426,23 @@ PH_data <- read_excel("data/policingthepolice/PH data.xlsx") |>
   summarise(count = n())
 
 ggplot(PH_data, aes(x = Date, y = count, fill = City)) +
-  geom_bar(stat = "identity",
-           position = position_dodge(),
-           alpha = 0.75) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(),
+    alpha = 0.75
+  ) +
   ggtitle("Phillippines Drug War Police Killings") +
   ylab("People Killed") +
   theme_economist() +
   scale_fill_economist() +
-  theme(axis.title.x = element_text(face = "bold"),
-        axis.title.y = element_text(face = "bold")) +
-  scale_x_date(breaks = date_breaks("years"),
-               labels = date_format("20%y"))
+  theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  ) +
+  scale_x_date(
+    breaks = date_breaks("years"),
+    labels = date_format("20%y")
+  )
 ```
 
 
