@@ -47,13 +47,13 @@ corruption_UNODC <-
     "Source"
   ))
 
-data_clean <- corruption_UNODC |>
+corruption_UNODC_clean <- corruption_UNODC |>
   filter(`Unit of measurement` == "Counts") |>
   select(Iso3_code, Country, Category, VALUE, Year) |>
   filter(Category %in% c("Corruption")) |>
   mutate(VALUE = as.numeric(VALUE))
 
-plot_global <- data_clean |>
+plot_global <- corruption_UNODC_clean |>
   group_by(Country) |>
   summarise(VALUE = mean(VALUE)) |>
   arrange(desc(VALUE)) |>
@@ -75,7 +75,7 @@ plot_global <- data_clean |>
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
 plot_global
 
-plot_usa <- data_clean |>
+plot_usa <- corruption_UNODC_clean |>
   filter(Country == "United States of America") |>
   mutate(Year = as.Date(as.character(Year), format = "%Y"),
          Year = year(Year)) |>
