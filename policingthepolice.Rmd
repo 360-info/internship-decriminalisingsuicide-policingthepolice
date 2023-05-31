@@ -348,21 +348,11 @@ ggplot(
 ) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
-  annotate("text",
-    x = 6,
-    y = 110000,
-    label = "Luxembourg"
-  ) +
-  annotate("text",
-    x = 7.4,
-    y = 69877,
-    label = "Switzerland"
-  ) +
-  annotate("text",
-    x = 6.4,
-    y = 45000,
-    label = "UK"
-  ) +
+  geom_text(
+    aes(label = Entity),
+    data = europe_trust_in_police |> filter(
+      Entity %in% c("Luxembourg", "Switzerland", "United Kingdom")),
+      nudge_y = -0.25E4) +
   theme_bw()
 ```
 
