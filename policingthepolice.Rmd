@@ -50,7 +50,7 @@ corruption_UNODC <-
 corruption_UNODC_clean <- corruption_UNODC |>
   filter(`Unit of measurement` == "Counts") |>
   select(Iso3_code, Country, Category, VALUE, Year) |>
-  filter(Category %in% c("Corruption")) |>
+  filter(Category == "Corruption") |>
   mutate(VALUE = as.numeric(VALUE))
 
 plot_global <- corruption_UNODC_clean |>
