@@ -1,0 +1,73 @@
+---
+title: "Presentation initial"
+author: Nishtha Arora
+date: "30/05/2023"
+output: powerpoint_presentation
+---
+
+```{r}
+library(readr)
+library(themes360info)
+library(readxl)
+library(tidyverse)
+library(hrbrthemes)
+library(ggthemes)
+library(lubridate)
+library(sf)
+library(rgeos)
+library(pdftools)
+library(kableExtra)
+library(packcircles)
+library(bookdown)
+```
+
+# DECRIMANALIZING SUICIDE
+
+- Worldwide Public Health Problem
+
+- over 700,000 deaths from suicide worldwide in 2019
+
+- decriminalizing suicide is a boon or a bane?
+
+- still 20 countries that have criminalized suicide
+
+## History
+
+With the advancement of science in the 19th and 20th century, it was discovered that suicidal tendencies are caused by biological factors as well and hence, continents like Europe and North America revoked the laws reagrding crimanlizng suicide.
+
+
+## Motivation, Significance & Objectives
+
+For every one completed suicide, 20 more attempts are made. Identification of potential suicide victims via these attempts can result in help-seeking and prevention of suicide but crimanlizing it, hinders the help-seeking and also results in inaccurate tracking of suicides. Also, there are data gaps in data round the world for a particular year, years or season which could be a result of no. of factors like, a change in the government, a sudden technology advancement, a low economy country, major events, etc.
+
+---
+
+
+### Initial Visualizations
+
+```{r saving_cleaned_data, echo=FALSE}
+suicide_hdi_data <- read_csv("data/join_HDI_suicide.csv")
+
+plot1 <- suicide_hdi_data %>% head(30)
+ggplot(plot1,
+  aes(x = reorder(Entity, -avg_rate), y = avg_rate,
+    fill = `Development status`)) +
+  geom_col() +
+  geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size = 1.5) +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1),
+    plot.title = element_text(face = "bold")
+  ) +
+  labs(
+    title = "Top 30 countries by average suicide rate (2008-2019)",
+    x = substitute(paste(bold("Country"))),
+    y = substitute(paste(bold("Suicide rate per 100,000 people")))
+  ) +
+  scale_fill_manual(
+    values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
+```
+
+# References
+
+Grolemund, Y. X. J. J. a. G. (2023, May 15). 4.4 PowerPoint presentation | R Markdown: The Definitive Guide. https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html

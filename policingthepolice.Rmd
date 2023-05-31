@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
 
 ```{r loading_libraries}
 library(readxl)
+library(themes360info)
 library(readr)
 library(readxl)
 library(tidyverse)
@@ -93,7 +94,7 @@ plot_usa <- data_clean |>
 plot_usa
 ```
 
-# Visualization 3
+# Visualization 3 & 11
 
 ## PERCEPTION OF CORRUPTION SURVEY, 2013-2017
 
@@ -101,10 +102,35 @@ plot_usa
 
 - OWID (Our World in Data): https://ourworldindata.org/corruption
 
+```{r}
+OWID_police_perc <-
+  read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") 
+
+owid_facet <- OWID_police_perc |>
+  mutate_if(is.numeric, ~replace(., is.na(.), 0)) |>
+  group_by(Year) |>
+  summarise_if(is.numeric, mean)  |>
+  pivot_longer(cols = -Year, names_to = "Institution", values_to = "Count") |>
+  mutate(Count= Count/100) |>
+filter(Institution %in% c("Police", "Legislature", "Judges and magistrates", "Government officials", "Business executives"))
+
+# world <- OWID_police_perc |>
+#   slice(130,131)
+
+world <- OWID_police_perc |> 
+  filter(Entity == "World") |> 
+  group_by(Year) |> 
+  summarise_if(is.numeric, mean) |> 
+  pivot_longer(cols = -Year, names_to = "Institution", values_to = "Count") |> 
+  na.omit()
+```
+
+
 ```{r data_owid_plot3}
-OWID_police <-
-  read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") |>
+
+OWID_police <- OWID_police_perc |> 
   summarise_if(is.numeric, mean, na.rm = TRUE) |> select(-c(Year))
+
 
 #transpose of the data
 t_data_OWID <- data.frame(t(OWID_police)) |>
@@ -141,6 +167,131 @@ ggplot(t_data_OWID, aes(
   )
 ```
 
+```{r plot11}
+ggplot(owid_facet, aes( x = Count, y = Institution, fill=Institution))+
+  geom_col()+
+  facet_wrap( ~ Year, ncol = 2)+
+  theme(legend.position = "none")+
+  scale_x_continuous(labels = scales::percent)+
+  scale_fill_manual(
+    values = c(
+      "#C9BE4E",
+      "#478934",
+      "#5CD2FF",
+      "#5C7077",
+      "#C898DC",
+      "#B23F1D",
+      "#C25B7E",
+      "#AE95CA",
+      "#7C213D",
+      "#09A2E5"
+    ))
+```
+
+```{r plot12}
+plot_police <- ggplot(owid_facet, aes( y = Count, x = Year, fill=Year))+
+  geom_col()+
+
+  facet_grid(rows = vars(Institution),
+             labeller = label_wrap_gen(multi_line = TRUE))+
+  theme(legend.position = "none")+
+  coord_flip()+
+  scale_x_continuous(breaks = c(2013,2015, 2016, 2017))+
+   scale_y_continuous(labels = scales::percent)+
+  labs(
+    y = NULL,
+    x = NULL,
+    title = "People Survey: High Corruption Scams",
+    subtitle = "People beleive Police to be the most corrupt, especially in the years 2013 & 2015",
+    caption = paste(
+      "**CHART:** Nishtha Arora & James Goldie, 360info",
+      "**DATA:** Transparency International via Our World in Data",
+      sep = "<br>"
+    )
+  )+
+  theme_360() +
+  theme(
+    legend.position = "none",
+    axis.title = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+save_360plot(plot_police, "police.png")
+knitr::include_graphics("police.png")
+```
+
+```{r plot13}
+b_2013<-world %>% filter(Year == "2013")
+c_2017<-world %>% filter(Year == "2017") |>
+  filter(Institution %in% c("Police", "Government officials", "Legislature", "Business executives", "Judges and magistrates", "Religious leaders"))
+
+b_2013$Institution<-as.factor(b_2013$Institution)
+c_2017$Institution<-as.factor(c_2017$Institution)
+
+d_1317<-merge(b_2013,c_2017, by.x=c("Institution"), by.y = c("Institution"))
+
+e<-d_1317 %>%
+  mutate("diff"=pmin(Count.x-Count.y)) %>%
+  arrange(diff)
+d_1317$Institution<-factor(d_1317$Institution,  e$Institution)
+
+chapters <-  c("a","a","a","b","b","b")
+d_1317 <- cbind(e, chapters)
+
+
+library(dumbbell)
+dumbbell(xdf=d_1317,id = "Institution",key="chapters",column1 = "Count.x",column2 = "Count.y",
+         lab1 = "2013",lab2 = "2017", delt=1, expandx = 0.1, col_lab1 = "blue", col_lab2 = "red", pt_val = 1,
+         arrow = 1, arrow_size = 0.2, segsize = 0.7,
+    pointsize = 1.5, col_seg1 = "#A9A9A9", col_seg2 = "#A9A9A9") +
+  coord_flip()
+```
+
+```{r plot14}
+plot3 <- world |> 
+  mutate(Count=Count/100) |> 
+  filter(Institution %in% c("Police", "Government officials", "Legislature", "Business executives", "Judges and magistrates", "Religious leaders")) |> 
+  ggplot() +
+  aes(x = Institution) +
+  geom_line(
+    aes(y = Count, group = Institution),
+    arrow = grid::arrow()
+  ) +
+  geom_point(aes(y = Count, colour = as.factor(Year)), size = 3) +
+  labs(
+    y = "Survey Respondents",
+    x = NULL,
+    title = "People Survey: High Corruption Scams",
+    subtitle = "People believe Police to be the most corrupt, especially in 2013, i.e. about 68%.",
+    caption = paste(
+      "**CHART:** Nishtha Arora & James Goldie, 360info",
+      "**DATA:** Transparency International", 
+      "     via Our World in Data",
+      sep = "<br>"
+    )
+  )+
+  theme_360() +
+  theme(
+    axis.title = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    axis.text.x = element_text(
+      color = "#993333",
+      angle = 45,
+      size = 10,
+      face="bold"
+    )
+  )+
+  labs(colour="Year")+
+  scale_y_continuous(labels = scales::percent)
+
+
+save_360plot(plot3, "police_2.png")
+knitr::include_graphics("police_2.png")
+  
+```
+
 # Visualization 4 & 5
 
 ## FATAL ENCOUNTER IN USA, 2015-2022
@@ -151,33 +302,75 @@ ggplot(t_data_OWID, aes(
 
 -https://github.com/washingtonpost/data-police-shootings/tree/master/v1
 
-```{r data_us_plot4,5}
+- https://www2.census.gov/programs-surveys/popest/datasets/2010-2020/counties/totals/
+
+- https://www2.census.gov/programs-surveys/popest/datasets/2020-2022/counties/totals/
+
+-https://github.com/jasonong/List-of-US-States/blob/master/states.csv
+
+```{r data_wrangling}
+
+options(scipen = 999)
+
+co_est2020 <- read_csv("data/policingthepolice/co-est2020.csv") |> 
+  select(-c(SUMLEV, REGION, DIVISION, STATE, COUNTY, CTYNAME, CENSUS2010POP, ESTIMATESBASE2010, POPESTIMATE042020, POPESTIMATE2011, POPESTIMATE2012,POPESTIMATE2013, POPESTIMATE2014, POPESTIMATE2010)) |> 
+  group_by(STNAME) |> 
+   # summarise(summarise_if(is.numeric, mean))
+  summarise(`2015`=mean(POPESTIMATE2015),
+            `2016`=mean(POPESTIMATE2016),
+            `2017`=mean(POPESTIMATE2017),
+            `2018`=mean(POPESTIMATE2018),
+            `2019`=mean(POPESTIMATE2019),
+            `2020`=mean(POPESTIMATE2020)
+            ) 
+
+co_est2022_alldata <- read_csv("data/policingthepolice/co-est2022-alldata.csv") |> 
+    select(STNAME, POPESTIMATE2021, POPESTIMATE2022) |> 
+  group_by(STNAME) |> 
+  summarise(`2021`=mean(POPESTIMATE2021),
+            `2022`=mean(POPESTIMATE2022)
+            ) |> 
+   select(-c(STNAME))
+
+bind_pop <- cbind(co_est2020, co_est2022_alldata) |> 
+  pivot_longer(cols = 2:9, names_to = 'year', values_to = 'population') |> 
+  rename(state_name=STNAME) |> 
+  mutate(year=as.numeric(year))
+
+states <- read_csv("data/policingthepolice/states.csv") |> 
+  rename(state_name=State,
+         state=Abbreviation)
+
 fatal_police_shootings_data <-
   read_csv("data/policingthepolice/fatal-police-shootings-data.csv") |>
   mutate(year = year(date)) |>
   select(gender, race, city, state, year)
 
-shots_usa_plot4 <- fatal_police_shootings_data |>
-  group_by(year) |>
-  summarise(count = n()) |>
-  ggplot(aes(x = year, y = count)) +
-  geom_line(colour = "#351873") +
-  geom_point() +
-  theme_wsj() +
-  ggtitle("USA Killings: 2015-2022")
-shots_usa_plot4
+state_shooting <- left_join(fatal_police_shootings_data, states, by= "state") |> 
+select(-c(state,city)) |> 
+   group_by(year, state_name) |>
+  summarise(count = n())
 
-state_plot5 <- fatal_police_shootings_data |>
-  group_by(state) |>
-  summarise(count = n()) |>
-  arrange(desc(count)) |>
-  head(10) |>
-  ggplot(aes(x = state, y = count)) +
+join_pop_killings <- full_join(bind_pop, state_shooting, by=c("state_name", "year")) |> 
+  mutate(rate=(count/population)*100000) |> 
+  select(-c(population, count)) |> 
+  group_by(state_name) |> 
+  summarise(rate=mean(rate)) |> 
+  arrange(desc(rate)) |> 
+  head(10)
+  
+#rate per 100,000 population |
+
+```
+
+
+```{r data_us_plot4,5}
+  ggplot( join_pop_killings, aes(x = state_name, y = rate)) +
   geom_segment(aes(
-    x = reorder(state,-count),
-    xend = state,
+    x = reorder(state_name,-rate),
+    xend = state_name,
     y = 0,
-    yend = count
+    yend = rate
   )) +
   geom_point(
     size = 6,
@@ -188,8 +381,8 @@ state_plot5 <- fatal_police_shootings_data |>
     stroke = 2
   ) +
   theme_wsj() +
-  ggtitle("USA States with Highest Killings, 2015-2022")
-state_plot5
+  ggtitle("USA States with Highest Police Shootings, 2015-2022")
+
 ```
 
 # Visualization 6 & 7
