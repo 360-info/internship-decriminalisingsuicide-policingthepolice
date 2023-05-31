@@ -262,13 +262,10 @@ data_policecases <-
   select(`State/UT`, `Registered Cases`, Arrested, Year) |>
   mutate(
     sum = rowSums(across(where(is.numeric))),
-    percentage_arrested = (Arrested / sum) * 100,
+    percentage_arrested = (Arrested / sum),
     `State/UT` = trimws(`State/UT`),
-    `State/UT` = recode(`State/UT`,
-      "Delhi UT" = "Delhi"
-    )
-  ) |>
-  select(-c(sum))
+    `State/UT` = recode(`State/UT`, "Delhi UT" = "Delhi")
+  )
 ```
   
 ```{r plot6}
@@ -290,10 +287,16 @@ plot6_percentage <- data_policecases |>
     shape = 21,
     color = "black"
   ) +
-  scale_size(range = c(.1, 24), name = "No. of police Personnel Arrested") +
-  ggtitle("Top 15 States with Highest Registeres Cases, 2020") +
-  ylab("Percentage of Police arrested out of Registered Cases") +
+  scale_size(range = c(.1, 24)) +
+  scale_y_continuous(labels = label_percent()) +
+  labs(
+    x = "Number of registered cases",
+    y = "Percentage of police arrested out of registered cases",
+    size = "No. of police officers in case",
+    title = "Top 15 States with highest registered cases, 2020",
+  ) +
   theme_classic()
+
 plot6_percentage
 ```
 
@@ -301,7 +304,11 @@ plot6_percentage
 plot7_kar <- data_policecases |>
   filter(`State/UT` == "Karnataka") |>
   ggplot() +
-  geom_col(aes(x = reorder(Year, -`Registered Cases`), y = `Registered Cases`), fill = "#86BCD9") +
+  geom_col(
+    aes(
+      x = reorder(Year, -`Registered Cases`),
+      y = `Registered Cases`),
+      fill = "#86BCD9") +
   geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
   ggtitle("Registered Cases vs Police Arrested: Karnataka") +
   ylab("Regestered Cases & Arrested (Red") +
