@@ -252,18 +252,19 @@ dumbbell(xdf=d_1317,id = "Institution",key="chapters",column1 = "Count.x",column
 plot3 <- world |> 
   mutate(Count=Count/100) |> 
   filter(Institution %in% c("Police", "Government officials", "Legislature", "Business executives", "Judges and magistrates", "Religious leaders")) |> 
-  ggplot() +
-  aes(x = Institution) +
+  ggplot(aes(label=factor(Count))) +
+  aes(x = Institution, y = Count) +
   geom_line(
-    aes(y = Count, group = Institution),
+    aes(group = Institution),
     arrow = grid::arrow()
   ) +
-  geom_point(aes(y = Count, colour = as.factor(Year)), size = 3) +
+  geom_point(aes(colour = as.factor(Year)), size=4) +
+  geom_text(aes(label = scales::percent(Count), colour = as.factor(Year)), nudge_x = 0.25, family = "Body 360info", fontface = "bold") +
   labs(
-    y = "Survey Respondents",
+    y = "Percentage of respondents",
     x = NULL,
-    title = "People Survey: High Corruption Scams",
-    subtitle = "People believe Police to be the most corrupt, especially in 2013, i.e. about 68%.",
+    title = "CORRUPTION SURVEY",
+    subtitle = str_wrap("When asked which groups they perceived as corrupt, more people pointed to police than any other group.", 90),
     caption = paste(
       "**CHART:** Nishtha Arora & James Goldie, 360info",
       "**DATA:** Transparency International", 
@@ -277,18 +278,20 @@ plot3 <- world |>
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
     axis.text.x = element_text(
-      color = "#993333",
-      angle = 45,
-      size = 10,
+      size = 12,
       face="bold"
-    )
+    ),
+    legend.position = "top"
   )+
-  labs(colour="Year")+
-  scale_y_continuous(labels = scales::percent)
+  labs(colour=NULL)+
+  scale_y_continuous(labels = scales::percent)+
+  scale_color_manual(values=c("#56B4E9", "#E69F00"))+
+  scale_x_discrete(labels = scales::label_wrap(14))
 
 
 save_360plot(plot3, "police_2.png")
 knitr::include_graphics("police_2.png")
+  
   
 ```
 
