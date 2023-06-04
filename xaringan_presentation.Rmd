@@ -282,29 +282,8 @@ theme_calc()+
 
 ### Visualization 15
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
-visualization15 |>
-  ggplot() +
-  geom_col(
-    aes(
-      x = reorder(Year, -`Registered Cases`),
-      y = `Registered Cases`),
-      fill = "#86BCD9") +
-  geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
-  ggtitle("Registered Cases vs Police Arrested: Karnataka") +
-  ylab("Regestered Cases & Arrested (Red") +
-  xlab("Year") +
-  theme_minimal() +
-  annotate("text",
-    x = 1,
-    y = 10,
-    label = "12% Arrested"
-  ) +
-  annotate("text",
-    x = 3,
-    y = 8,
-    label = "34% Arrested"
-  )
+```{r out.width = '60%', echo = FALSE, fig.align="center"}
+knitr::include_graphics("graphs/india_plot7_image.png")
 ```
 
 ---
