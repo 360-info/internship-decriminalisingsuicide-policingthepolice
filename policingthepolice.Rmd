@@ -418,7 +418,7 @@ theme_calc()+
 
 write_csv(plot7_kar , "data/presentation/visualization15.csv")
 
-plot7_kar |>
+image_plot7 <- plot7_kar |>
   ggplot() +
   geom_col(
     aes(
@@ -440,6 +440,9 @@ plot7_kar |>
     y = 8,
     label = "34% Arrested"
   )
+image_plot7 
+
+save_360plot(image_plot7 , "graphs/image_plot7_india.png")
 
 ```
 
