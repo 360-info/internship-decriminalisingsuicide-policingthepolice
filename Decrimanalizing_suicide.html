@@ -458,14 +458,17 @@ change &lt;- suicide_rates |&gt;
 selected_suicide_rates &lt;- change |&gt;
   filter(Year &gt; 2007) |&gt;
   group_by(Entity) |&gt;
-  summarise(avg_rate = mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))</code></pre>
-<pre class="r"><code>join &lt;- full_join(selected_suicide_rates, tidied_hdi_data) |&gt;
+  summarise(avg_rate = mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))
+
+join &lt;- full_join(selected_suicide_rates, tidied_hdi_data) |&gt;
   arrange(desc(avg_rate)) |&gt;
   na.omit() |&gt;
   rename(`Development status` = Degree_of_Human_Development) |&gt;
   mutate(avg_rate = round(avg_rate, digits = 2))
 
-plot1 &lt;- join |&gt; head(30)
+plot1 &lt;- join |&gt; head(30)</code></pre>
+<pre class="r"><code>write_csv(plot1, &quot;data/presentation/visualization1.csv&quot;)
+
 ggplot(plot1,
        aes(
          x = reorder(Entity,-avg_rate),
@@ -512,7 +515,10 @@ ggplot(plot1,
   filter(Dim1 == &quot;Both sexes&quot;) |&gt;
   select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric)
 
-who_data |&gt; filter(Location == &quot;India&quot;) |&gt;
+india_who_data &lt;- who_data |&gt; filter(Location == &quot;India&quot;) </code></pre>
+<pre class="r"><code>write_csv(india_who_data, &quot;data/presentation/visualization2.csv&quot;)
+
+india_who_data |&gt;
   ggplot(aes(x = Period, y = FactValueNumeric)) +
   geom_line() +
   geom_point(color = &quot;brown&quot;, size = 1.5) +
@@ -606,7 +612,9 @@ join_newid &lt;- cbind(region_cases_2019, df_newid) |&gt;
 
 states_merged &lt;- inner_join(states_shape_sf, join_newid,
                             by = c(&quot;ID_1&quot; = &quot;id&quot;))</code></pre>
-<pre class="r"><code>colors &lt;- c(&#39;#C6B7F7&#39;, &quot;#744BF7&quot;, &quot;#6B96EC&quot;, &quot;#103E99&quot;)
+<pre class="r"><code>write_csv(states_merged, &quot;data/presentation/visualization3.csv&quot;)
+
+colors &lt;- c(&#39;#C6B7F7&#39;, &quot;#744BF7&quot;, &quot;#6B96EC&quot;, &quot;#103E99&quot;)
 b &lt;- c(0, 1000, 10000, 18000)
 ggplot() +
   geom_sf(
@@ -648,7 +656,7 @@ ggplot() +
 <ul>
 <li>WHO- <a href="https://www.who.int/data/gho/data/themes/mental-health/suicide-rates" class="uri">https://www.who.int/data/gho/data/themes/mental-health/suicide-rates</a></li>
 </ul>
-<pre class="r"><code>who_data |&gt; filter(
+<pre class="r"><code>viz4_who_data &lt;- who_data |&gt; filter(
   Location %in% c(
     &quot;Kiribati&quot;,
     &quot;Central African Republic&quot;,
@@ -687,7 +695,11 @@ ggplot() +
     &quot;United Republic of Tanzania&quot;,
     &quot;Democratic People&#39;s Republic of Korea&quot;
   )
-) |&gt;
+) 
+
+write_csv(viz4_who_data, &quot;data/presentation/visualization4.csv&quot;)
+
+viz4_who_data |&gt;
   ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
   geom_boxplot() +
   theme(legend.position = &quot;none&quot;) +
@@ -732,6 +744,9 @@ ggplot() +
     )
   )
 
+
+write_csv(filtered, &quot;data/presentation/visualization5.csv&quot;)
+
 ggplot(filtered, aes(colour = Location, y = FactValueNumeric, x = Period)) +
   geom_line() +
   geom_point() +
@@ -751,6 +766,8 @@ ggplot(filtered, aes(colour = Location, y = FactValueNumeric, x = Period)) +
   filter(Period &gt; 2009) |&gt;
   mutate(year = as.Date(as.character(Period), format = &quot;%Y&quot;),
          year = year(year))
+
+write_csv(india_suicide_rates, &quot;data/presentation/visualization6.csv&quot;)
 
 plot_india &lt;-
   ggplot(india_suicide_rates, aes(x = year, y = FactValueNumeric)) +
@@ -889,7 +906,9 @@ new &lt;- NH_numbers |&gt;
     rate = as.numeric(rate),
     year = as.numeric(year)
   )</code></pre>
-<pre class="r"><code>plot_ncrb &lt;- ggplot(new,
+<pre class="r"><code>write_csv(new, &quot;data/presentation/visualization8.csv&quot;)
+
+plot_ncrb &lt;- ggplot(new,
                     aes(x = year, y = rate)) +
   geom_line(color = &quot;brown&quot;) +
   geom_point(color = &quot;brown&quot;, size = 1.5) +

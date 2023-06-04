@@ -19,6 +19,7 @@ library(lubridate)
 library(ggthemes)
 library(scales)
 library(dumbbell)
+library(RColorBrewer)
 ```
 
 # Visualization 1 & 2
@@ -29,7 +30,7 @@ library(dumbbell)
 
 - UNODC: https://dataunodc.un.org/dp-crime-corruption-offences
 
-```{r data_unodc_plot1,2}
+```{r data_unodc}
 corruption_UNODC <-
   read_excel("data/policingthepolice/data_cts_corruption_and_economic_crime.xlsx") |>
   slice(-c(1, 2)) |>
@@ -60,7 +61,14 @@ plot_global <- corruption_UNODC_clean |>
   summarise(VALUE = mean(VALUE)) |>
   arrange(desc(VALUE)) |>
   head(10) |>
-  mutate(ToHighlight = ifelse(VALUE > 30000, "yes", "no")) |>
+  mutate(ToHighlight = ifelse(VALUE > 30000, "yes", "no"))
+```
+
+```{r plot1}
+
+write_csv(plot_global, "data/presentation/visualization9.csv")
+
+plot_global  |>
   ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
   geom_col() +
   theme(legend.position = "none") +
@@ -76,14 +84,24 @@ plot_global <- corruption_UNODC_clean |>
     legend.position = "none"
   ) +
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
-plot_global
+
+```
+
+```{r data_clean_2}
 
 plot_usa <- corruption_UNODC_clean |>
   filter(Country == "United States of America") |>
   mutate(
     Year = as.Date(as.character(Year), format = "%Y"),
          Year = year(Year)
-    ) |>
+    ) 
+
+```
+
+```{r plot2}
+write_csv(plot_usa, "data/presentation/visualization10.csv")
+
+plot_usa |>
   ggplot(aes(x = Year, y = VALUE)) +
   geom_col(fill = "lightblue", width = 0.4) +
   geom_line(size = 1, colour = "#811B0F") +
@@ -95,7 +113,6 @@ plot_usa <- corruption_UNODC_clean |>
     axis.title.x = element_text(face = "bold"),
     axis.title.y = element_text(face = "bold")
   )
-plot_usa
 ```
 
 # Visualization 3 
@@ -106,7 +123,7 @@ plot_usa
 
 - OWID (Our World in Data): https://ourworldindata.org/corruption
 
-```{r data_owid_plot3}
+```{r data_owid}
  
 OWID_police <-
   read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") |>
@@ -121,6 +138,12 @@ OWID_police_allyears <-
   group_by(Institution) |>
   summarise(Count = sum(Count, na.rm = TRUE)) |> #sum instea dof mean
   mutate(Institution = fct_reorder(Institution, Count, .desc = TRUE))
+
+```
+
+```{r plot3}
+
+write_csv(OWID_police_allyears, "data/presentation/visualization11.csv")
 
 ggplot(OWID_police_allyears, aes(
   x = Institution,
@@ -249,29 +272,40 @@ join_pop_killings <-
   full_join(bind_pop, state_shooting, by = c("state_name", "year")) |>
   mutate(rate = (count / population) * 100000) |>
   select(-c(population, count)) 
-```
-
-
-```{r data_us_plot4,5}
 
 shots_usa_plot4 <- join_pop_killings |>
   group_by(year) |>
   na.omit() |>
-  summarise(avg_rate = mean(rate)) |>
+  summarise(avg_rate = mean(rate))
+
+shots_usa_plot5 <-  join_pop_killings |>
+  group_by(state_name) |>
+  summarise(rate = mean(rate)) |>
+  arrange(desc(rate)) |>
+  head(10) 
+
+```
+
+
+```{r data_us_plot4}
+
+write_csv(shots_usa_plot4, "data/presentation/visualization12.csv")
+
+shots_usa_plot4  |>
   ggplot(aes(x = year, y = avg_rate)) +
   geom_line(color = "#6F0269") +
   geom_point() +
   geom_vline(xintercept = 2021, linetype = "dashed")+
   theme_wsj() +
   ggtitle("USA Killings: 2015-2022")
-shots_usa_plot4
 
 
-shots_usa_plot5 <-  join_pop_killings |>
-  group_by(state_name) |>
-  summarise(rate = mean(rate)) |>
-  arrange(desc(rate)) |>
-  head(10) |>
+```
+
+```{r plot5}
+write_csv(shots_usa_plot5, "data/presentation/visualization13.csv")
+
+shots_usa_plot5 |>
   ggplot(aes(x = state_name, y = rate)) +
   geom_segment(aes(
     x = reorder(state_name, -rate),
@@ -291,7 +325,7 @@ shots_usa_plot5 <-  join_pop_killings |>
   theme(axis.text.x = element_text(size=8, angle = 35))+
   labs(title = "Highest Killing States",
        subtitle = "USA: 2015-2022")
-shots_usa_plot5
+
 
 ```
 
@@ -355,15 +389,20 @@ data_policecases <-
   select(`State/UT`, `Registered Cases`, Year, Arrested) |> 
   mutate(`State/UT` = recode(`State/UT`, "Delhi UT" = "Delhi"))
   
+plot6_india <- data_policecases |> 
+  arrange(desc(`Registered Cases`)) |> 
+    head(36)
+
+plot7_kar <- data_policecases |>
+  filter(`State/UT` == "Karnataka") 
 
 ```
   
 ```{r plot6}
-library(RColorBrewer)
+write_csv(plot6_india , "data/presentation/visualization14.csv")
+
 colourCount = length(unique(data_policecases$`State/UT`))
-plot6_india <- data_policecases |> 
-  arrange(desc(`Registered Cases`)) |> 
-    head(36) |> 
+ plot6_india |> 
 ggplot(aes( y = `Registered Cases`, x = Year, fill=`State/UT`))+
   geom_col()+
   scale_fill_manual(values = colorRampPalette(brewer.pal(15, "Set1"))(colourCount)) +
@@ -372,12 +411,14 @@ theme_calc()+
   guides(fill=guide_legend(nrow=3))+
   ylab("Regestered Cases against Police")+
   ggtitle("India: States with higehst regestered cases", subtitle = " States with 100 or more cases in any/each year")
-plot6_india
+
 ```
 
 ```{r karnataka_plot7}
-plot7_kar <- data_policecases |>
-  filter(`State/UT` == "Karnataka") |>
+
+write_csv(plot7_kar , "data/presentation/visualization15.csv")
+
+plot7_kar |>
   ggplot() +
   geom_col(
     aes(
@@ -400,7 +441,6 @@ plot7_kar <- data_policecases |>
     label = "34% Arrested"
   )
 
-plot7_kar
 ```
 
 # Visualization 8
@@ -411,11 +451,16 @@ plot7_kar
 
 -OWID: https://ourworldindata.org/grapher/trust-in-others-vs-trust-in-police
 
-```{r plot8}
+```{r plot8_data}
 options(scipen = 999)
 europe_trust_in_police <-
   read_csv("data/policingthepolice/trust-in-others-vs-trust-in-police.csv") |>
   na.omit()
+```
+
+```{r plot8}
+
+write_csv(europe_trust_in_police , "data/presentation/visualization16.csv")
 
 ggplot(
   europe_trust_in_police,
@@ -440,13 +485,17 @@ ggplot(
 
 -  https://data.world/stabile-center/ph-drug-war#
 
-```{r plot9}
+```{r plot9_data}
 PH_data <- read_excel("data/policingthepolice/PH data.xlsx") |>
   filter(`Type of killing` == "Police killing") |>
   mutate(Date = as.Date(Date, format = "%Y")) |>
   select(City, `Type of killing`, Date) |>
   group_by(City, Date) |>
   summarise(count = n())
+```
+
+```{r plot9}
+write_csv(PH_data , "data/presentation/visualization17.csv")
 
 ggplot(PH_data, aes(x = Date, y = count, fill = City)) +
   geom_bar(
@@ -472,10 +521,14 @@ ggplot(PH_data, aes(x = Date, y = count, fill = City)) +
 
 ## Facet Bar graph
 
-```{r plot10}
+```{r plot10_data}
 
 facet_plot_owid <- OWID_police |> 
    filter(Institution %in% c("Police", "Government officials", "Legislature", "Business executives", "Judges and magistrates", "Religious leaders"))
+```
+
+```{r plot10}
+write_csv(facet_plot_owid , "data/presentation/visualization18.csv")
 
 plot_police <- 
   ggplot( facet_plot_owid, aes( y = Count/100, x = Year, fill=Year))+
@@ -512,7 +565,7 @@ knitr::include_graphics("graphs/police.png")
 
 ## Dumbbell plot
 
-```{r plot13}
+```{r plot11_data}
 world_owid_police <- 
   read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") |>
 filter(Entity == "World") |> 
@@ -541,7 +594,10 @@ d_1317$Institution<-factor(d_1317$Institution,  e$Institution)
 
 chapters <-  c("a","a","a","b","b","b")
 d_1317 <- cbind(e, chapters)
+```
 
+```{r plot11}
+write_csv(d_1317 , "data/presentation/visualization19.csv")
 
 dumbbell(xdf=d_1317,id = "Institution",
          key="chapters",
@@ -568,9 +624,15 @@ dumbbell(xdf=d_1317,id = "Institution",
 
 ## Dumbbell Plot using ggplot
 
-```{r plot14}
-plot3 <- world_owid_police |> 
-  mutate(Count=Count/100) |> 
+```{r plot12_data}
+plot12 <- world_owid_police |> 
+  mutate(Count=Count/100) 
+```
+
+```{r plot12}
+write_csv(plot12 , "data/presentation/visualization20.csv")
+
+plot12_viz <- plot12 |> 
   ggplot(aes(label=factor(Count))) +
   aes(x = Institution, y = Count) +
   geom_line(
@@ -608,7 +670,7 @@ plot3 <- world_owid_police |>
   scale_x_discrete(labels = scales::label_wrap(14))
 
 
-save_360plot(plot3, "graphs/police_2.png")
+save_360plot(plot12_viz, "graphs/police_2.png")
 knitr::include_graphics("graphs/police_2.png")
   
   
