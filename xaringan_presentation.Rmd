@@ -283,7 +283,7 @@ theme_calc()+
 ### Visualization 15
 
 ```{r out.width = '60%', echo = FALSE, fig.align="center"}
-knitr::include_graphics("graphs/india_plot7_image.png")
+knitr::include_graphics("graphs/image_plot7_india.png")
 ```
 
 ---

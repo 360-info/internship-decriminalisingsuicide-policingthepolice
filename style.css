@@ -33,10 +33,10 @@ body {
 h1, h2, h3 {
   font-family: Josefin Sans;
   font-weight: normal;
-  color: #E8EBFF;
+  color: #1D262C;
 }
 .remark-slide-content {
-  background-color: #273592;
+  background-color: #7BCFFF;
   font-size: 23px;
   
   
@@ -96,7 +96,7 @@ a, a > code {
 
 }
 .inverse {
-  background-color: #baf5e8;
+  background-color: #293C79;
   color: #E9EBEE;
   
 }
