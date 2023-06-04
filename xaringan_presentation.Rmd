@@ -1,23 +1,24 @@
 ---
-title: "Presentation"
-subtitle: "with xaringan"
-author: "Nishtha Arora"
-date: "2023/05/30"
+title: "Data Visualization Need Analysis: The Design Process"
+subtitle: "ETC5543 Business Analysis Creative Activity, Semester 1-2023"
+author: "Nishtha Arora (32296622)"
+institute: " Monash University, Clayton"
+date: "March 2023 - May 2023"
 output:
   xaringan::moon_reader:
     lib_dir: libs
+    css: style.css
+    yolo: FALSE
     nature:
       highlightStyle: github
       countIncrementalSlides: false
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+options(htmltools.dir.version = FALSE)
 ```
 
-```{r}
-library(xaringan)
-
+```{r libraries, echo=FALSE, message=FALSE, warning=FALSE}
 library(readr)
 library(themes360info)
 library(readxl)
@@ -28,12 +29,12 @@ library(lubridate)
 library(sf)
 library(rgeos)
 library(pdftools)
-library(kableExtra)
-library(packcircles)
-library(bookdown)
-
+library(ggthemes)
+library(scales)
+library(dumbbell)
 ```
 
+class: center, middle
 
 # DECRIMANALIZING SUICIDE
 
@@ -51,9 +52,9 @@ With the advancement of science in the 19th and 20th century, it was discovered 
 
 ---
 
-### Initial Visualizations
+### Visualization 1
 
-```{r saving_cleaned_data, echo=FALSE}
+```{r saving_cleaned_data, echo=FALSE, message=FALSE, warning=FALSE}
 suicide_hdi_data <- read_csv("data/join_HDI_suicide.csv")
 
 plot1 <- suicide_hdi_data %>% head(30)
@@ -76,5 +77,39 @@ ggplot(plot1,
     values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
 ```
 
+---
+
+### Visualization 2
+
+```{r who_data_plot2, echo=FALSE, message=FALSE, warning=FALSE}
+who_data <- read_csv("data/data-2.csv") |>
+  filter(Dim1 == "Both sexes") |>
+  select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric)
+
+who_data |> filter(Location == "India") |>
+  ggplot(aes(x = Period, y = FactValueNumeric)) +
+  geom_line() +
+  geom_point(color = "brown", size = 1.5) +
+  geom_vline(xintercept = 2017, linetype = "dashed") +
+  scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
+  theme(
+    legend.position = "none",
+    axis.title = element_text(face = "bold"),
+    plot.title = element_text(size = 14, lineheight = .8)
+  ) +
+  xlab(NULL) +
+  ylab(substitute(paste(bold(
+    "Rate per 100,000 people"
+  )))) +
+  ggtitle("Time-series for India, 2000-2019") +
+  theme(plot.title = element_text(size = 14, lineheight = .8)) +
+  geom_vline(xintercept = 2017, linetype = "dashed") +
+  scale_color_manual(values = c('Brown', 'Purple', 'Black')) +
+  theme(legend.position = "none")
+```
+
+---
+
+### Visualization 3
 
 
