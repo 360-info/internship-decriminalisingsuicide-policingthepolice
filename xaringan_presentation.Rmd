@@ -32,6 +32,7 @@ library(pdftools)
 library(ggthemes)
 library(scales)
 library(dumbbell)
+library(RColorBrewer)
 ```
 
 class: center, middle
@@ -50,31 +51,62 @@ class: center, middle
 
 With the advancement of science in the 19th and 20th century, it was discovered that suicidal tendencies are caused by biological factors as well and hence, continents like Europe and North America revoked the laws reagrding crimanlizng suicide.
 
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+visualization1 <- read_csv("presentation_data/visualization1.csv")
+visualization2 <- read_csv("presentation_data/visualization2.csv")
+visualization3 <- read_csv("presentation_data/visualization3.csv")
+visualization4 <- read_csv("presentation_data/visualization4.csv")
+visualization5 <- read_csv("presentation_data/visualization5.csv")
+visualization6 <- read_csv("presentation_data/visualization6.csv")
+visualization8 <- read_csv("presentation_data/visualization8.csv")
+visualization9 <- read_csv("presentation_data/visualization9.csv")
+visualization10 <- read_csv("presentation_data/visualization10.csv")
+visualization11 <- read_csv("presentation_data/visualization11.csv")
+visualization12 <- read_csv("presentation_data/visualization12.csv")
+visualization13 <- read_csv("presentation_data/visualization13.csv")
+visualization14 <- read_csv("presentation_data/visualization14.csv")
+visualization15 <- read_csv("presentation_data/visualization15.csv")
+visualization16 <- read_csv("presentation_data/visualization16.csv")
+visualization17 <- read_csv("presentation_data/visualization17.csv")
+visualization18 <- read_csv("presentation_data/visualization18.csv")
+visualization19 <- read_csv("presentation_data/visualization19.csv")
+visualization20 <- read_csv("presentation_data/visualization20.csv")
+```
+
+
 ---
 
 ### Visualization 1
 
 ```{r saving_cleaned_data, echo=FALSE, message=FALSE, warning=FALSE}
-suicide_hdi_data <- read_csv("data/join_HDI_suicide.csv")
-
-plot1 <- suicide_hdi_data %>% head(30)
-ggplot(plot1,
-  aes(x = reorder(Entity, -avg_rate), y = avg_rate,
-    fill = `Development status`)) +
+ggplot(visualization1,
+       aes(
+         x = reorder(Entity,-avg_rate),
+         y = avg_rate,
+         fill = `Development status`
+       )) +
   geom_col() +
-  geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size = 1.5) +
+  geom_text(
+    aes(label = avg_rate),
+    vjust = 2,
+    colour = "white",
+    size = 3
+  ) +
   theme(
     legend.position = "bottom",
-    axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1),
+    axis.text.x = element_text(
+      angle = 45,
+      vjust = 0.5,
+      hjust = 1
+    ),
     plot.title = element_text(face = "bold")
   ) +
-  labs(
-    title = "Top 30 countries by average suicide rate (2008-2019)",
-    x = substitute(paste(bold("Country"))),
-    y = substitute(paste(bold("Suicide rate per 100,000 people")))
-  ) +
-  scale_fill_manual(
-    values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
+  labs(title = "Top 30 countries by average suicide rate (2008-2019)",
+       x = substitute(paste(bold("Country"))),
+       y = substitute(paste(bold(
+         "Suicide rate per 100,000 people"
+       )))) +
+  scale_fill_manual(values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
 ```
 
 ---
@@ -82,11 +114,7 @@ ggplot(plot1,
 ### Visualization 2
 
 ```{r who_data_plot2, echo=FALSE, message=FALSE, warning=FALSE}
-who_data <- read_csv("data/data-2.csv") |>
-  filter(Dim1 == "Both sexes") |>
-  select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric)
-
-who_data |> filter(Location == "India") |>
+visualization2 |>
   ggplot(aes(x = Period, y = FactValueNumeric)) +
   geom_line() +
   geom_point(color = "brown", size = 1.5) +
@@ -112,4 +140,332 @@ who_data |> filter(Location == "India") |>
 
 ### Visualization 3
 
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+# colors <- c('#C6B7F7', "#744BF7", "#6B96EC", "#103E99")
+# b <- c(0, 1000, 10000, 18000)
+# ggplot() +
+#   geom_sf(
+#     aes(fill = Total),
+#     data = visualization3,
+#     color = "black",
+#     linewidth = 0.25
+#   ) +
+#   geom_sf_text(
+#     data = visualization3,
+#     aes(label = NAME_1),
+#     size = 3,
+#     color = "black",
+#     fontface = "bold"
+#   ) +
+#   coord_sf() +
+#   scale_fill_fermenter(
+#     palette = "YlGnBu",
+#     direction = -1,
+#     # trans = "log10",
+#     labels = scales::label_number_si()
+#   ) +
+#   theme(
+#     axis.title = element_text(face = "bold"),
+#     panel.grid.major.x = element_blank(),
+#     panel.grid.minor.x = element_blank()
+#   ) +
+#   labs(title = "Region-wise 2019 data:India")
+```
 
+---
+
+### Visualization 4
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+visualization4 |>
+  ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
+  geom_boxplot() +
+  theme(legend.position = "none") +
+  scale_fill_viridis_d(alpha = 0.6) +
+  theme(
+    text = element_text(size = 8),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(face = "bold"),
+    plot.title = element_text(
+      size = 14,
+      lineheight = 8,
+      face = "bold"
+    )
+  ) +
+  labs(x = "Country",
+       y = "Suicide rate",
+       title = "Irregularity in Data Collection")
+```
+
+---
+
+### Visualization 5
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period)) +
+  geom_line() +
+  geom_point() +
+  ylab("Suicide rate") +
+  ggtitle("South Asian Countries") +
+  scale_colour_brewer(type = "seq", palette = "Dark2") +
+  theme_classic()
+```
+
+---
+
+### Visualization 6
+
+---
+
+### Visualization 7
+
+---
+
+### Visualization 8
+
+---
+
+class: center, middle
+
+# POLICING THE POLICE
+
+---
+
+### Visualization 9
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+visualization9  |>
+  ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
+  geom_col() +
+  theme(legend.position = "none") +
+  theme_dark() +
+  ggtitle("Average corruption count, 2013-2021") +
+  xlab("Country") +
+  ylab("Corruption Count") +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold"),
+      axis.text.x = element_text(angle = 35, face = "bold"),
+    legend.position = "none"
+  ) +
+  scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
+```
+
+---
+
+### Visualization 10
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+visualization10 |>
+  ggplot(aes(x = Year, y = VALUE)) +
+  geom_col(fill = "lightblue", width = 0.4) +
+  geom_line(size = 1, colour = "#811B0F") +
+  ggtitle("Corruption Count: USA") +
+  ylab("Corruption Count") +
+  theme_dark() +
+  theme(
+    plot.title = element_text(face = "bold", size = 15),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold"))
+```
+
+---
+
+### Visualization 11
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+ggplot(visualization11, aes(
+  x = Institution,
+  y = Count,
+  fill = Institution
+)) +
+  geom_col() +
+  theme(axis.text.x = element_text(
+    color = "#993333",
+    size = 5
+  )) +
+  ggtitle("Global Perception of corruption by institution, 2013-2017") +
+  xlab("Institution") +
+  theme_minimal()+
+    theme(legend.position = "none") +
+  scale_fill_manual(
+    values = c(
+      "#C9BE4E",
+      "#478934",
+      "#5CD2FF",
+      "#5C7077",
+      "#C898DC",
+      "#B23F1D",
+      "#C25B7E",
+      "#AE95CA",
+      "#7C213D",
+      "#09A2E5"
+    )
+  ) +
+  scale_x_discrete(labels = label_wrap(12))
+```
+
+
+---
+
+### Visualization 12
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+visualization12  |>
+  ggplot(aes(x = year, y = avg_rate)) +
+  geom_line(color = "#6F0269") +
+  geom_point() +
+  geom_vline(xintercept = 2021, linetype = "dashed")+
+  theme_wsj() +
+  ggtitle("USA Killings: 2015-2022")
+```
+
+---
+
+### Visualization 13
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+visualization13 |>
+  ggplot(aes(x = state_name, y = rate)) +
+  geom_segment(aes(
+    x = reorder(state_name, -rate),
+    xend = state_name,
+    y = 0,
+    yend = rate
+  )) +
+  geom_point(
+    size = 6,
+    color = "#6F0269",
+    fill = alpha("#074B1D", 0.3),
+    alpha = 0.7,
+    shape = 21,
+    stroke = 2
+  ) +
+  theme_wsj() +
+  theme(axis.text.x = element_text(size=8, angle = 35))+
+  labs(title = "Highest Killing States",
+       subtitle = "USA: 2015-2022")
+```
+
+---
+
+### Visualization 14
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+colourCount = length(unique(visualization14$`State/UT`))
+ visualization14 |> 
+ggplot(aes( y = `Registered Cases`, x = Year, fill=`State/UT`))+
+  geom_col()+
+  scale_fill_manual(values = colorRampPalette(brewer.pal(15, "Set1"))(colourCount)) +
+theme_calc()+
+  theme(legend.position="bottom") +
+  guides(fill=guide_legend(nrow=3))+
+  ylab("Regestered Cases against Police")+
+  ggtitle("India: States with higehst regestered cases", subtitle = " States with 100 or more cases in any/each year")
+```
+
+---
+
+### Visualization 15
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+# visualization15 |>
+#   ggplot() +
+#   geom_col(
+#     aes(
+#       x = reorder(Year, -`Registered Cases`),
+#       y = `Registered Cases`),
+#       fill = "#86BCD9") +
+#   geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
+#   ggtitle("Registered Cases vs Police Arrested: Karnataka") +
+#   ylab("Regestered Cases & Arrested (Red") +
+#   xlab("Year") +
+#   theme_minimal() +
+#   annotate("text",
+#     x = 1,
+#     y = 10,
+#     label = "12% Arrested"
+#   ) +
+#   annotate("text",
+#     x = 3,
+#     y = 8,
+#     label = "34% Arrested"
+#   )
+```
+
+---
+
+### Visualization 16
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+ggplot(
+  visualization16,
+  aes(y = `GDP per capita, PPP (constant 2017 international $)`, x = `Trust in police (Eurostat (2015))`)
+) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  geom_text(
+    aes(label = Entity),
+    data = visualization16 |> filter(
+      Entity %in% c("Luxembourg", "Switzerland", "United Kingdom")),
+      nudge_y = -0.25E4) +
+  theme_bw()
+```
+
+---
+
+### Visualization 17
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+ggplot(visualization17, aes(x = Date, y = count, fill = City)) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(),
+    alpha = 0.75
+  ) +
+  ggtitle("Phillippines Drug War Police Killings") +
+  ylab("People Killed") +
+  theme_economist() +
+  scale_fill_economist() +
+  theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  ) +
+  scale_x_date(
+    breaks = date_breaks("years"),
+    labels = date_format("20%y")
+  )
+```
+
+---
+
+### Visualization 18
+
+---
+
+### Visualization 19
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+dumbbell(xdf=visualization19,id = "Institution",
+         key="chapters",
+         column1 = "Count.x",
+         column2 = "Count.y",
+         lab1 = "2013",lab2 = "2017", 
+         # delt=1, 
+         expandy = 0.05, 
+         col_lab1 = "blue", 
+         col_lab2 = "red", 
+         pt_val = 1,
+         arrow = 1, 
+         arrow_size = 0.2, 
+         segsize = 1,
+    pointsize = 1.5, 
+    col_seg1 = "#A9A9A9", 
+    col_seg2 = "#A9A9A9") +
+  coord_flip()+
+   scale_y_discrete(labels = scales::label_wrap(14))
+```
+
+---
+
+### Visualization 20
