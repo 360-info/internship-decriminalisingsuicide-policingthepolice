@@ -111,68 +111,6 @@ ggplot(visualization1,
 
 ---
 
-### Visualization 2
-
-```{r who_data_plot2, echo=FALSE, message=FALSE, warning=FALSE}
-visualization2 |>
-  ggplot(aes(x = Period, y = FactValueNumeric)) +
-  geom_line() +
-  geom_point(color = "brown", size = 1.5) +
-  geom_vline(xintercept = 2017, linetype = "dashed") +
-  scale_x_continuous(breaks = seq(from = 2000, to = 2019, by = 1)) +
-  theme(
-    legend.position = "none",
-    axis.title = element_text(face = "bold"),
-    plot.title = element_text(size = 14, lineheight = .8)
-  ) +
-  xlab(NULL) +
-  ylab(substitute(paste(bold(
-    "Rate per 100,000 people"
-  )))) +
-  ggtitle("Time-series for India, 2000-2019") +
-  theme(plot.title = element_text(size = 14, lineheight = .8)) +
-  geom_vline(xintercept = 2017, linetype = "dashed") +
-  scale_color_manual(values = c('Brown', 'Purple', 'Black')) +
-  theme(legend.position = "none")
-```
-
----
-
-### Visualization 3
-
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
-# colors <- c('#C6B7F7', "#744BF7", "#6B96EC", "#103E99")
-# b <- c(0, 1000, 10000, 18000)
-# ggplot() +
-#   geom_sf(
-#     aes(fill = Total),
-#     data = visualization3,
-#     color = "black",
-#     linewidth = 0.25
-#   ) +
-#   geom_sf_text(
-#     data = visualization3,
-#     aes(label = NAME_1),
-#     size = 3,
-#     color = "black",
-#     fontface = "bold"
-#   ) +
-#   coord_sf() +
-#   scale_fill_fermenter(
-#     palette = "YlGnBu",
-#     direction = -1,
-#     # trans = "log10",
-#     labels = scales::label_number_si()
-#   ) +
-#   theme(
-#     axis.title = element_text(face = "bold"),
-#     panel.grid.major.x = element_blank(),
-#     panel.grid.minor.x = element_blank()
-#   ) +
-#   labs(title = "Region-wise 2019 data:India")
-```
-
----
 
 ### Visualization 4
 
@@ -215,13 +153,25 @@ ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period))
 
 ### Visualization 6
 
+```{r out.width = '60%', echo = FALSE, fig.align="center"}
+knitr::include_graphics("graphs/indiatimeseries.png")
+```
+
 ---
 
 ### Visualization 7
 
+```{r out.width = '60%', echo = FALSE, fig.align="center"}
+knitr::include_graphics("graphs/indiamap.png")
+```
+
 ---
 
 ### Visualization 8
+
+```{r out.width = '60%', echo = FALSE, fig.align="center"}
+knitr::include_graphics("graphs/indiatimeseries2.png")
+```
 
 ---
 
@@ -268,42 +218,6 @@ visualization10 |>
     plot.title = element_text(face = "bold", size = 15),
     axis.title.x = element_text(face = "bold"),
     axis.title.y = element_text(face = "bold"))
-```
-
----
-
-### Visualization 11
-
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
-ggplot(visualization11, aes(
-  x = Institution,
-  y = Count,
-  fill = Institution
-)) +
-  geom_col() +
-  theme(axis.text.x = element_text(
-    color = "#993333",
-    size = 5
-  )) +
-  ggtitle("Global Perception of corruption by institution, 2013-2017") +
-  xlab("Institution") +
-  theme_minimal()+
-    theme(legend.position = "none") +
-  scale_fill_manual(
-    values = c(
-      "#C9BE4E",
-      "#478934",
-      "#5CD2FF",
-      "#5C7077",
-      "#C898DC",
-      "#B23F1D",
-      "#C25B7E",
-      "#AE95CA",
-      "#7C213D",
-      "#09A2E5"
-    )
-  ) +
-  scale_x_discrete(labels = label_wrap(12))
 ```
 
 
@@ -369,28 +283,28 @@ theme_calc()+
 ### Visualization 15
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
-# visualization15 |>
-#   ggplot() +
-#   geom_col(
-#     aes(
-#       x = reorder(Year, -`Registered Cases`),
-#       y = `Registered Cases`),
-#       fill = "#86BCD9") +
-#   geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
-#   ggtitle("Registered Cases vs Police Arrested: Karnataka") +
-#   ylab("Regestered Cases & Arrested (Red") +
-#   xlab("Year") +
-#   theme_minimal() +
-#   annotate("text",
-#     x = 1,
-#     y = 10,
-#     label = "12% Arrested"
-#   ) +
-#   annotate("text",
-#     x = 3,
-#     y = 8,
-#     label = "34% Arrested"
-#   )
+visualization15 |>
+  ggplot() +
+  geom_col(
+    aes(
+      x = reorder(Year, -`Registered Cases`),
+      y = `Registered Cases`),
+      fill = "#86BCD9") +
+  geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
+  ggtitle("Registered Cases vs Police Arrested: Karnataka") +
+  ylab("Regestered Cases & Arrested (Red") +
+  xlab("Year") +
+  theme_minimal() +
+  annotate("text",
+    x = 1,
+    y = 10,
+    label = "12% Arrested"
+  ) +
+  annotate("text",
+    x = 3,
+    y = 8,
+    label = "34% Arrested"
+  )
 ```
 
 ---
@@ -441,6 +355,10 @@ ggplot(visualization17, aes(x = Date, y = count, fill = City)) +
 
 ### Visualization 18
 
+```{r out.width = '60%', echo = FALSE, fig.align="center"}
+knitr::include_graphics("graphs/police.png")
+```
+
 ---
 
 ### Visualization 19
@@ -469,3 +387,7 @@ dumbbell(xdf=visualization19,id = "Institution",
 ---
 
 ### Visualization 20
+
+```{r out.width = '60%', echo = FALSE, fig.align="center"}
+knitr::include_graphics("graphs/police_2.png")
+```
