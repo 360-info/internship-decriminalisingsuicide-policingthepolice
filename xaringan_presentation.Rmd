@@ -33,19 +33,148 @@ library(ggthemes)
 library(scales)
 library(dumbbell)
 library(RColorBrewer)
+library(DiagrammeR)
 ```
 
-class: center, middle
+
+class: left, top
+
+# INTRODUCTION
+
+**The greatest value of a picture is when it forces us to notice what we never expected to see**, says John W. Tukey, an American mathematician and statistician.
+
+.pull-left[
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/Data_Visualization_Tools.jpg.avif")
+```
+
+.tiny[<span>Photo by <a href="https://www.simplilearn.com/authors/simplilearn">Simplilearn</a></span>]
+
+]
+
+.pull-right[
+
+- Computer based visualizations/images have been an integral part of reporting.
+
+- These images, are sometimes backed up by data bases- public or private.
+
+- Investigates trends and anomalies.
+]
+
+.content-box-yellow[ 
+**Challenges:** Data manupilation, wrangling, access to platforms supporting visualization reorganization, etc.
+ ]
+ 
+---
+# ABOUT
+
+[**360info**](https://360info.org) is a **not-for-profit** open access agency that provides **global information** regarding world's issues and provides solutions for the same. This content is forwarded to re-publishers without charge, under **Creative Commons**.
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/Screenshot 2023-06-05 at 7.48.51 PM.png")
+```
+
+---
+
+# PROJECT WORKFLOW
+
+.pull-left[
+
+```{r, fig.width=5, fig.height=6, echo= FALSE, warning= FALSE, message = FALSE}
+grViz("digraph flowchart {
+
+     node [shape = box,
+        fontname = Helvetica,
+        color = black]     
+        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+     
+      # edge definitions with the node IDs
+      tab1 -> tab2 -> tab3 -> tab4 -> tab5;
+      }
+
+      [1]: 'Research'
+      [2]: 'Global Problem Identification'
+      [3]: 'A special report with 5-10 articles, covering different aspects'
+      [4]: 'Matched with the correct images/visualizations based on data'
+      [5]: 'Published'
+      
+      ")
+```
+
+
+
+]
+
+.pull-right[
+Under the Guidance of
+
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/1516791799989.jpeg")
+```
+
+.tiny[<span>Damjan Vukcevic, <a href="https://research.monash.edu/en/persons/damjan-vukcevic">Associate Professor, Monash University.</a></span>]
+
+
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/profile.jpg")
+```
+
+.tiny[<span>James Goldie, <a href="https://jamesgoldie.dev">Data and Digital Story-Telling Lead, 360info.org</a></span>]
+
+]
+
+
+Why Creative Commons? - Good for art, educational and entertainment works and attribution 4.0 is used for more flexible rules when it comes to user rights. 
+
+---
+
+# AIM
+
+To support the journalism team of authors and editors with compelling visualizations to support their claims and research, or creation of an analysis via a visual related to the topic selected. 
+
+Packages selected:
+
+- Decrimanlizing Suicide
+
+- Policing the Police
+
+---
 
 # DECRIMANALIZING SUICIDE
 
-- Worldwide Public Health Problem
+.pull-left[
 
-- over 700,000 deaths from suicide worldwide in 2019
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/whatsapp-image-2019-01-29-at-13-46-16.jpeg")
+```
 
-- decriminalizing suicide is a boon or a bane?
 
-- still 20 countries that have criminalized suicide
+]
+
+.pull-right[
+- Worldwide Public Health Problem.
+
+- Over 700,000 deaths from suicide worldwide in 2019.
+
+- Effects on the suicide rates?
+
+- Still 20 countries have criminalized suicide.
+
+]
+
+##### How did we reach the concept of Decrimanlizing Suicide?
+
+- The British Common Law: No right to take his/her life - effected the former British colonies.
+
+- 
+
+
+---
 
 ## History
 

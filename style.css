@@ -36,7 +36,7 @@ h1, h2, h3 {
   color: #1D262C;
 }
 .remark-slide-content {
-  background-color: #7BCFFF;
+  background-color: #B6DFFF;
   font-size: 23px;
   
   
@@ -216,7 +216,7 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 
 body{
   font-family: Helvetica;
-  font-size: 13pt;
+  font-size: 12pt;
   color: #021c16;
 }
 
@@ -259,7 +259,7 @@ h1 {
   /* Total width: 160px + (2 * 20px) + (2 * 8px) = 216px
      Total height: 80px + (2 * 20px) + (2 * 8px) = 136px
      Content box width: 160px
-     Content box height: 80px */
+     Content box height: 60px */
 }
 
 
