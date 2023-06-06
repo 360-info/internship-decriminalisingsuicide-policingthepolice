@@ -14,6 +14,8 @@ output:
       countIncrementalSlides: false
 ---
 
+
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
@@ -37,6 +39,7 @@ library(DiagrammeR)
 ```
 
 
+
 class: left, top
 
 # INTRODUCTION
@@ -44,7 +47,7 @@ class: left, top
 **The greatest value of a picture is when it forces us to notice what we never expected to see**, says John W. Tukey, an American mathematician and statistician.
 
 .pull-left[
-```{r out.width = '100%', echo = FALSE}
+```{r, echo = FALSE}
 knitr::include_graphics("images/Data_Visualization_Tools.jpg.avif")
 ```
 
@@ -70,7 +73,7 @@ knitr::include_graphics("images/Data_Visualization_Tools.jpg.avif")
 
 [*360info*](https://360info.org) is a **not-for-profit** open access agency that provides **global information** regarding world's issues and provides solutions for the same. This content is forwarded to re-publishers without charge, under **Creative Commons**.
 
-```{r out.width = '100%', echo = FALSE}
+```{r, echo = FALSE}
 knitr::include_graphics("images/Screenshot 2023-06-05 at 7.48.51 PM.png")
 ```
 
@@ -133,62 +136,28 @@ Why Creative Commons? - Good for art, educational and entertainment works and at
 
 ---
 
-# AIM
+# AIM & MOTIVATION
 
 To support the journalism team of authors and editors with compelling visualizations to support their claims and research, or creation of an analysis via a visual related to the topic selected. 
 
 Packages selected:
 
-- Decrimanlizing Suicide
+- **Decriminalizing Suicide**: Suicide caused due to abuse, loss, loneliness, depression, anxiety, etc. This results in mental health issues, hence, all suicide cases will have mental health issues but might not be true vice versa. How related are these two? Identification of suicide victims can help in reduction. What other factors affects suicide?
 
-- Policing the Police
-
----
-
-# DECRIMANALIZING SUICIDE
-
-.pull-left[
-
-```{r out.width = '100%', echo = FALSE}
-knitr::include_graphics("images/whatsapp-image-2019-01-29-at-13-46-16.jpeg")
-```
-
-
-]
-
-.pull-right[
-- Worldwide Public Health Problem.
-
-- Over 700,000 deaths from suicide worldwide in 2019.
-
-- Effects on the suicide rates?
-
-- Still 20 countries have criminalized suicide.
-
-]
-
-##### How did we reach the concept of Decrimanlizing Suicide?
-
-- The British Common Law: No right to take his/her life - effected the former British colonies.
-
-- The Christian commandment of “thou shall not kill”.
-
-- Suicide is a sin under Sharia law, in the Islamic Tradition.
-
+- **Policing the Police** : Police misconduct could be a false confession, bribery, intimidation, brutality, etc. These crimes and happenings questions the trust in police worldwide. How much trust hampering has happened over the years? And is the required action being taken against the police? What are the other issues that may affect corrupt police?
 
 ---
+# METHODOLOGY
 
-# MOTIVATION & METHODOLOGY
+### Step 1: Creating initial visualizations, aligning with specific draft articles.
 
-- Suicide caused due to abuse, loss, loneliness, depression, anxiety, etc. This results in mental health issues, hence, all suicide cases will have mental health issues but might not be true vice versa. How related are these two?
+### Step 2: More relvant plots were made and shortlisted where 360themes was added.
 
-- Identification of suicide victims can help in reduction. What other factors affects suicide?
-
-- Data gaps due to casual tracking of rates, data hampering, poor sample sizes, needs to be tackled.
+### Step 3: Plot with corrected flaws was made for one of the short-listed plots.
 
 ##### Some of the tools used:
 
-```{r out.width = '100%', echo = FALSE}
+```{r, echo = FALSE}
 knitr::include_graphics("images/Screenshot 2023-06-05 at 11.27.41 PM 1.png")
 ```
 
@@ -217,9 +186,44 @@ visualization20 <- read_csv("presentation_data/visualization20.csv")
 
 
 ---
+
+# DECRIMANALIZING SUICIDE
+
+.pull-left[
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/whatsapp-image-2019-01-29-at-13-46-16.jpeg")
+```
+
+
+]
+
+.pull-right[
+- Worldwide Public Health Problem.
+
+- Over 700,000 deaths from suicide worldwide in 2019.
+
+- Effects on the suicide rates?
+
+- Still 20 countries have criminalized suicide.
+
+]
+
+##### How did we reach the concept of Decrimanlizing Suicide?
+
+- The British Common Law: No right to take his/her life - effected the former British colonies.
+
+- The Christian commandment of “thou shall not kill”.
+
+- Suicide is a sin under Sharia law, in the Islamic Tradition.
+
+
+---
+
+
 class: center, middle
 
-### Step 1: Creating initial visualizations, aligning with specific draft articles.
+## Initial Visualizations
 
 #### Visualization 1 
 
@@ -339,7 +343,7 @@ visualization4 |>
 
 .content-box-yellow[ 
 This visualization supports the article:  
-[*What a registry database should look like*](https://360info.org/what-a-suicide-registry-database-should-look-like/)
+[*What a registry database should look like*](https://360info.org/what-a-suicide-registry-database-should-look-like/) and tackled the data gaps which maybe due to different factors ranging from data hampering, small sample size, inconsistencies, etc.
 ]
 
 ---
@@ -373,7 +377,16 @@ visualization4 |>
 knitr::include_graphics("images/rejected.jpg")
 ```
 
-Why?
+Data source here: [WHO](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
+
+## Why?
+
+.pull-left[
+
+- A box plot maybe the best way to show data gaps but is not an easy-to-read plot for the public.
+
+- All countries were not covered, only the ones with outliers have been shown.
+]
 ---
 
 
@@ -418,7 +431,13 @@ ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period))
 knitr::include_graphics("images/rejected.jpg")
 ```
 
-## Why?
+Data source: [WHO](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
+
+
+- The interfact for all articles is different, so it did not make sense to put this on one page or front page.
+
+- Here, only Sri Lanka trend seems interesting but is inconsistent and did not relate to the article content.
+
 
 .content-box-yellow[ 
 The package refers to Malaysia in the article 
@@ -429,14 +448,15 @@ The package refers to Malaysia in the article
 ---
 class: center, middle
 
-### Step 2: More relvant plots were made and shortlisted where 360themes was added.
+
+## Short-listed visualizations
 
 #### Visualization 4
 
 .pull-left[
 
 
-```{r out.width = '100%', echo = FALSE}
+```{r, echo = FALSE}
 knitr::include_graphics("graphs/indiatimeseries.png")
 ```
 
@@ -448,42 +468,103 @@ knitr::include_graphics("images/rejected.jpg")
 
 .pull-right[
 
-Data source: OWID (Our World in Data)
+Data source: [*WHO*](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
 
 ### Reason for rejection:
 
-- The author did not trust the source and relied more on NCRB (National Crime Records Bureau) data. So later a plot with NCRB data was made.
+- The author's article did not align with the results and relied more on NCRB (National Crime Records Bureau) data. So later a plot with NCRB data was made.
 
 ]
 ---
 
+
 #### Visualization 5
 
-```{r out.width = '60%', echo = FALSE, fig.align="center"}
+.pull-left[
+
+```{r, echo = FALSE}
 knitr::include_graphics("graphs/indiamap.png")
 ```
 
+```{r out.width = '30%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+]
+
+.pull-right[
+
+Data source: [*data.gov*](https://data.gov.in/catalog/stateut-wise-distribution-suicides-causes)
+
+### Reason for rejection:
+
+- There was overlapping of states in the Map and removing the overlaps, would remove data.
+
+- 2 data sources were used, one for the rates and the other for state geometry. And because of the the "id"'s for different states in geometry data did not match with the rates data and most of the id column had to be renamed manually- not a good practice.
+
+]
 ---
 
-### Step 3: Plot with corrected data source was made for one of the short-listed plots.
+## Selected visualization
 
 #### Visualization 6
 
-```{r out.width = '60%', echo = FALSE, fig.align="center"}
+Data source: [NCRB](https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf)
+
+.pull-left[
+
+```{r, echo = FALSE}
 knitr::include_graphics("graphs/indiatimeseries2.png")
 ```
+]
 
+.pull-right[
+
+- This plot depicts the data fro NCRB. When compared with Visualization 4 of this package, it is seen that the shape is somewhat similar but the values are lower.
+
+- The plot was created by pdf extracting and since that process took time, it was finalized after the article was published.
+
+]
 ---
 
-class: center, middle
 
 # POLICING THE POLICE
 
+.pull-left[
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/CAIR-Who-is-policing-the-police-sign-1.jpg")
+```
+
+]
+
+.pull-right[
+
+- Mistrust of Police in African-American community.
+
+- Police shootings in the States and Philippines .
+
+- Lack of reporting as victims may fear retaliation or lack trust in the internal systems as well.
+
+
+]
+
+##### Some stats of police misconduct around the world.
+
+- In the UK, about 1440 cases have been recorded within England and Wales, during 2019-2020.
+
+- Australia has 3.4% of its complaints against police involving racism and discrimination .
+
+- There were about 2220 police killings slone in Rio de Janerio (Brazil) in 2020 itself.
 ---
+class: center, middle
 
-#### Visualization 1
+### Step 1: Creating initial visualizations, aligning with specific draft articles.
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+#### Visualization 1 & 2
+
+.pull-left[
+```{r saving_cleaned_2, echo=FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization9  |>
   ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
   geom_col() +
@@ -500,12 +581,12 @@ visualization9  |>
     legend.position = "none"
   ) +
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
+
 ```
----
+]
 
-### Visualization 10
-
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+.pull-right[
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization10 |>
   ggplot(aes(x = Year, y = VALUE)) +
   geom_col(fill = "lightblue", width = 0.4) +
@@ -520,11 +601,35 @@ visualization10 |>
 ```
 
 
+
+]
+
+
 ---
 
-### Visualization 12
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r out.width = '30%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+## Why?
+
+- 
+
+- 
+
+
+.content-box-yellow[ 
+
+]
+
+---
+
+### Visualization 3 & 4
+
+.pull-left[
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization12  |>
   ggplot(aes(x = year, y = avg_rate)) +
   geom_line(color = "#6F0269") +
@@ -533,12 +638,11 @@ visualization12  |>
   theme_wsj() +
   ggtitle("USA Killings: 2015-2022")
 ```
+]
 
----
+.pull-right[
 
-### Visualization 13
-
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization13 |>
   ggplot(aes(x = state_name, y = rate)) +
   geom_segment(aes(
@@ -560,10 +664,45 @@ visualization13 |>
   labs(title = "Highest Killing States",
        subtitle = "USA: 2015-2022")
 ```
+]
+---
+
+.pull-left[
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+visualization12  |>
+  ggplot(aes(x = year, y = avg_rate)) +
+  geom_line(color = "#6F0269") +
+  geom_point() +
+  geom_vline(xintercept = 2021, linetype = "dashed")+
+  theme_wsj() +
+  ggtitle("USA Killings: 2015-2022")
+```
+
+
+]
+
+```{r out.width = '30%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+## Why?
+
+- 
+
+- 
+
+
+.content-box-yellow[ 
+
+]
+
 
 ---
 
-### Visualization 14
+### Visualization 5
+
+.pull-left[
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 colourCount = length(unique(visualization14$`State/UT`))
  visualization14 |> 
@@ -577,17 +716,23 @@ theme_calc()+
   ggtitle("India: States with higehst regestered cases", subtitle = " States with 100 or more cases in any/each year")
 ```
 
+
+]
 ---
 
-### Visualization 15
+### Visualization 6
 
-```{r out.width = '60%', echo = FALSE, fig.align="center"}
+.pull-left[
+
+```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("graphs/image_plot7_india.png")
 ```
-
+]
 ---
 
-### Visualization 16
+### Visualization 7
+
+.pull-left[
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 ggplot(
@@ -604,9 +749,12 @@ ggplot(
   theme_bw()
 ```
 
+]
 ---
 
-### Visualization 17
+### Visualization 8
+
+.pull-left[
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 ggplot(visualization17, aes(x = Date, y = count, fill = City)) +
@@ -629,17 +777,25 @@ ggplot(visualization17, aes(x = Date, y = count, fill = City)) +
   )
 ```
 
+]
 ---
 
-### Visualization 18
+### Visualization 9
 
-```{r out.width = '60%', echo = FALSE, fig.align="center"}
+### Step 2: More relvant plots were made and shortlisted where 360themes was added.
+
+.pull-left[
+
+```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("graphs/police.png")
 ```
 
+]
 ---
 
-### Visualization 19
+### Visualization 10
+
+.pull-left[
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 dumbbell(xdf=visualization19,id = "Institution",
@@ -662,13 +818,28 @@ dumbbell(xdf=visualization19,id = "Institution",
    scale_y_discrete(labels = scales::label_wrap(14))
 ```
 
+]
 ---
 
-### Visualization 20
+### Visualization 11
 
-```{r out.width = '60%', echo = FALSE, fig.align="center"}
+
+.pull-left[
+
+```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("graphs/police_2.png")
 ```
 
+]
+
+---
+
+# REFERENCES
 
 https://www.frontiersin.org/articles/10.3389/fpsyt.2022.1034206/full
+
+---
+
+background-image: url(https://previews.123rf.com/images/ismagilov/ismagilov1710/ismagilov171001025/88803267-hud-and-infographics-data-presentation-blue-cityscape-background-concept-of-an-information.jpg)
+
+## Thank You

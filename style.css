@@ -86,13 +86,7 @@ a, a > code {
   color: #043d31;
   text-decoration: none;
 }
-.footnote {
-  
-  position: absolute;
-  bottom: 3em;
-  padding-right: 4em;
-  font-size: 0.9em;
-}
+
 
 }
 .inverse {
@@ -104,31 +98,30 @@ a, a > code {
   color: #E9EBEE;
 }
 .title-slide, .title-slide h1, .title-slide h2, .title-slide h3 {
-  color: #E9EBEE;
+  color: #030000;
 }
 .title-slide {
-  background-image: url(title.jpg);
   background-size: cover;
 }
 .title-slide h1 {
   text-shadow: none;
-  color: #F7F8FA;
+  color: #030000;
   margin-left: +10px;
 }
 .title-slide h2 {
   text-shadow: none;
-  color: #F7F8FA;
+  color: #030000;
   margin-left: +10px;
 }
 .title-slide h3 {
   text-shadow: none;
-  color: #F7F8FA;
+  color: #030000;
   margin-left: +10px;
 }
 .title-slide .remark-slide-number {
   display: none;
 }
-/* Two-column layout */
+
 .left-column {
   width: 20%;
   height: 92%;
@@ -154,52 +147,13 @@ a, a > code {
   width: 50%;
 }
 
-.pull-left1 {
-  float: left;
-  width: 65%;
-}
-.pull-right1 {
-  float: right;
-  width: 30%;
-}
-
 .pull-right ~ * {
   clear: both;
 }
 img, video, iframe {
   max-width: 100%;
 }
-blockquote {
-  border-left: solid 5px #23395b80;
-  padding-left: 1em;
-}
-.remark-slide table {
-  margin: auto;
-  border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
-}
-.remark-slide table thead th { border-bottom: 1px solid #ddd; }
-th, td { padding: 5px; }
-.remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #D3D7DE }
-table.dataTable tbody {
-  background-color: #E9EBEE;
-  color: #23395b;
-}
-table.dataTable.display tbody tr.odd {
-  background-color: #E9EBEE;
-}
-table.dataTable.display tbody tr.even {
-  background-color: #D3D7DE;
-}
-table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
-  color: #baf5e8;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #baf5e8 !important;
-}
+
 
 @page { margin: 0; }
 @media print {
@@ -232,45 +186,24 @@ h1 {
 .scriptsize { font-size: 70% }
 .tiny { font-size: 60% }
 
-.black { color: black; }
-.red { color: #CC3300; }
-.blue { color: #003366; }
+
 .green { color: #728302; }
 .yellow { color: #FFD960; }
 .orange { color: #F09905; }
-.purple { color: #993399; }
-.gray { color: #666666; }
 .grey { color: #B5B5B5; }
 
 .bold { font-weight: bold; }
 .bolder { font-weight: bolder; }
 
 
-/******************
- * 
- * Coloured content boxes
- *
- ****************/
-
-
 .content-box { 
     box-sizing: content-box;
     	background-color: #e2e2e2;
-  /* Total width: 160px + (2 * 20px) + (2 * 8px) = 216px
-     Total height: 80px + (2 * 20px) + (2 * 8px) = 136px
-     Content box width: 160px
-     Content box height: 60px */
 }
 
 
-.content-box-blue,
-.content-box-gray,
 .content-box-grey,
-.content-box-neutral,
-.content-box-duke-green,
 .content-box-green,
-.content-box-purple,
-.content-box-red,
 .content-box-yellow {
     border-radius: 15px;
     margin: 0 0 25px;
@@ -279,12 +212,6 @@ h1 {
     width: 100%;
 }
 
-.content-box-blue {
-    /* set opacity in last decimal value of rgba */
-    background-color: rgb(51,153,153);
-    background-color: rgba(51,153,153,.85);
-
-}
 
 .content-box-gray {
     /* set opacity in last decimal value of rgba */
@@ -303,33 +230,6 @@ h1 {
   background-color: #E1EAB6;
 }
 
-.content-box-soft {
-  background-color: #F7EFD2;
-}
-
-.content-box-duke-green {
-  /* set opacity in last decimal value of rgba */
-	background-color: rgb(114, 131, 2);
-  background-color: rgba(114, 131, 2,.85);
-}
-
-.content-box-green {
-  /* set opacity in last decimal value of rgba */
-	background-color: rgb(161, 183, 13);
-  background-color: rgba(161, 183, 13,.85);
-}
-
-.content-box-purple {
-  /* set opacity in last decimal value of rgba */
-	background-color: rgb(153, 51, 153);
-  background-color: rgba(153, 51, 153, .85)
-}
-
-.content-box-red {
-  /* set opacity in last decimal value of rgba */
-	background-color: rgb(204, 51, 0);
-  background-color: rgba(204, 51, 0,.85)
-}
 
 .content-box-yellow {
   /* set opacity in last decimal value of rgba */
