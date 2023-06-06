@@ -68,7 +68,7 @@ knitr::include_graphics("images/Data_Visualization_Tools.jpg.avif")
 ---
 # ABOUT
 
-[**360info**](https://360info.org) is a **not-for-profit** open access agency that provides **global information** regarding world's issues and provides solutions for the same. This content is forwarded to re-publishers without charge, under **Creative Commons**.
+[*360info*](https://360info.org) is a **not-for-profit** open access agency that provides **global information** regarding world's issues and provides solutions for the same. This content is forwarded to re-publishers without charge, under **Creative Commons**.
 
 ```{r out.width = '100%', echo = FALSE}
 knitr::include_graphics("images/Screenshot 2023-06-05 at 7.48.51 PM.png")
@@ -171,14 +171,27 @@ knitr::include_graphics("images/whatsapp-image-2019-01-29-at-13-46-16.jpeg")
 
 - The British Common Law: No right to take his/her life - effected the former British colonies.
 
-- 
+- The Christian commandment of “thou shall not kill”.
+
+- Suicide is a sin under Sharia law, in the Islamic Tradition.
 
 
 ---
 
-## History
+# MOTIVATION & METHODOLOGY
 
-With the advancement of science in the 19th and 20th century, it was discovered that suicidal tendencies are caused by biological factors as well and hence, continents like Europe and North America revoked the laws reagrding crimanlizng suicide.
+- Suicide caused due to abuse, loss, loneliness, depression, anxiety, etc. This results in mental health issues, hence, all suicide cases will have mental health issues but might not be true vice versa. How related are these two?
+
+- Identification of suicide victims can help in reduction. What other factors affects suicide?
+
+- Data gaps due to casual tracking of rates, data hampering, poor sample sizes, needs to be tackled.
+
+##### Some of the tools used:
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/Screenshot 2023-06-05 at 11.27.41 PM 1.png")
+```
+
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 visualization1 <- read_csv("presentation_data/visualization1.csv")
@@ -204,10 +217,13 @@ visualization20 <- read_csv("presentation_data/visualization20.csv")
 
 
 ---
+class: center, middle
 
-### Visualization 1
+### Step 1: Creating initial visualizations, aligning with specific draft articles.
 
-```{r saving_cleaned_data, echo=FALSE, message=FALSE, warning=FALSE}
+#### Visualization 1 
+
+```{r saving_cleaned_data, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=9}
 ggplot(visualization1,
        aes(
          x = reorder(Entity,-avg_rate),
@@ -236,14 +252,71 @@ ggplot(visualization1,
          "Suicide rate per 100,000 people"
        )))) +
   scale_fill_manual(values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
+
+
 ```
 
 ---
 
+.pull-left[
+```{r saving_cleaned, echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+ggplot(visualization1,
+       aes(
+         x = reorder(Entity,-avg_rate),
+         y = avg_rate,
+         fill = `Development status`
+       )) +
+  geom_col() +
+  geom_text(
+    aes(label = avg_rate),
+    vjust = 2,
+    colour = "white",
+    size = 3
+  ) +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(
+      angle = 45,
+      vjust = 0.5,
+      hjust = 1
+    ),
+    plot.title = element_text(face = "bold")
+  ) +
+  labs(title = "Top 30 countries by average suicide rate (2008-2019)",
+       x = substitute(paste(bold("Country"))),
+       y = substitute(paste(bold(
+         "Suicide rate per 100,000 people"
+       )))) +
+  scale_fill_manual(values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
 
-### Visualization 4
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```
+]
+
+
+```{r out.width = '30%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+## Why?
+
+- 2 data sets used fro different data sources, UNDP (HDI data) and OWID (Suicide rates).
+
+- The HDI data has recordings from 2021 values (2020 rank) and OWID had vaialable data only till 2019.
+
+
+.content-box-yellow[ 
+This is a more generic visualization supporting the package completely. Click on 
+[*criminalising-suicide-only-makes-it-worse*](https://360info.org/criminalising-suicide-only-makes-it-worse/) to view the full package
+]
+---
+
+class: center, middle
+
+#### Visualization 2
+
+
+```{r,  echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=9}
 visualization4 |>
   ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
   geom_boxplot() +
@@ -264,11 +337,56 @@ visualization4 |>
        title = "Irregularity in Data Collection")
 ```
 
+.content-box-yellow[ 
+This visualization supports the article:  
+[*What a registry database should look like*](https://360info.org/what-a-suicide-registry-database-should-look-like/)
+]
+
 ---
 
-### Visualization 5
+.pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+visualization4 |>
+  ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
+  geom_boxplot() +
+  theme(legend.position = "none") +
+  scale_fill_viridis_d(alpha = 0.6) +
+  theme(
+    text = element_text(size = 8),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(face = "bold"),
+    plot.title = element_text(
+      size = 14,
+      lineheight = 8,
+      face = "bold"
+    )
+  ) +
+  labs(x = "Country",
+       y = "Suicide rate",
+       title = "Irregularity in Data Collection")
+```
+
+]
+
+```{r out.width = '30%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+Why?
+---
+
+
+class: center, middle
+
+#### Visualization 3
+
+.content-box-yellow[ 
+
+The suicide rates in South Asian countries are reported to be between 0.43 to 331.0 per 100,000 population, which is high compared to the world average.
+]
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=9}
 ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period)) +
   geom_line() +
   geom_point() +
@@ -278,17 +396,68 @@ ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period))
   theme_classic()
 ```
 
+
+
 ---
 
-### Visualization 6
+.pull-left[
 
-```{r out.width = '60%', echo = FALSE, fig.align="center"}
+```{r,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+
+ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period)) +
+  geom_line() +
+  geom_point() +
+  ylab("Suicide rate") +
+  ggtitle("South Asian Countries") +
+  scale_colour_brewer(type = "seq", palette = "Dark2") +
+  theme_classic()
+```
+]
+
+```{r out.width = '30%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+## Why?
+
+.content-box-yellow[ 
+The package refers to Malaysia in the article 
+[*Suicide is not a crime*](https://360info.org/suicide-is-not-a-crime/), Pakistan in [*With suicide not a crime, the real work begins*](https://360info.org/with-suicide-no-longer-a-crime-the-real-work-begins/), Bangladesh in [*Suicide is a mental health issue, not a crime*](https://360info.org/suicide-is-a-mental-health-issue-not-a-crime/) and a discussion on [*India's Mental Health act*](https://360info.org/how-india-continues-to-punish-those-who-attempt-suicide/). It also highlights facts about Sri Lanka in [The alternatives that can help prevent suicide](https://360info.org/the-alternatives-which-can-help-prevent-suicide/).
+
+]
+
+---
+class: center, middle
+
+### Step 2: More relvant plots were made and shortlisted where 360themes was added.
+
+#### Visualization 4
+
+.pull-left[
+
+
+```{r out.width = '100%', echo = FALSE}
 knitr::include_graphics("graphs/indiatimeseries.png")
 ```
 
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+]
+
+.pull-right[
+
+Data source: OWID (Our World in Data)
+
+### Reason for rejection:
+
+- The author did not trust the source and relied more on NCRB (National Crime Records Bureau) data. So later a plot with NCRB data was made.
+
+]
 ---
 
-### Visualization 7
+#### Visualization 5
 
 ```{r out.width = '60%', echo = FALSE, fig.align="center"}
 knitr::include_graphics("graphs/indiamap.png")
@@ -296,7 +465,9 @@ knitr::include_graphics("graphs/indiamap.png")
 
 ---
 
-### Visualization 8
+### Step 3: Plot with corrected data source was made for one of the short-listed plots.
+
+#### Visualization 6
 
 ```{r out.width = '60%', echo = FALSE, fig.align="center"}
 knitr::include_graphics("graphs/indiatimeseries2.png")
@@ -310,7 +481,7 @@ class: center, middle
 
 ---
 
-### Visualization 9
+#### Visualization 1
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 visualization9  |>
@@ -330,7 +501,6 @@ visualization9  |>
   ) +
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
 ```
-
 ---
 
 ### Visualization 10
@@ -499,3 +669,6 @@ dumbbell(xdf=visualization19,id = "Institution",
 ```{r out.width = '60%', echo = FALSE, fig.align="center"}
 knitr::include_graphics("graphs/police_2.png")
 ```
+
+
+https://www.frontiersin.org/articles/10.3389/fpsyt.2022.1034206/full
