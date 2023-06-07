@@ -559,7 +559,7 @@ knitr::include_graphics("images/CAIR-Who-is-policing-the-police-sign-1.jpg")
 ---
 class: center, middle
 
-### Step 1: Creating initial visualizations, aligning with specific draft articles.
+### Initial Visualizations
 
 #### Visualization 1 & 2
 
@@ -606,22 +606,60 @@ visualization10 |>
 
 
 ---
+.pull-left[
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+visualization9  |>
+  ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
+  geom_col() +
+  theme(legend.position = "none") +
+  theme_dark() +
+  ggtitle("Average corruption count, 2013-2021") +
+  xlab("Country") +
+  ylab("Corruption Count") +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold"),
+      axis.text.x = element_text(angle = 35, face = "bold"),
+    legend.position = "none"
+  ) +
+  scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
 
+```
 
-```{r out.width = '30%', echo = FALSE}
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+]
+
+.pull-right[
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+visualization10 |>
+  ggplot(aes(x = Year, y = VALUE)) +
+  geom_col(fill = "lightblue", width = 0.4) +
+  geom_line(size = 1, colour = "#811B0F") +
+  ggtitle("Corruption Count: USA") +
+  ylab("Corruption Count") +
+  theme_dark() +
+  theme(
+    plot.title = element_text(face = "bold", size = 15),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold"))
+```
+
+```{r out.width = '20%', echo = FALSE}
 knitr::include_graphics("images/rejected.jpg")
 ```
 
-## Why?
-
-- 
-
-- 
-
-
-.content-box-yellow[ 
 
 ]
+
+Data source: [UNODC](https://dataunodc.un.org/dp-crime-corruption-offences)
+
+Why?
+
+- Even though this is a legit data source, but this gives a count of 'corruption' only and does not compare with the percentage of corruption involving police.
+
 
 ---
 
@@ -669,7 +707,7 @@ visualization13 |>
 
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
 visualization12  |>
   ggplot(aes(x = year, y = avg_rate)) +
   geom_line(color = "#6F0269") +
@@ -679,31 +717,55 @@ visualization12  |>
   ggtitle("USA Killings: 2015-2022")
 ```
 
-
-]
-
-```{r out.width = '30%', echo = FALSE}
+```{r out.width = '20%', echo = FALSE}
 knitr::include_graphics("images/rejected.jpg")
 ```
 
-## Why?
+]
 
-- 
+.pull-right[
 
-- 
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+visualization13 |>
+  ggplot(aes(x = state_name, y = rate)) +
+  geom_segment(aes(
+    x = reorder(state_name, -rate),
+    xend = state_name,
+    y = 0,
+    yend = rate
+  )) +
+  geom_point(
+    size = 6,
+    color = "#6F0269",
+    fill = alpha("#074B1D", 0.3),
+    alpha = 0.7,
+    shape = 21,
+    stroke = 2
+  ) +
+  theme_wsj() +
+  theme(axis.text.x = element_text(size=8, angle = 35))+
+  labs(title = "Highest Killing States",
+       subtitle = "USA: 2015-2022")
+```
 
-
-.content-box-yellow[ 
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
 
 ]
+
+
+ Why?
+
+- A combination of 4 data sets have been used for this visualization, two census datas for population count, police shootings database from Washington post, which was extracted from github and a states code dataset to combine the three datasets.
 
 
 ---
 
-### Visualization 5
+### Visualization 5 & 6
 
 .pull-left[
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 colourCount = length(unique(visualization14$`State/UT`))
  visualization14 |> 
 ggplot(aes( y = `Registered Cases`, x = Year, fill=`State/UT`))+
@@ -718,16 +780,18 @@ theme_calc()+
 
 
 ]
----
 
-### Visualization 6
+.pull-right[
 
-.pull-left[
 
-```{r, echo = FALSE, fig.align="center"}
+```{r, echo = FALSE, fig.align="center", out.width='90%'}
 knitr::include_graphics("graphs/image_plot7_india.png")
 ```
+
 ]
+
+The article on India and Karnataka specifically were removed from draft.
+
 ---
 
 ### Visualization 7
@@ -750,13 +814,29 @@ ggplot(
 ```
 
 ]
+
+.pull-right[
+
+
+
+Data source : [OWID](https://ourworldindata.org/grapher/trust-in-others-vs-trust-in-police)
+
+- This graph shows that the trust in police is proportional to the GDP per capita.
+
+- This was pretty similiar to the plot shown by OWID on its website.
+
+```{r out.width = '40%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+]
 ---
 
 ### Visualization 8
 
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='90%'}
 ggplot(visualization17, aes(x = Date, y = count, fill = City)) +
   geom_bar(
     stat = "identity",
@@ -777,27 +857,53 @@ ggplot(visualization17, aes(x = Date, y = count, fill = City)) +
   )
 ```
 
+```{r out.width = '40%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
 ]
+
+
+
+Data source: [data.world](https://data.world/stabile-center/ph-drug-war#)
+
+## Why?
+
+ - Here, the data is not available for more years.
 ---
 
 ### Visualization 9
 
-### Step 2: More relvant plots were made and shortlisted where 360themes was added.
+### Short-listed plots
 
+Data source: [OWID](https://ourworldindata.org/corruption)
 .pull-left[
 
-```{r, echo = FALSE, fig.align="center"}
+```{r, echo = FALSE, out.width='97%'}
 knitr::include_graphics("graphs/police.png")
 ```
 
+
+
 ]
+
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+## Why?
+
+- Absence of 2014 data.
+
 ---
 
 ### Visualization 10
 
+#### Updating visualization 9
+
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='97%'}
 dumbbell(xdf=visualization19,id = "Institution",
          key="chapters",
          column1 = "Count.x",
@@ -818,28 +924,71 @@ dumbbell(xdf=visualization19,id = "Institution",
    scale_y_discrete(labels = scales::label_wrap(14))
 ```
 
+
+
 ]
+
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
+
+## Why?
+
+ - This plot has been created using a library dumbbell, which can be hard to integrate within the publishing code.
+ 
 ---
+## Selected Visualization 
 
 ### Visualization 11
 
-
 .pull-left[
 
-```{r, echo = FALSE, fig.align="center"}
+```{r, echo = FALSE, out.width='99%'}
 knitr::include_graphics("graphs/police_2.png")
 ```
 
 ]
 
+#### Updating visualization 10:
+
+Here the arrows depict as if the trust in a particular institution has fallen down, which is contradictory to the authors and the gist of the package. Also, 2017 values are lower and 2013 are higher, it seems as if the higher points are for the latest year, so it can be easily misread.
+
 ---
 
 # REFERENCES
 
-https://www.frontiersin.org/articles/10.3389/fpsyt.2022.1034206/full
+360info. (n.d.). https://360info.org
+
+Assisted dying - Christianity. (n.d.). Christianity. https://christianity.org.uk/article/assisted-dying
+
+Dattani, S. (2023, April 2). Suicides. Our World in Data. https://ourworldindata.org/suicide
+
+G, E. (1987). Hawkins, D. M.: Identification of Outliers. Chapman and Hall, London – New York 1980, 188 S., £ 14, 50. Biometrical Journal, 29(2), 198. https://doi.org/10.1002/bimj.4710290215
+
+Jordans, M. J. D., Kaufman, A., Brenman, N. F., Adhikari, R. K., Kohrt, B. A., Tol, W. A., & Komproe, I. H. (2014). Suicide in South Asia: a scoping review. BMC Psychiatry, 14(1). https://doi.org/10.1186/s12888-014-0358-9
+
+Kenya - The Penal Code (Cap. 63). (n.d.). https://www.ilo.org/dyn/natlex/natlex4.detail?p_isn=28595&p_lang=en
 
 ---
 
-background-image: url(https://previews.123rf.com/images/ismagilov/ismagilov1710/ismagilov171001025/88803267-hud-and-infographics-data-presentation-blue-cityscape-background-concept-of-an-information.jpg)
+Lester, D. (2006). Suicide and Islam. Archives of Suicide Research, 10(1), 77–97. https://doi.org/10.1080/13811110500318489
+
+Lua filters in R Markdown. (n.d.). https://rmarkdown.rstudio.com/docs/articles/lua-filters.html
+
+Ochuku, B. K., Johnson, N. M., Osborn, T. L., Wasanga, C., & Ndetei, D. M. (2022). Centering decriminalization of suicide in low – and middle – income countries on effective suicide prevention strategies. Frontiers in Psychiatry, 13. https://doi.org/10.3389/fpsyt.2022.1034206
+
+Ranjan, R., Kumar, S., Pattanayak, R. D., Dhawan, A., & Sagar, R. (2014). (De-) criminalization of attempted suicide in India: A review. Industrial Psychiatry Journal, 23(1), 4. https://doi.org/10.4103/0972-6748.144936
+
+Riederer, Y. X. C. D. E. (2022, November 7). 10.1 The function knitr::kable() | R Markdown Cookbook. https://bookdown.org/yihui/rmarkdown-cookbook/kable.html
+
+Suicide Decriminalisation - United for Global Mental Health. (2022, July 4). United for Global Mental Health. https://unitedgmh.org/knowledge-hub/suicide-decriminalisation/?utm_campaign=SuicideDecrimReport&utm_medium=referral&utm_source=vip&utm_content=SuicideDecrimReport
+
+---
+
+World Health Organization. (2021). Comprehensive mental health action plan 2013–2030. https://apps.who.int/iris/handle/10665/345301
+
+World Health Organization: WHO. (2021). Suicide. www.who.int. https://www.who.int/news-room/fact-sheets/detail/suicide
+
+Zhu, H. Z. (2021). Create Awesome LaTeX Table with knitr::kable and kableExtra. cran.r-project.org. Retrieved May 10, 2023, from https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
 
 ## Thank You
