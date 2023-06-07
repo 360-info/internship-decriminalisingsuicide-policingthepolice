@@ -65,7 +65,7 @@ knitr::include_graphics("images/Data_Visualization_Tools.jpg.avif")
 ]
 
 .content-box-yellow[ 
-**Challenges:** Data manupilation, wrangling, access to platforms supporting visualization reorganization, etc.
+**Challenges:** Data manipulation, wrangling, access to platforms supporting visualization reorganization, etc.
  ]
  
 ---
@@ -306,7 +306,7 @@ knitr::include_graphics("images/rejected.jpg")
 
 - 2 data sets used fro different data sources, UNDP (HDI data) and OWID (Suicide rates).
 
-- The HDI data has recordings from 2021 values (2020 rank) and OWID had vaialable data only till 2019.
+- The HDI data has recordings from 2021 values (2020 rank) and OWID had available data only till 2019.
 
 
 .content-box-yellow[ 
@@ -470,7 +470,7 @@ knitr::include_graphics("images/rejected.jpg")
 
 Data source: [*WHO*](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
 
-For the article based on: India's Mental Health Act 2017
+For the article based on: [India's Mental Health Act 2017](https://360info.org/how-india-continues-to-punish-those-who-attempt-suicide/)
 
 ### Reason for rejection:
 
@@ -478,7 +478,7 @@ For the article based on: India's Mental Health Act 2017
 
 ]
 ---
-
+class: center, middle
 
 #### Visualization 5
 
@@ -506,6 +506,7 @@ Data source: [*data.gov*](https://data.gov.in/catalog/stateut-wise-distribution-
 
 ]
 ---
+class: center, middle
 
 ## Selected visualization
 
@@ -528,7 +529,7 @@ knitr::include_graphics("graphs/indiatimeseries2.png")
 
 ]
 ---
-
+class: center, middle
 
 # POLICING THE POLICE
 
@@ -557,8 +558,9 @@ knitr::include_graphics("images/CAIR-Who-is-policing-the-police-sign-1.jpg")
 
 - Australia has 3.4% of its complaints against police involving racism and discrimination .
 
-- There were about 2220 police killings slone in Rio de Janerio (Brazil) in 2020 itself.
+- There were about 2220 police killings alone in Rio de Janerio (Brazil) in 2020 itself.
 ---
+
 class: center, middle
 
 ### Initial Visualizations
@@ -664,6 +666,7 @@ Why?
 
 
 ---
+class: center, middle
 
 ### Visualization 3 & 4
 
@@ -759,15 +762,17 @@ knitr::include_graphics("images/rejected.jpg")
 
  Why?
 
-- A combination of 4 data sets have been used for this visualization, two census datas for population count (common years had different values), police shootings database from Washington post, which was extracted from github and a states code dataset to combine the three datasets.
+- A combination of 4 data sets have been used for this visualization, two census data for population count (common years had different values), police shootings database from Washington post, which was extracted from github and a states code data set to combine the three data sets.
 
 
 ---
 
+class: center, middle
+
 ### Visualization 5 & 6
 
 .pull-left[
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
 colourCount = length(unique(visualization14$`State/UT`))
  visualization14 |> 
 ggplot(aes( y = `Registered Cases`, x = Year, fill=`State/UT`))+
@@ -786,15 +791,33 @@ theme_calc()+
 .pull-right[
 
 
-```{r, echo = FALSE, fig.align="center", out.width='90%'}
+```{r, echo = FALSE, fig.align="center", out.width='99%'}
 knitr::include_graphics("graphs/image_plot7_india.png")
 ```
 
 ]
 
-The article on India and Karnataka specifically were removed from draft.
+```{r out.width = '20%', echo = FALSE}
+knitr::include_graphics("images/rejected.jpg")
+```
 
 ---
+
+## Why 
+
+ - The article on India and Karnataka specifically were removed from draft.
+ 
+ - The columns in the data set were unclear, as shown below:
+ 
+```{r out.width = '60%', echo = FALSE, fig.align='center'}
+knitr::include_graphics("images/Screenshot 2023-06-08 at 9.35.45 AM.png")
+```
+ 
+
+
+---
+
+class: center, middle
 
 ### Visualization 7
 
@@ -825,7 +848,7 @@ Data source : [OWID](https://ourworldindata.org/grapher/trust-in-others-vs-trust
 
 - This graph shows that the trust in police is proportional to the GDP per capita.
 
-- This was pretty similiar to the plot shown by OWID on its website.
+- This was pretty similar to the plot shown by OWID on its website.
 
 ```{r out.width = '40%', echo = FALSE}
 knitr::include_graphics("images/rejected.jpg")
@@ -833,6 +856,8 @@ knitr::include_graphics("images/rejected.jpg")
 
 ]
 ---
+
+class: center, middle
 
 ### Visualization 8
 
@@ -871,37 +896,49 @@ Data source: [data.world](https://data.world/stabile-center/ph-drug-war#)
 
 ## Why?
 
- - Here, the data is not available for more years.
+- There is not information in the data set for a detailed visualization, for example, years.
+
+- An ideal plot would have been a time series here with more no. of years.
 ---
+
+class: center, middle
+
+## Short-listed Visualizations
 
 ### Visualization 9
 
-### Short-listed plots
 
 Data source: [OWID](https://ourworldindata.org/corruption)
-.pull-left[
 
-```{r, echo = FALSE, out.width='97%'}
+.pull-left[
+```{r, echo = FALSE}
 knitr::include_graphics("graphs/police.png")
 ```
 
-
-
 ]
 
-```{r out.width = '20%', echo = FALSE}
+.pull-right[
+
+
+```{r out.width = '30%', echo = FALSE}
 knitr::include_graphics("images/rejected.jpg")
 ```
 
+
 ## Why?
 
-- Absence of 2014 data.
+- Missing year, i.e. 2014
+
+]
+
 
 ---
 
+class: center, middle
+
 ### Visualization 10
 
-#### Updating visualization 9
+#### Updating visualization 9:
 
 .pull-left[
 
@@ -939,6 +976,8 @@ knitr::include_graphics("images/rejected.jpg")
  - This plot has been created using a library dumbbell, which can be hard to integrate within the publishing code.
  
 ---
+class: center, middle
+
 ## Selected Visualization 
 
 ### Visualization 11
@@ -973,24 +1012,13 @@ Kenya - The Penal Code (Cap. 63). (n.d.). https://www.ilo.org/dyn/natlex/natlex4
 
 ---
 
-Lester, D. (2006). Suicide and Islam. Archives of Suicide Research, 10(1), 77–97. https://doi.org/10.1080/13811110500318489
-
-Lua filters in R Markdown. (n.d.). https://rmarkdown.rstudio.com/docs/articles/lua-filters.html
-
-Ochuku, B. K., Johnson, N. M., Osborn, T. L., Wasanga, C., & Ndetei, D. M. (2022). Centering decriminalization of suicide in low – and middle – income countries on effective suicide prevention strategies. Frontiers in Psychiatry, 13. https://doi.org/10.3389/fpsyt.2022.1034206
-
-Ranjan, R., Kumar, S., Pattanayak, R. D., Dhawan, A., & Sagar, R. (2014). (De-) criminalization of attempted suicide in India: A review. Industrial Psychiatry Journal, 23(1), 4. https://doi.org/10.4103/0972-6748.144936
-
-Riederer, Y. X. C. D. E. (2022, November 7). 10.1 The function knitr::kable() | R Markdown Cookbook. https://bookdown.org/yihui/rmarkdown-cookbook/kable.html
-
-Suicide Decriminalisation - United for Global Mental Health. (2022, July 4). United for Global Mental Health. https://unitedgmh.org/knowledge-hub/suicide-decriminalisation/?utm_campaign=SuicideDecrimReport&utm_medium=referral&utm_source=vip&utm_content=SuicideDecrimReport
-
----
-
 World Health Organization. (2021). Comprehensive mental health action plan 2013–2030. https://apps.who.int/iris/handle/10665/345301
 
 World Health Organization: WHO. (2021). Suicide. www.who.int. https://www.who.int/news-room/fact-sheets/detail/suicide
 
 Zhu, H. Z. (2021). Create Awesome LaTeX Table with knitr::kable and kableExtra. cran.r-project.org. Retrieved May 10, 2023, from https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
 
-## Thank You
+---
+class: center, middle
+
+# Thank You
