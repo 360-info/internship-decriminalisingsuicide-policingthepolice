@@ -72,11 +72,10 @@ All the published work is reproducible for media partners and is published under
 knitr::include_graphics("images/images.png")
 ```
 
+\newpage
 
+# Background and motivation
 
-# Decrimanalizing Suicide  
-
-## Background 
 
 Suicide is a worldwide public health problem. There have been over 700,000 deaths from suicide worldwide in 2019. Overtime, there have been a no. of theories if decriminalizing suicide is a boon or a bane? Will it increase the suicide rate or decrease it? It may decrease the overall rates because then people will start talking about it openly, which will improve mental health and therefore, less suicides, or it may increase the attempt to suicide rate. According to WHO, there are still 20 countries that have criminalized suicide (World Health Organization: WHO, 2021).
 
@@ -93,7 +92,11 @@ Firther, as the years went by, and awaremeness increased, alot of policies came 
 
 Theories like 'criminalizing suicide prevents people from reaching out for help which results in an increase in suicide rate' or 'criminalizing suicide would decrease the attempts made to suicide and hence, lower the suicide rate', are up for debates.
 
-## Motivation, Significance & Objectives
+\newpage
+
+
+# Objectives and Significance
+
 
 ```{r image3, echo = FALSE, fig.show = "hold", out.width = "50%", fig.align = "default"}
 knitr::include_graphics(c("images/ezgif.com-webp-to-jpg.jpg", "images/whatsapp-image-2019-01-29-at-13-46-16.jpeg"))
@@ -112,14 +115,16 @@ Another issue is the different trusted data sources having completely different 
  - hello
  
  - hello 2
+ 
+\newpage
 
+# Methodology, data, results and discussion
 
-## Methodology
 In the special report, 8 perspectives were decided to be discussed, out of which intial visualizations were created, global/generic and related to a particular article and then the '360themes' package was added to the selected ones.
 
-### Initial Visualizations
+## Decrimanalizing Suicide  
 
-#### Comparison of top 30 countries with highest average suicide rate with Human development Index
+### Initial Visualizations
 
 ```{r cleaning, echo=FALSE}
 read_data <- function(range, development_status) {
@@ -166,6 +171,7 @@ write_csv(hdi, "data/HDIStatus2.csv")
 tidied_hdi_data <- read_csv("data/HDIStatus2.csv") |> 
   rename("Entity" = Country)
 ```
+
 HDI (Human Development Index) is a statistic composite of life expectancy, mean years of schooling, expected years of schooling and per capita income. These indicators are used to classify countries into four tiers of human development.
 
 The data set consists of values collected in 2019 and has been extracted from *[Human Development Reports](https://hdr.undp.org/data-center/human-development-index#/indicies/HDI)*.
@@ -560,18 +566,9 @@ save_360plot(plot_ncrb, "graphs/indiatimeseries2.png")
 knitr::include_graphics("graphs/indiatimeseries2.png")
 ```
 
-
-### Results
-
-### Discussion
-
 # Policing the Police
 
-## Background 
-
-## Motivation and Significance
-
-## Objectives
+# Conclusion
 
 
 
