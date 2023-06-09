@@ -15,7 +15,7 @@ header-includes: |
 
 fontsize: 12pt
     
-abstract: "For decades, computer based reporting has been an integral part of journalism, that uses public records, databases, private and public data sources to investigate patterns, trends or even anomalies in the data collected. The integration of data analysis in the reporting industry brings challenges with it, i.e., data manipulation, wrangling, access to platforms supporting visualization reorganization, etc.(Halevy & McGregor, 2012). The aim of the project is to support the journalism team of authors and editors with compelling visualization to support their claims and research, or creation of an analysis via a visual related to the topic selected. The first package, **'Decriminalizing Suicide'** focuses on *India's Mental Health Act 2017* and opposite results are observed due to different data sources, an increase and decrease after 2017, which is discussed in the report. The second package, **'Policing he Police'** takes an angle of ________ The project uses methods of data wrangling, exploration, pdf scraping, spatial analysis and basics of functions of tidyverse, in R language and uses 'themes360info' package for the theme. The report is divided into two sections, i.e., the topics of published articles. The workflow for both starts with initial analysis for the topic, the shortlisted/selected visualizations with 360info theme added, reasons for selection or rejection of a particular visualization and the challenges faced during the process. The overall analysis shows that ____"
+abstract: "For decades, computer based reporting has been an integral part of journalism, that uses public records, databases, private and public data sources to investigate patterns, trends or even anomalies in the data collected. The integration of data analysis in the reporting industry brings challenges with it, i.e., data manipulation, wrangling, access to platforms supporting visualization reorganization, etc.(Halevy & McGregor, 2012). The aim of the project is to support the journalism team of authors and editors with compelling visualization to support their claims and research, or creation of an analysis via a visual related to the topic selected. The first package, **'Decriminalizing Suicide'** focuses on various aspects covered by the authors, one of them is 'India's Mental Health Act 2017' and opposite results are observed due to different data sources, an increase and decrease after 2017, which is discussed in the report. The second package, **'Policing he Police'** takes a generic angle, covering topics of shootings around the world, the changing trust in police and much more. The project uses methods of data wrangling, exploration, pdf scraping, spatial analysis and basics of functions of tidyverse, in R language and uses 'themes360info' package for the theme. The report is divided into four main sections, i.e., Introduction, Aim, Methodology and Results/Learnings. The workflow for both the selected packages, starts with initial analysis for the topic, the shortlisted/selected visualizations with 360info theme added, reasons for selection or rejection of a particular visualization and the challenges faced during the process."
 
 date: "2023-06-15"
 output:
@@ -76,20 +76,35 @@ knitr::include_graphics("images/images.png")
 
 # Background and motivation
 
-Suicide is a worldwide public health problem. There have been over 700,000 deaths from suicide worldwide in 2019. Overtime, there have been a no. of theories if decriminalizing suicide is a boon or a bane? Will it increase the suicide rate or decrease it? It may decrease the overall rates because then people will start talking about it openly, which will improve mental health and therefore, less suicides, or it may increase the attempt to suicide rate. According to WHO, there are still 20 countries that have criminalized suicide (World Health Organization: WHO, 2021).
+**Suicide** is a worldwide public health problem. There have been over 700,000 deaths from suicide worldwide in 2019. Overtime, there have been a no. of theories if decriminalizing suicide is a boon or a bane? Will it increase the suicide rate or decrease it? It may decrease the overall rates because then people will start talking about it openly, which will improve mental health and therefore, less suicides, or it may increase the attempt to suicide rate. According to WHO, there are still 20 countries that have criminalized suicide (World Health Organization: WHO, 2021).
 
 ```{r image2, fig.align='centre', out.width="100%", echo=FALSE}
 knitr::include_graphics("images/26119-gettyimages-145903640---2_source_file.jpg")
 ```
 
-The British common law stated that one has no right to take his/her life as it belong to the state and this affected many former British colonies like Kenya, who still criminalize suicide, even after the colonization ended.
+The British common law stated that one has no right to take his/her life as it belong to the state and this affected many former British colonies like Kenya, who still criminalize suicide, even after the colonization ended. The Christian Commandment of 'Thou shall not kill' signifies that one should not kill himself/herself as will. And Suicide is a sin under the Sharia Law, under the Islamic Tradition (Ochuku et al., 2022).
 
-With the advancement of science in the 19th and 20th century, it was discovered that suicidal tendencies are caused by biological factors as well and hence, continents like Europe and North America revoked the laws regarding criminalize suicide.
+With the advancement of science in the 19th and 20th century, it was discovered that suicidal tendencies are caused by biological factors as well and hence, continents like Europe and North America revoked the laws regarding criminalize suicide. Further, as the years went by, and awareness increased, lot of policies came into action, like Convention on the Rights of Persons with Disabilities and World Health Organization Mental Health Action Plan 2020--2030 prompted various countries to decriminalize suicide
 
-Further, as the years went by, and awareness increased, lot of policies came into action, like Convention on the Rights of Persons with Disabilities and World Health Organization Mental Health Action Plan 2020--2030 prompted various countries to decriminalize suicide
+Suicides are are result of no. of causes, ranging from abuse victims, loss, loneliness, use of intoxicants to financial issues. All these issues result in mental breakdown and it is safe to say that all potential suicide victims go through a mental health issue, it might not be true vice versa. These mental health issues come with stress, anxiety or depression and often times are linked to suicidal feelings or behaviour and might not be the only cause of suicide. The relationship between mental health and suicides is complex.
 
 Theories like 'criminalizing suicide prevents people from reaching out for help which results in an increase in suicide rate' or 'criminalizing suicide would decrease the attempts made to suicide and hence, lower the suicide rate', are up for debates.
 
+\newpage
+
+The concept of **Policing the Police** has been emerging recently because of historic law enforcement officers not caring about and allowing misconduct by the police, due to less resources and external power. There was no check kept on the Police, which lead to a no. of reforms and protests by the police. An example of this is the death of George Floyd, an African-American man murdered by a police officer in Minneapolis, Minnesota, over Floyd being a suspect for using a counterfeit twenty-dollar bill.
+
+```{r, image2_b, fig.align='centre', out.width="50%", echo=FALSE}
+knitr::include_graphics("images/ezgif.com-webp-to-jpg copy.jpg")
+```
+
+Police is responsible for our safety and we rely on them for protection. But it is not everytime, that thye can be trusted nowadays. 'Police accountability' is up for debates around the world. With about 1440 cases recorded against police within England and Wales during 2019-2020, 3.4% complains against law enforecemnt officers involving racism and discrimination  in Australia and mass shooting in the US, concern regarding police integrity check and punishments are being discussed around the world.
+
+There are certain plans and implementations that are being enforced for the process like independent investigations per officer, body cameras that provide proof of the misconduct, public surveys and strickter punishments. It is being stated that those who are supposed to protect us, must also be overseed by a body to keep actions of law in check.
+
+There are debates about increasing reinforcements on the police, to improve trust and accountability which some may argue that increasing oversight on the police, may bring down the police morale and may affect police efficiency.
+
+Here, is is very important to discover, what all are the instances where the police is involved and needs to be checked. Also, it is important to discover the factors that might lead to police misbehaving, whether it is in the corruption department, killings, etc.
 \newpage
 
 # Objectives and Significance
@@ -97,36 +112,69 @@ Theories like 'criminalizing suicide prevents people from reaching out for help 
 ```{r image3, echo = FALSE, fig.show = "hold", out.width = "50%", fig.align = "default"}
 knitr::include_graphics(
   c(
-    "images/ezgif.com-webp-to-jpg.jpg",
-    "images/whatsapp-image-2019-01-29-at-13-46-16.jpeg"
+    "images/whatsapp-image-2019-01-29-at-13-46-16.jpeg",
+    "images/CAIR-Who-is-policing-the-police-sign-1.jpg"
+    
   )
 )
 ```
 
-Suicides are are result of no. of causes, ranging from abuse victims, loss, loneliness, use of intoxicants to financial issues. All these issues result in mental breakdown and it is safe to say that all potential suicide victims go through a mental health issue, it might not be true vice versa. These mental health issues come with stress, anxiety or depression and often times are linked to suicidal feelings or behaviour and might not be the only cause of suicide. The relationship between mental health and suicides is complex.
+For every one completed suicide, 20 more attempts are made. Identification of potential suicide victims via these attempts can result in help-seeking and prevention of suicide but criminalizing it hinders the help-seeking and also results in inaccurate tracking of suicides. 
 
-Suicide prevention strategies are being discussed and somewhat implemented at certain regions around the world, like means restriction, mental health literacy, suicide prevention financial support, free psychological help and responsible media coverage. Therapy and counselling are becoming openly talked about and acknowledgment of one's mental health is the first step towards a better human health globally.
+For the instances and issues addressed above regarding police misconduct, the significant of this issue is vital for the growth and well being of the world. It is important to find out the relation between countries status and police mishapps, i.e. how the financial or political history may or may-not affect the occurrences in that area. Are there any patters seen over the years for a particular area in the world? Can religion be a factor in this? There are so many questions that can be answered with help of data, for a better result.
 
-For every one completed suicide, 20 more attempts are made. Identification of potential suicide victims via these attempts can result in help-seeking and prevention of suicide but criminalizing it, hinders the help-seeking and also results in inaccurate tracking of suicides. Also, there are data gaps in data round the world for a particular year, years or season which could be a result of no. of factors like, a change in the government, a sudden technology advancement, a low economy country, major events, etc.
+These results are important to be tackled with. On the basis of this there can be better reforms, bills and laws passed that could assure transparency, police-in-check laws. Areas of improvement can be targetted and the use of force can be monitored around the world accordingly.
 
-These gaps need to be tackled for better tracking and hence, specific preventive measures. The causes for suicides are varied, and its tracking gaps can be because of personal or national reasons. The increase or decline in the data cannot be fully trusted, as it could be false or hampered.
+Hence, the objective of this project are:
 
-Another issue is the different trusted data sources having completely different numbers for the same country and the same year. The goal fo this report is:
+- To perform need analysis for the package 'Decriminalizing Suicide', i.e., work with the authors to make their articles stronger with statistical proof. 
 
--   hello
+- To identify factors affecting and aspects related to 'Policing the Police' and work on a generic visualization, giving an idea about how things have changed overtime.
 
--   hello 2
+- To discover differences amongst different data sources and research to select the aligning/trusted source.
+
+- Also, to tackle the data gaps and anomalies.
+
+There are data gaps in data round the world for a particular year, years or season which could be a result of no. of factors like, a change in the government, a sudden technology advancement, a low economy country, major events, etc.
+
+\newpage
+
+# Methodology
+
+Each package, i.e. 'Decriminalizing Suicide' and  'Policing the Police' would have a special report, which would contain about 8-9 articles covering different topic aligning to the package.
+
+This project allowed us to stick to 'Static Plots' and not interactions, as for interactives to be published, plotly isn't the best tool, and javascript is preferred, which we would have had to get comfortable with, but due to time constraints and prioritizing the aim of the project, 'Static' worked for the best.
+
+- **Step 1:** Creating initial visualizations, aligning with specific draft articles.
+
+- **Step 2:** More relevant plots were made and shortlisted where 360themes was added.
+
+- **Step 3:** Plot with corrected flaws was made for one of the short-listed plots. Save this plot in .png.
+
+- **Step 4:** Create a renv.lock file using capsule package and save it to Github, for example:
+
+```{r capsule, fig.align='left', out.width="90%", echo=FALSE}
+knitr::include_graphics("images/1.png")
+```
+
+
+**Process carried out by Data and Story-Telling Lead, after finalizing the visualization**
+
+- **Step 5:** To transfer the image to the code of the publication directly, .png file (saved) would be considered.
+
+- **Step 6:** To reproduce the code, the renv.lock file (created above) is used by using the following code (installing renv package and renv::restore to install the same R packages used by interns in their project)
+
+```{r renv, fig.align='left', out.width="90%", echo=FALSE}
+knitr::include_graphics("images/2.png")
+```
+
+- **Step 7:** knit the project as usual.
+
+**Note: Every text in the report, that's italic,  is a hyperlink**
 
 \newpage
 
-# Methodology, data, results and discussion
-
-In the special report, 8 perspectives were decided to be discussed, out of which initial visualizations were created, global/generic and related to a particular article and then the '360themes' package was added to the selected ones.
-
-
-*Note: Every text in italic is a hyperlink*
-
-\newpage
+# Data, Results and Discussion
 
 ## Decrimanalizing Suicide
 
@@ -1272,7 +1320,7 @@ dumbbell(
 
 ### Selected Visualization 
 
-## Visualization 11- updating visualization 10
+#### Visualization 11- updating visualization 10
 
 ```{r plot11_data,  echo=FALSE, message=FALSE, warning=FALSE}
 plot11 <- world_owid_police |>
