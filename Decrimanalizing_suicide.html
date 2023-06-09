@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-03-19" />
 
-<title>Decriminalizing Suicide</title>
+<title>Decriminalizing Suicide- Internship rmd for practice</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,7 +350,8 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Decriminalizing Suicide</h1>
+<h1 class="title toc-ignore">Decriminalizing Suicide- Internship rmd for
+practice</h1>
 <h4 class="author">Nishtha Arora</h4>
 <h4 class="date">2023-03-19</h4>
 
@@ -374,7 +375,7 @@ library(pdftools)</code></pre>
 <div id="data-sources" class="section level3">
 <h3>Data sources</h3>
 <ul>
-<li><p>Worldwide suicide rates OWID (filtering from 2000-2019, i.e. 10
+<li><p>Worldwide suicide rates OWID (filtering from 2008-2019, i.e. 10
 years) <a href="https://ourworldindata.org/suicide" class="uri">https://ourworldindata.org/suicide</a></p></li>
 <li><p>HDI Data-UNDP- Values recorded in 2021, rank (2020). <a href="http://hdr.undp.org/en/composite/HDI" class="uri">http://hdr.undp.org/en/composite/HDI</a></p></li>
 </ul>
@@ -467,9 +468,7 @@ join &lt;- full_join(selected_suicide_rates, tidied_hdi_data) |&gt;
   mutate(avg_rate = round(avg_rate, digits = 2))
 
 plot1 &lt;- join |&gt; head(30)</code></pre>
-<pre class="r"><code>write_csv(plot1, &quot;data/presentation/visualization1.csv&quot;)
-
-ggplot(plot1,
+<pre class="r"><code>ggplot(plot1,
        aes(
          x = reorder(Entity,-avg_rate),
          y = avg_rate,
@@ -516,9 +515,7 @@ ggplot(plot1,
   select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric)
 
 india_who_data &lt;- who_data |&gt; filter(Location == &quot;India&quot;) </code></pre>
-<pre class="r"><code>write_csv(india_who_data, &quot;data/presentation/visualization2.csv&quot;)
-
-india_who_data |&gt;
+<pre class="r"><code>india_who_data |&gt;
   ggplot(aes(x = Period, y = FactValueNumeric)) +
   geom_line() +
   geom_point(color = &quot;brown&quot;, size = 1.5) +
