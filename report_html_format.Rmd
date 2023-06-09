@@ -322,8 +322,8 @@ Reasons for REJECTION:
 For further visualizations, a more legit data source was recommended, and hence a global suicide rates data was extracted from [*World Health Organization*](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates) which contains global data of suicide rates from 2000 to 2019..
 
 ```{r who_data, echo=FALSE}
-who_data <- read_csv("data/InitialA1/data-2.csv") %>%
-  filter(Dim1 == "Both sexes") %>%
+who_data <- read_csv("data/InitialA1/data-2.csv") |> 
+  filter(Dim1 == "Both sexes") |> 
   select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric)
 ```
 
