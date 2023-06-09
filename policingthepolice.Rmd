@@ -678,34 +678,21 @@ knitr::include_graphics("graphs/police_2.png")
   
 ```
 
-# Reference
 
-Basic question for plotting x axis using row.names. (n.d.). Google Groups. https://groups.google.com/g/ggplot2/c/UkmDYDcRNWc?pli=1
 
-Chang, W. (2023, May 28). 7.1 Adding Text Annotations | R Graphics Cookbook, 2nd edition. https://r-graphics.org/recipe-annotate-text
 
-Combine two data frames with the same column names. (n.d.). Stack Overflow. https://stackoverflow.com/questions/20081256/combine-two-data-frames-with-the-same-column-names
 
-Crime in India Table Contents |  National Crime Records Bureau. (n.d.). https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?field_date_value%5Bvalue%5D%5Byear%5D=&field_select_table_title_of_crim_value=18&items_per_page=All
 
-Formatting Decimal places in R. (n.d.). Stack Overflow. https://stackoverflow.com/questions/3443687/formatting-decimal-places-in-r
 
-GeeksforGeeks. (2021). Change column name of a given DataFrame in R. GeeksforGeeks. https://www.geeksforgeeks.org/change-column-name-of-a-given-dataframe-in-r/
 
-ggplot2 axis scales and transformations - Easy Guides - Wiki - STHDA. (n.d.). http://www.sthda.com/english/wiki/ggplot2-axis-scales-and-transformations
 
-ggplot2 scatter plots : Quick start guide - R software and data visualization - Easy Guides - Wiki - STHDA. (n.d.). http://www.sthda.com/english/wiki/ggplot2-scatter-plots-quick-start-guide-r-software-and-data-visualization
 
-Highlight a single “bar” in ggplot. (n.d.). Stack Overflow. https://stackoverflow.com/questions/45820250/highlight-a-single-bar-in-ggplot
 
-how to add lines over a column bar graph where the lines pass by the middle-top of the bars considering bars with position=’dodge’? (n.d.). Stack Overflow. https://stackoverflow.com/questions/72116660/how-to-add-lines-over-a-column-bar-graph-where-the-lines-pass-by-the-middle-top
 
-how to wrap text in ggplot for facet_grid labels. (n.d.). Stack Overflow. https://stackoverflow.com/questions/43796409/how-to-wrap-text-in-ggplot-for-facet-grid-labels
 
-Kanevsky, G. (2013). How to expand color palette with ggplot and RColorBrewer | R-bloggers. R-bloggers. https://www.r-bloggers.com/2013/09/how-to-expand-color-palette-with-ggplot-and-rcolorbrewer/
 
-Plot data in descending order as appears in data frame. (n.d.). Stack Overflow. https://stackoverflow.com/questions/16961921/plot-data-in-descending-order-as-appears-in-data-frame
 
-Side By Side Bar Graphs In R & ggplot2. (n.d.). https://dk81.github.io/dkmathstats_site/rvisual-sidebyside-bar.html
 
-Sum across multiple columns with dplyr. (n.d.). Stack Overflow. https://stackoverflow.com/questions/28873057/sum-across-multiple-columns-with-dplyr
+
+
+
