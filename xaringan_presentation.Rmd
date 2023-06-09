@@ -122,14 +122,14 @@ Under the Guidance of
 knitr::include_graphics("images/1516791799989.jpeg")
 ```
 
-.tiny[<span>Damjan Vukcevic, <a href="https://research.monash.edu/en/persons/damjan-vukcevic">Associate Professor, Monash University.</a></span>]
+.tiny[<span>Mr. Damjan Vukcevic, <a href="https://research.monash.edu/en/persons/damjan-vukcevic">Associate Professor, Monash University.</a></span>]
 
 
 ```{r out.width = '20%', echo = FALSE}
 knitr::include_graphics("images/profile.jpg")
 ```
 
-.tiny[<span>James Goldie, <a href="https://jamesgoldie.dev">Data and Digital Story-Telling Lead, 360info.org</a></span>]
+.tiny[<span>Mr. James Goldie, <a href="https://jamesgoldie.dev">Data and Digital Story-Telling Lead, 360info.org</a></span>]
 
 ]
 
@@ -306,7 +306,7 @@ knitr::include_graphics("images/rejected.jpg")
 
 ## Why?
 
-- 2 data sets used fro different data sources, UNDP (HDI data) and OWID (Suicide rates).
+- 2 data sets used from different data sources, UNDP (HDI data) and OWID (Suicide rates).
 
 - The HDI data has recordings from 2021 values (2020 rank) and OWID had available data only till 2019.
 
@@ -685,7 +685,7 @@ visualization12  |>
   geom_point() +
   geom_vline(xintercept = 2021, linetype = "dashed") +
   theme_wsj() +
-  ggtitle("USA Killings: 2015-2022")
+  ggtitle("USA Killings: 2015-2022", subtitle = "Rate of killings vs Year")
 ```
 ]
 
@@ -710,7 +710,7 @@ visualization13 |>
   ) +
   theme_wsj() +
   theme(axis.text.x = element_text(size = 8, angle = 35)) +
-  labs(title = "Highest Killing States",
+  labs(title = "Killing rate: States ranked",
        subtitle = "USA: 2015-2022")
 ```
 ]
@@ -725,7 +725,7 @@ visualization12  |>
   geom_point() +
   geom_vline(xintercept = 2021, linetype = "dashed") +
   theme_wsj() +
-  ggtitle("USA Killings: 2015-2022")
+  ggtitle("USA Killings: 2015-2022", subtitle = "Rate of killings vs Year")
 ```
 
 ```{r out.width = '20%', echo = FALSE}
@@ -755,7 +755,7 @@ visualization13 |>
   ) +
   theme_wsj() +
   theme(axis.text.x = element_text(size = 8, angle = 35)) +
-  labs(title = "Highest Killing States",
+  labs(title = "Killing rate: States ranked",
        subtitle = "USA: 2015-2022")
 ```
 

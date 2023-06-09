@@ -1,6 +1,6 @@
-# [report_title]
+# [ETC5543 - Business analytics creative activity - S1 2023]
 
-[report_summary]
+[The first package, **'Decriminalizing Suicide'** focuses on various aspects covered by the authors, one of them is 'India's Mental Health Act 2017' and opposite results are observed due to different data sources, an increase and decrease after 2017, which is discussed in the report. The second package, **'Policing he Police'** takes a generic angle, covering topics of shootings around the world, the changing trust in police and much more. The project uses methods of data wrangling, exploration, pdf scraping, spatial analysis and basics of functions of tidyverse, in R language and uses 'themes360info' package for the theme.]
 
 ## Use + Remix rights
 
@@ -12,7 +12,23 @@ These charts, as well as the analyses that underpin them, are available under a 
 
 Data in these charts comes from:
 
-* [report_datasources_links]
+* [https://ourworldindata.org/suicide,
+http://hdr.undp.org/en/composite/HDI,
+http://hdr.undp.org/en/composite/HDI,
+https://www.who.int/data/gho/data/themes/mental-health/suicide-rates,
+https://data.gov.in/catalog/stateut-wise-distribution-suicides-causes,
+http://www.diva-gis.org/datadown,
+https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf),
+https://dataunodc.un.org/dp-crime-corruption-offences,
+https://www.washingtonpost.com/graphics/investigations/police-shootings-database/,
+https://github.com/washingtonpost/data-police-shootings/tree/master/v1,
+https://www2.census.gov/programs-surveys/popest/datasets/2010-2020/counties/totals,
+https://www2.census.gov/programs-surveys/popest/datasets/2020-2022/counties/totals,
+https://github.com/jasonong/List-of-US-States/blob/master/states.csv,
+https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?page=21,
+https://ourworldindata.org/grapher/trust-in-others-vs-trust-in-police,
+https://data.world/stabile-center/ph-drug-war#,
+https://ourworldindata.org/corruption]
 
 **Please attribute 360info and the data sources when you use and remix these visualisations.**
 
