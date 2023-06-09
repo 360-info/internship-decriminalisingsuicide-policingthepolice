@@ -83,19 +83,20 @@ knitr::include_graphics("images/Screenshot 2023-06-05 at 7.48.51 PM.png")
 
 .pull-left[
 
-```{r, fig.width=5, fig.height=6, echo= FALSE, warning= FALSE, message = FALSE}
-grViz("digraph flowchart {
+```{r flowchart, fig.width=5, fig.height=6, echo= FALSE, warning= FALSE, message = FALSE}
+grViz(
+  "digraph flowchart {
 
      node [shape = box,
         fontname = Helvetica,
-        color = black]     
-        
+        color = black]
+
       tab1 [label = '@@1']
       tab2 [label = '@@2']
       tab3 [label = '@@3']
       tab4 [label = '@@4']
       tab5 [label = '@@5']
-     
+
       # edge definitions with the node IDs
       tab1 -> tab2 -> tab3 -> tab4 -> tab5;
       }
@@ -105,8 +106,9 @@ grViz("digraph flowchart {
       [3]: 'A special report with 5-10 articles, covering different aspects'
       [4]: 'Matched with the correct images/visualizations based on data'
       [5]: 'Published'
-      
-      ")
+
+      "
+)
 ```
 
 
@@ -162,7 +164,7 @@ knitr::include_graphics("images/Screenshot 2023-06-05 at 11.27.41 PM 1.png")
 ```
 
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r data, echo = FALSE, message=FALSE, warning=FALSE}
 visualization1 <- read_csv("presentation_data/visualization1.csv")
 visualization2 <- read_csv("presentation_data/visualization2.csv")
 visualization3 <- read_csv("presentation_data/visualization3.csv")
@@ -227,10 +229,10 @@ class: center, middle
 
 #### Visualization 1 
 
-```{r saving_cleaned_data, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=9}
+```{r viz1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=9}
 ggplot(visualization1,
        aes(
-         x = reorder(Entity,-avg_rate),
+         x = reorder(Entity, -avg_rate),
          y = avg_rate,
          fill = `Development status`
        )) +
@@ -263,10 +265,10 @@ ggplot(visualization1,
 ---
 
 .pull-left[
-```{r saving_cleaned, echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+```{r viz1_plot, echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
 ggplot(visualization1,
        aes(
-         x = reorder(Entity,-avg_rate),
+         x = reorder(Entity, -avg_rate),
          y = avg_rate,
          fill = `Development status`
        )) +
@@ -320,7 +322,7 @@ class: center, middle
 #### Visualization 2
 
 
-```{r,  echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=9}
+```{r viz2,  echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=9}
 visualization4 |>
   ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
   geom_boxplot() +
@@ -350,7 +352,7 @@ This visualization supports the article:
 
 .pull-left[
 
-```{r,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+```{r viz2_plot,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
 visualization4 |>
   ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
   geom_boxplot() +
@@ -399,8 +401,9 @@ class: center, middle
 The suicide rates in South Asian countries are reported to be between 0.43 to 331.0 per 100,000 population, which is high compared to the world average.
 ]
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=9}
-ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period)) +
+```{r viz3, echo = FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=9}
+ggplot(visualization5,
+       aes(colour = Location, y = FactValueNumeric, x = Period)) +
   geom_line() +
   geom_point() +
   ylab("Suicide rate") +
@@ -415,9 +418,10 @@ ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period))
 
 .pull-left[
 
-```{r,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+```{r viz3_plot,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
 
-ggplot(visualization5, aes(colour = Location, y = FactValueNumeric, x = Period)) +
+ggplot(visualization5,
+       aes(colour = Location, y = FactValueNumeric, x = Period)) +
   geom_line() +
   geom_point() +
   ylab("Suicide rate") +
@@ -568,9 +572,9 @@ class: center, middle
 #### Visualization 1 & 2
 
 .pull-left[
-```{r saving_cleaned_2, echo=FALSE, message=FALSE, warning=FALSE, out.width='99%'}
+```{r viz_1,2, echo=FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization9  |>
-  ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
+  ggplot(aes(reorder(x = Country, -VALUE), y = VALUE, fill = ToHighlight)) +
   geom_col() +
   theme(legend.position = "none") +
   theme_dark() +
@@ -581,7 +585,7 @@ visualization9  |>
     plot.title = element_text(face = "bold", size = 18),
     axis.title.x = element_text(face = "bold"),
     axis.title.y = element_text(face = "bold"),
-      axis.text.x = element_text(angle = 35, face = "bold"),
+    axis.text.x = element_text(angle = 35, face = "bold"),
     legend.position = "none"
   ) +
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
@@ -590,7 +594,7 @@ visualization9  |>
 ]
 
 .pull-right[
-```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width='99%'}
+```{r viz1,2_2, echo=FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization10 |>
   ggplot(aes(x = Year, y = VALUE)) +
   geom_col(fill = "lightblue", width = 0.4) +
@@ -601,7 +605,8 @@ visualization10 |>
   theme(
     plot.title = element_text(face = "bold", size = 15),
     axis.title.x = element_text(face = "bold"),
-    axis.title.y = element_text(face = "bold"))
+    axis.title.y = element_text(face = "bold")
+  )
 ```
 
 
@@ -611,9 +616,9 @@ visualization10 |>
 
 ---
 .pull-left[
-```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+```{r viz_1_2_plot, echo=FALSE, message=FALSE, warning=FALSE, out.width='80%'}
 visualization9  |>
-  ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
+  ggplot(aes(reorder(x = Country, -VALUE), y = VALUE, fill = ToHighlight)) +
   geom_col() +
   theme(legend.position = "none") +
   theme_dark() +
@@ -624,7 +629,7 @@ visualization9  |>
     plot.title = element_text(face = "bold", size = 18),
     axis.title.x = element_text(face = "bold"),
     axis.title.y = element_text(face = "bold"),
-      axis.text.x = element_text(angle = 35, face = "bold"),
+    axis.text.x = element_text(angle = 35, face = "bold"),
     legend.position = "none"
   ) +
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
@@ -637,7 +642,7 @@ knitr::include_graphics("images/rejected.jpg")
 ]
 
 .pull-right[
-```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+```{r viz1_2_2_plot, echo=FALSE, message=FALSE, warning=FALSE, out.width='80%'}
 visualization10 |>
   ggplot(aes(x = Year, y = VALUE)) +
   geom_col(fill = "lightblue", width = 0.4) +
@@ -648,7 +653,8 @@ visualization10 |>
   theme(
     plot.title = element_text(face = "bold", size = 15),
     axis.title.x = element_text(face = "bold"),
-    axis.title.y = element_text(face = "bold"))
+    axis.title.y = element_text(face = "bold")
+  )
 ```
 
 ```{r out.width = '20%', echo = FALSE}
@@ -672,12 +678,12 @@ class: center, middle
 
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
+```{r viz3_4, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization12  |>
   ggplot(aes(x = year, y = avg_rate)) +
   geom_line(color = "#6F0269") +
   geom_point() +
-  geom_vline(xintercept = 2021, linetype = "dashed")+
+  geom_vline(xintercept = 2021, linetype = "dashed") +
   theme_wsj() +
   ggtitle("USA Killings: 2015-2022")
 ```
@@ -685,11 +691,11 @@ visualization12  |>
 
 .pull-right[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
+```{r viz_3,4,2, echo = FALSE, message=FALSE, warning=FALSE, out.width='99%'}
 visualization13 |>
   ggplot(aes(x = state_name, y = rate)) +
   geom_segment(aes(
-    x = reorder(state_name, -rate),
+    x = reorder(state_name,-rate),
     xend = state_name,
     y = 0,
     yend = rate
@@ -703,7 +709,7 @@ visualization13 |>
     stroke = 2
   ) +
   theme_wsj() +
-  theme(axis.text.x = element_text(size=8, angle = 35))+
+  theme(axis.text.x = element_text(size = 8, angle = 35)) +
   labs(title = "Highest Killing States",
        subtitle = "USA: 2015-2022")
 ```
@@ -712,12 +718,12 @@ visualization13 |>
 
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+```{r viz_3,4_plot, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
 visualization12  |>
   ggplot(aes(x = year, y = avg_rate)) +
   geom_line(color = "#6F0269") +
   geom_point() +
-  geom_vline(xintercept = 2021, linetype = "dashed")+
+  geom_vline(xintercept = 2021, linetype = "dashed") +
   theme_wsj() +
   ggtitle("USA Killings: 2015-2022")
 ```
@@ -730,11 +736,11 @@ knitr::include_graphics("images/rejected.jpg")
 
 .pull-right[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+```{r viz3,4,2_plot, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
 visualization13 |>
   ggplot(aes(x = state_name, y = rate)) +
   geom_segment(aes(
-    x = reorder(state_name, -rate),
+    x = reorder(state_name,-rate),
     xend = state_name,
     y = 0,
     yend = rate
@@ -748,7 +754,7 @@ visualization13 |>
     stroke = 2
   ) +
   theme_wsj() +
-  theme(axis.text.x = element_text(size=8, angle = 35))+
+  theme(axis.text.x = element_text(size = 8, angle = 35)) +
   labs(title = "Highest Killing States",
        subtitle = "USA: 2015-2022")
 ```
@@ -772,16 +778,16 @@ class: center, middle
 ### Visualization 5 & 6
 
 .pull-left[
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
+```{r viz_5,6, echo = FALSE, message=FALSE, warning=FALSE, out.width='80%'}
 colourCount = length(unique(visualization14$`State/UT`))
- visualization14 |> 
-ggplot(aes( y = `Registered Cases`, x = Year, fill=`State/UT`))+
-  geom_col()+
+visualization14 |>
+  ggplot(aes(y = `Registered Cases`, x = Year, fill = `State/UT`)) +
+  geom_col() +
   scale_fill_manual(values = colorRampPalette(brewer.pal(15, "Set1"))(colourCount)) +
-theme_calc()+
-  theme(legend.position="bottom") +
-  guides(fill=guide_legend(nrow=3))+
-  ylab("Regestered Cases against Police")+
+  theme_calc() +
+  theme(legend.position = "bottom") +
+  guides(fill = guide_legend(nrow = 3)) +
+  ylab("Regestered Cases against Police") +
   ggtitle("India: States with higehst regestered cases", subtitle = " States with 100 or more cases in any/each year")
 ```
 
@@ -823,7 +829,7 @@ class: center, middle
 
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r viz_5,6_plot, echo = FALSE, message=FALSE, warning=FALSE}
 ggplot(
   visualization16,
   aes(y = `GDP per capita, PPP (constant 2017 international $)`, x = `Trust in police (Eurostat (2015))`)
@@ -832,9 +838,11 @@ ggplot(
   geom_smooth(method = lm, se = FALSE) +
   geom_text(
     aes(label = Entity),
-    data = visualization16 |> filter(
-      Entity %in% c("Luxembourg", "Switzerland", "United Kingdom")),
-      nudge_y = -0.25E4) +
+    data = visualization16 |> filter(Entity %in% c(
+      "Luxembourg", "Switzerland", "United Kingdom"
+    )),
+    nudge_y = -0.25E4
+  ) +
   theme_bw()
 ```
 
@@ -863,25 +871,19 @@ class: center, middle
 
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+```{r viz8, echo = FALSE, message=FALSE, warning=FALSE, out.width='90%'}
 ggplot(visualization17, aes(x = Date, y = count, fill = City)) +
-  geom_bar(
-    stat = "identity",
-    position = position_dodge(),
-    alpha = 0.75
-  ) +
+  geom_bar(stat = "identity",
+           position = position_dodge(),
+           alpha = 0.75) +
   ggtitle("Phillippines Drug War Police Killings") +
   ylab("People Killed") +
   theme_economist() +
   scale_fill_economist() +
-  theme(
-    axis.title.x = element_text(face = "bold"),
-    axis.title.y = element_text(face = "bold")
-  ) +
-  scale_x_date(
-    breaks = date_breaks("years"),
-    labels = date_format("20%y")
-  )
+  theme(axis.title.x = element_text(face = "bold"),
+        axis.title.y = element_text(face = "bold")) +
+  scale_x_date(breaks = date_breaks("years"),
+               labels = date_format("20%y"))
 ```
 
 ```{r out.width = '40%', echo = FALSE}
@@ -942,25 +944,29 @@ class: center, middle
 
 .pull-left[
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width='97%'}
-dumbbell(xdf=visualization19,id = "Institution",
-         key="chapters",
-         column1 = "Count.x",
-         column2 = "Count.y",
-         lab1 = "2013",lab2 = "2017", 
-         # delt=1, 
-         expandy = 0.05, 
-         col_lab1 = "blue", 
-         col_lab2 = "red", 
-         pt_val = 1,
-         arrow = 1, 
-         arrow_size = 0.2, 
-         segsize = 1,
-    pointsize = 1.5, 
-    col_seg1 = "#A9A9A9", 
-    col_seg2 = "#A9A9A9") +
-  coord_flip()+
-   scale_y_discrete(labels = scales::label_wrap(14))
+```{r viz10, echo = FALSE, message=FALSE, warning=FALSE, out.width='97%'}
+dumbbell(
+  xdf = visualization19,
+  id = "Institution",
+  key = "chapters",
+  column1 = "Count.x",
+  column2 = "Count.y",
+  lab1 = "2013",
+  lab2 = "2017",
+  # delt=1,
+  expandy = 0.05,
+  col_lab1 = "blue",
+  col_lab2 = "red",
+  pt_val = 1,
+  arrow = 1,
+  arrow_size = 0.2,
+  segsize = 1,
+  pointsize = 1.5,
+  col_seg1 = "#A9A9A9",
+  col_seg2 = "#A9A9A9"
+) +
+  coord_flip() +
+  scale_y_discrete(labels = scales::label_wrap(14))
 ```
 
 

@@ -50,9 +50,11 @@ library(lubridate)
 library(sf)
 library(rgeos)
 library(pdftools)
-library(kableExtra)
-library(packcircles)
-library(bookdown)
+library(ggthemes)
+library(scales)
+library(dumbbell)
+library(RColorBrewer)
+library(DiagrammeR)
 ```
 \newpage
 
