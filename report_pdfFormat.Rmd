@@ -1482,6 +1482,8 @@ Here the arrows depict as if the trust in a particular institution has fallen do
 
 - This project was beneficial in providing us a hand on experience with the real world work culture. More importantly, it made me realize the true meaning and significance of **Need Analysis**. It helped shape the research, R, Graphic skills even better.
 
+This workflow of this project, can be viewed at [*Github*](https://github.com/360-info/internship-decriminalisingsuicide-policingthepolice)
+
 # References
 
 360info. (n.d.). <https://360info.org>

@@ -1,6 +1,8 @@
 # [ETC5543 - Business analytics creative activity - S1 2023]
 
-[The first package, **'Decriminalizing Suicide'** focuses on various aspects covered by the authors, one of them is 'India's Mental Health Act 2017' and opposite results are observed due to different data sources, an increase and decrease after 2017, which is discussed in the report. The second package, **'Policing he Police'** takes a generic angle, covering topics of shootings around the world, the changing trust in police and much more. The project uses methods of data wrangling, exploration, pdf scraping, spatial analysis and basics of functions of tidyverse, in R language and uses 'themes360info' package for the theme.]
+[ This repository consists of 5 .rmd files, 2 files with package names that were used at the internship to create visualizations, a specific pdf report knit friendly .rmd, a specific html report knit friendly .rmd and xaringan (presentation) .rmd.
+
+The first package, **'Decriminalizing Suicide'** focuses on various aspects covered by the authors, one of them is 'India's Mental Health Act 2017' and opposite results are observed due to different data sources, an increase and decrease after 2017, which is discussed in the report. The second package, **'Policing he Police'** takes a generic angle, covering topics of shootings around the world, the changing trust in police and much more. The project uses methods of data wrangling, exploration, pdf scraping, spatial analysis and basics of functions of tidyverse, in R language and uses 'themes360info' package for the theme.]
 
 ## Use + Remix rights
 

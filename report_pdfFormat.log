@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.17)  9 JUN 2023 19:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.17)  9 JUN 2023 20:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -930,14 +930,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [24 <./graphs/police_2.png>] [25
 
 ]
-Overfull \hbox (0.23021pt too wide) in paragraph at lines 928--931
+Overfull \hbox (0.23021pt too wide) in paragraph at lines 931--934
 \T1/lmr/m/n/12 (+11) en / crime -[] in -[] india -[] table -[] addtional -[] table -[] and -[] chapter -[] contents ? ^^\eld _ date _ value % 5Bvalue % 5D %
  []
 
 [26
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1022--1025
+Underfull \hbox (badness 10000) in paragraph at lines 1025--1028
 \T1/lmr/m/n/12 (+20) campaign = SuicideDecrimReport & utm _ medium = referral & utm _ source = vip & utm _ content =
  []
 
@@ -969,10 +969,10 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  60i,15n,67p,1013b,522s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmro12.pfb>
-Output written on report_pdfFormat.pdf (30 pages, 1990329 bytes).
+Output written on report_pdfFormat.pdf (30 pages, 1990454 bytes).
 PDF statistics:
- 474 PDF objects out of 1000 (max. 8388607)
- 386 compressed objects within 4 object streams
+ 475 PDF objects out of 1000 (max. 8388607)
+ 387 compressed objects within 4 object streams
  92 named destinations out of 1000 (max. 500000)
  45254 words of extra memory for PDF output out of 51595 (max. 10000000)
 
