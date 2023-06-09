@@ -31,13 +31,11 @@ documentclass: report
 ```{=openxml}
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
 ```
-
 \newpage
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache = FALSE, warning = FALSE, message = FALSE, fig.height = 6, fig.width = 4)
 ```
-
 
 ```{r libraries, include=FALSE}
 library(readr)
@@ -55,10 +53,12 @@ library(scales)
 library(dumbbell)
 library(RColorBrewer)
 library(DiagrammeR)
+library(kableExtra)
 ```
+
 \newpage
 
-# About {-}
+# About {.unnumbered}
 
 [360info](https://360info.org) is a not-for-profit open access agency that provides global information regarding world's issues and provides solutions for the same. This content is forwarded to re-publishers without charge, under Creative Commons.
 
@@ -76,7 +76,6 @@ knitr::include_graphics("images/images.png")
 
 # Background and motivation
 
-
 Suicide is a worldwide public health problem. There have been over 700,000 deaths from suicide worldwide in 2019. Overtime, there have been a no. of theories if decriminalizing suicide is a boon or a bane? Will it increase the suicide rate or decrease it? It may decrease the overall rates because then people will start talking about it openly, which will improve mental health and therefore, less suicides, or it may increase the attempt to suicide rate. According to WHO, there are still 20 countries that have criminalized suicide (World Health Organization: WHO, 2021).
 
 ```{r image2, fig.align='centre', out.width="100%", echo=FALSE}
@@ -87,16 +86,13 @@ The British common law stated that one has no right to take his/her life as it b
 
 With the advancement of science in the 19th and 20th century, it was discovered that suicidal tendencies are caused by biological factors as well and hence, continents like Europe and North America revoked the laws reagrding crimanlizng suicide.
 
-Firther, as the years went by, and awaremeness increased, alot of policies came into action, like Convention on the Rights of Persons with Disabilities and World Health Organization Mental Health Action Plan 2020–2030  promped various countries to decriminalize suicide 
-
+Firther, as the years went by, and awaremeness increased, alot of policies came into action, like Convention on the Rights of Persons with Disabilities and World Health Organization Mental Health Action Plan 2020--2030 promped various countries to decriminalize suicide
 
 Theories like 'criminalizing suicide prevents people from reaching out for help which results in an increase in suicide rate' or 'criminalizing suicide would decrease the attempts made to suicide and hence, lower the suicide rate', are up for debates.
 
 \newpage
 
-
 # Objectives and Significance
-
 
 ```{r image3, echo = FALSE, fig.show = "hold", out.width = "50%", fig.align = "default"}
 knitr::include_graphics(c("images/ezgif.com-webp-to-jpg.jpg", "images/whatsapp-image-2019-01-29-at-13-46-16.jpeg"))
@@ -111,25 +107,51 @@ For every one completed suicide, 20 more attempts are made. Identification of po
 These gaps need to be tackled for better tracking and hence, specific preventive measures. The causes for suicides are varied, and its tracking gaps can be because of personal or national reasons. The increase or decline in the data cannot be fully trusted, as it could be false or hampered.
 
 Another issue is the different trusted data sources having completely different numbers for the same country and the same year. The goal fo this report is:
- 
- - hello
- 
- - hello 2
- 
+
+-   hello
+
+-   hello 2
+
 \newpage
 
 # Methodology, data, results and discussion
 
 In the special report, 8 perspectives were decided to be discussed, out of which intial visualizations were created, global/generic and related to a particular article and then the '360themes' package was added to the selected ones.
 
-## Decrimanalizing Suicide  
+
+*Note: Every text in italic is a hyperlink*
+
+\newpage
+
+## Decrimanalizing Suicide
 
 ### Initial Visualizations
 
+#### Visualization 1: A generic visualization for the package [Decimanlizing suicide- Crimanlizing suicide only makes it worse](https://360info.org/criminalising-suicide-only-makes-it-worse/).
+
+Data source:
+
+-   [World wide suicide rates: Our World in Data](https://ourworldindata.org/suicide)
+
+-   [Human Development Index: UNDP](http://hdr.undp.org/en/composite/HDI)
+
+HDI (Human Development Index) is a statistic composite of life expectancy, mean years of schooling, expected years of schooling and per capita income. These indicators are used to classify countries into four tiers of human development.
+
+```{r echo=FALSE}
+classification_hdi <- data.frame(
+  HDI_Value_2019 = c ("0.8-1", "0.7-0.8", "0.55-0.7", "0-0.55" ),
+  Development_Index= c("Very High HDI", "High HDI", "Medium HDI", "Low HDI")
+  
+)
+kable(classification_hdi, caption = "Range of HDI ranks for Human Developent 2020", booktabs = T) |> 
+kable_styling(latex_options = c("striped", "hold_position"), full_width = T, position = "center", font_size = 12, fixed_thead = T) 
+```
+
 ```{r cleaning, echo=FALSE}
 read_data <- function(range, development_status) {
-  read_excel(
-    "data/HDIstatus.xlsx", range = range, col_names = FALSE) %>%
+  read_excel("data/InitialA1/HDIstatus.xlsx",
+             range = range,
+             col_names = FALSE) |> 
     rename(
       HDI_rank_2021 = ...1,
       Country = ...2,
@@ -140,14 +162,19 @@ read_data <- function(range, development_status) {
       GNI_per_capita = ...11,
       GNI_rank_minus_HDI_rank = ...13,
       HDI_rank_2020 = ...15
-    ) %>%
-  select(
-    HDI_rank_2021, Country, HDI_Value,
-    Life_expectancy, Expected_years_of_schooling,
-    Mean_years_of_schooling, GNI_per_capita,
-    GNI_rank_minus_HDI_rank, HDI_rank_2020
-  ) %>%
-  mutate(Degree_of_Human_Development = development_status)
+    ) |> 
+    select(
+      HDI_rank_2021,
+      Country,
+      HDI_Value,
+      Life_expectancy,
+      Expected_years_of_schooling,
+      Mean_years_of_schooling,
+      GNI_per_capita,
+      GNI_rank_minus_HDI_rank,
+      HDI_rank_2020
+    ) |>  
+    mutate(Degree_of_Human_Development = development_status)
 }
 
 very_high_hdi <-
@@ -164,113 +191,95 @@ low_hdi <-
 
 hdi <- bind_rows(very_high_hdi, high_hdi, medium_hdi, low_hdi)
 
-write_csv(hdi, "data/HDIStatus2.csv")
-```
+write_csv(hdi, "data/InitialA1/HDIStatus2.csv")
 
-```{r saving_cleaned_data, echo=FALSE}
-tidied_hdi_data <- read_csv("data/HDIStatus2.csv") |> 
+tidied_hdi_data <- read_csv("data/InitialA1/HDIStatus2.csv") |>
   rename("Entity" = Country)
 ```
 
-HDI (Human Development Index) is a statistic composite of life expectancy, mean years of schooling, expected years of schooling and per capita income. These indicators are used to classify countries into four tiers of human development.
-
-The data set consists of values collected in 2019 and has been extracted from *[Human Development Reports](https://hdr.undp.org/data-center/human-development-index#/indicies/HDI)*.
-
-```{r echo=FALSE}
-classification_hdi <- data.frame(
-  HDI_Value_2019 = c ("0.8-1", "0.7-0.8", "0.55-0.7", "0-0.55" ),
-  Development_Index= c("Very High HDI", "High HDI", "Medium HDI", "Low HDI")
-  
-)
-kable(classification_hdi, caption = "Range of HDI ranks for Human Developent 2020", booktabs = T) |> 
-kable_styling(latex_options = c("striped", "hold_position"), full_width = T, position = "center", font_size = 12, fixed_thead = T) 
-```
-
-The Suicide data set consists of global self hard deaths for the years 1990-2019 and has been extracted from [Our World in Data-OWID](https://ourworldindata.org/suicide). The visualization is done for the latest 10 years i.e. 2010 to 2019.
-
 ```{r reading data_suicides, echo=FALSE}
-suicide_rates_OWID <- read_csv("data/suicide-death-rates.csv")
-```
-
-
-```{r matching_column_names, echo=FALSE}
+suicide_rates <- read_csv("data/InitialA1/suicide-death-rates.csv")
 # setdiff(data2$Entity, data3$Entity)
-
 # rename countries to align with other dataset
-rename_suicide_rates_OWID <- suicide_rates_OWID |> 
-  mutate(Entity = recode(Entity,
-    "American Samoa" = "Samoa",
-    "Bolivia" = "Bolivia (Plurinational State of)",
-    "Brunei" = "Brunei Darussalam",
-    "Cape Verde" = "Cabo Verde",
-    "Cote d'Ivoire" = "Côte d'Ivoire",
-    "Democratic Republic of Congo" = "Congo (Democratic Republic of the)",
-    "Eswatini" = "Eswatini (Kingdom of)",
-    "Iran" = "Iran (Islamic Republic of)",
-    "Laos" = "Lao People's Democratic Republic",
-    "Micronesia (country)" = "Micronesia (Federated States of)",
-    "North Korea" = "Korea (Republic of)",
-    "Northern Ireland" = "Ireland",
-    "Palestine" = "Palestine, State of",
-    "Russia" = "Russian Federation",
-    "South Sudan" = "Sudan",
-    "Syria" = "Syrian Arab Republic",
-    "Timor" = "Timor-Leste",
-    "Venezuela" = "Venezuela (Bolivarian Republic of)",
-    "Vietnam" = "Viet Nam"
-  ))
-```
+change <- suicide_rates |>
+  mutate(
+    Entity = recode(
+      Entity,
+      "American Samoa" = "Samoa",
+      "Bolivia" = "Bolivia (Plurinational State of)",
+      "Brunei" = "Brunei Darussalam",
+      "Cape Verde" = "Cabo Verde",
+      "Cote d'Ivoire" = "Côte d'Ivoire",
+      "Democratic Republic of Congo" = "Congo (Democratic Republic of the)",
+      "Eswatini" = "Eswatini (Kingdom of)",
+      "Iran" = "Iran (Islamic Republic of)",
+      "Laos" = "Lao People's Democratic Republic",
+      "Micronesia (country)" = "Micronesia (Federated States of)",
+      "North Korea" = "Korea (Republic of)",
+      "Northern Ireland" = "Ireland",
+      "Palestine" = "Palestine, State of",
+      "Russia" = "Russian Federation",
+      "South Sudan" = "Sudan",
+      "Syria" = "Syrian Arab Republic",
+      "Timor" = "Timor-Leste",
+      "Venezuela" = "Venezuela (Bolivarian Republic of)",
+      "Vietnam" = "Viet Nam"
+    )
+  )
 
-```{r preparing_for_plot, echo=FALSE}
 # calculate the average death rate over 2008 to latest
-selected_suicide_rates_OWID <- rename_suicide_rates_OWID |> 
-  filter(Year > 2009) |> 
-  group_by(Entity) |> 
-  summarise(avg_rate = mean(
-    `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))
-```
+selected_suicide_rates <- change |>
+  filter(Year > 2007) |>
+  group_by(Entity) |>
+  summarise(avg_rate = mean(`Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`))
 
-```{r, echo=FALSE}
-join <- full_join(selected_suicide_rates_OWID, tidied_hdi_data) |> 
-  arrange(desc(avg_rate)) |> 
-  na.omit() |> 
-  rename(`Development status` = Degree_of_Human_Development) |> 
+join <- full_join(selected_suicide_rates, tidied_hdi_data) |>
+  arrange(desc(avg_rate)) |>
+  na.omit() |>
+  rename(`Development status` = Degree_of_Human_Development) |>
   mutate(avg_rate = round(avg_rate, digits = 2))
 
-write_csv(join, "data/join_HDI_suicide.csv") #for presentation
+plot1 <- join |> head(30)
 ```
 
-```{r plot1, echo=FALSE, fig.width= 7, fig.height=5}
-plot1 <- join %>% head(30)
+```{r plot1_1, echo=FALSE, fig.width= 7, fig.height=5}
 ggplot(plot1,
-  aes(x = reorder(Entity, -avg_rate), y = avg_rate,
-    fill = `Development status`)) +
+       aes(
+         x = reorder(Entity,-avg_rate),
+         y = avg_rate,
+         fill = `Development status`
+       )) +
   geom_col() +
-  geom_text(aes(label = avg_rate), vjust = 2, colour = "white", size = 1.5) +
+  geom_text(
+    aes(label = avg_rate),
+    vjust = 2,
+    colour = "white",
+    size = 1.5
+  ) +
   theme(
     legend.position = "bottom",
-    axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1),
-    plot.title = element_text(face = "bold")
-  ) +
-  labs(
-    title = "Top 30 countries by average suicide rate (2008-2019)",
-    x = substitute(paste(bold("Country"))),
-    y = substitute(paste(bold("Suicide rate per 100,000 people")))
-  ) +
-  scale_fill_manual(
-    values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
+    axis.text.x = element_text(
+      angle = 45,
+      vjust = 0.5,
+      hjust = 1
+    ),
+    plot.title = element_text(face = "bold"),
+  plot.background = element_rect(fill = "#B2E3FF")
+  )+
+  labs(title = "Top 30 countries by average suicide rate (2008-2019)",
+       x = substitute(paste(bold("Country"))),
+       y = substitute(paste(bold(
+         "Suicide rate per 100,000 people"
+       )))) +
+  scale_fill_manual(values = c("#A0331C", "#1C56A0", "#4B902F", "#635A61"))
 ```
 
-It is observed that______
-
-Limitation: 
-
-##### Discussion:
+#### Experiment for further visualizations.
 
 For further visualizations, a more legit data source was recommended, and hence a global suicide rates data was extracted from [World Health Organization](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates) which contains global data of suicide rates from 2000 to 2019..
 
 ```{r who_data, echo=FALSE}
-who_data <-read_csv("data/data-2.csv") %>% 
+who_data <-read_csv("data/InitialA1/data-2.csv") %>% 
   filter(Dim1=="Both sexes") %>% 
   select(SpatialDimValueCode, Location, Period, Dim1, FactValueNumeric)
 ```
@@ -284,7 +293,7 @@ Australia_WHO <- who_data |>
   rename(suicide_rate_WHO=FactValueNumeric,
          Year=Period)
 
-Australia_OWID <- suicide_rates_OWID |> 
+Australia_OWID <- change |> 
   filter(Entity=="Australia") |> 
   filter(Year>1999) |> 
   select(Year, `Deaths - Self-harm - Sex: Both - Age: Age-standardized (Rate)`) |> 
@@ -304,7 +313,9 @@ kable_styling(latex_options = c("striped", "hold_position"), font_size = 14) |>
 
 It is observed that the WHO data values are higher than OWID values for the years 2014 and after, and lower for the years 2010-2014.
 
-#### Observation of data gaps and reduncies in the dataset.
+#### Visualization 2: This visualization observes data gaps and reduncies in the dataset and was to be paired up with [What a suicide database registery should look like](https://360info.org/what-a-suicide-registry-database-should-look-like/)
+
+Data source: [Global Suicide Rates WHO](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
 
 Here, the objective of the visualization is to confirm significant errors in any data and why any data source cannot be fully trusted. This is done by observing outliers in the data set. *Stephen Hawkins described Outliers as a point that deviates so much from the other observations that it arises a suspicion about a different mechanism being used for its generation*(G, 1987).
 
@@ -312,49 +323,88 @@ These data points vary differently and could be due to no. of reasons, for examp
 
 Outliers are highly underestimated! A small proportion of outliers can affect a simple analysis, giving rise to inflated error rates and distortions in statistical estimates and removal of these can help improve the accuracy significantly(Osborne & Overbay, 2004).
 
-Here,  initially the complete data set was observed for observing outliers, but due to it being a large data set, text overlapping and squeezed observations made the visualization hard to read, hence, countries with significant outliers were selected for visualization.
+Here, initially the complete data set was observed for observing outliers, but due to it being a large data set, text overlapping and squeezed observations made the visualization hard to read, hence, countries with significant outliers were selected for visualization.
+
+```{r, echo=FALSE, fig.height=5, fig.width=7}
+viz4_who_data <- who_data |> filter(
+  Location %in% c(
+    "Kiribati",
+    "Central African Republic",
+    "Latvia",
+    "Republic of Korea",
+    "Fiji",
+    "Rwanda",
+    "Poland",
+    "Comoros",
+    "Uzbekistan",
+    "Bosnia and Herzegovina",
+    "Grenada",
+    "Niger",
+    "Cuba",
+    "Equatorial Guinea",
+    "Burkina Faso",
+    "Samoa",
+    "Latvia",
+    "Sao Tome and Principe",
+    "Honduras",
+    "Lebanon",
+    "Maldives",
+    "Bahamas",
+    "Timor-Leste",
+    "Iraq",
+    "Dominican Republic",
+    "Iran (Islamic Republic of)",
+    "Brazil",
+    "Bolivia (Plurinational State of)",
+    "The former Yugoslav Republic of Macedonia",
+    "Portugal",
+    "Belize",
+    "Serbia",
+    "Mali",
+    "Argentina",
+    "United Republic of Tanzania",
+    "Democratic People's Republic of Korea"
+  )
+) 
 
 
-```{r, echo=FALSE}
-who_data |> 
-  filter(Location %in% c( "Kiribati", "Central African Republic", "Latvia", "Republic of Korea", "Fiji", "Rwanda", "Poland", "Comoros", "Uzbekistan", "Bosnia and Herzegovina", "Grenada", "Niger", "Cuba", "Equatorial Guinea", "Burkina Faso", "Samoa", "Latvia", "Sao Tome and Principe", "Honduras", "Lebanon", "Maldives", "Bahamas", "Timor-Leste", "Iraq", "Dominican Republic", "Iran (Islamic Republic of)", "Brazil", "Bolivia (Plurinational State of)", "The former Yugoslav Republic of Macedonia", "Portugal", "Belize", "Serbia", "Mali", "Argentina", "United Republic of Tanzania", "Democratic People's Republic of Korea")) |> 
+viz4_who_data |>
   ggplot(aes(x = Location, y = FactValueNumeric, fill = Location)) +
   geom_boxplot() +
   theme(legend.position = "none") +
   scale_fill_viridis_d(alpha = 0.6) +
   theme(
     text = element_text(size = 8),
-    axis.text.x = element_text(angle = 45, hjust = 1, size=7),
+    axis.text.x = element_text(angle = 45, hjust = 1),
     axis.title = element_text(face = "bold"),
-    plot.title = element_text(size = 14, lineheight = 8, face= "bold")
+    plot.title = element_text(
+      size = 14,
+      lineheight = 8,
+      face = "bold"),
+       plot.background = element_rect(fill = "#B2E3FF")
   ) +
-  labs(
-    x = "Country",
-    y = "Suicide rate",
-    title = "Irregularity in Data Collection"
-  )
+  labs(x = "Country",
+       y = "Suicide rate",
+       title = "Irregularity in Data Collection")
 ```
 
-It is observed that _____
 
-Limitation: 
+#### Visualization 3: Trend of suicide rates in South Asian countries. This could be paired with any of the article with a mention of a South Asian country, for example, Malaysia in
 
-#### Trend of suicide rates in South Asian Countries
+[*Suicide is not a crime*](https://360info.org/suicide-is-not-a-crime/), Pakistan in [*With suicide not a crime, the real work begins*](https://360info.org/with-suicide-no-longer-a-crime-the-real-work-begins/), Bangladesh in [*Suicide is a mental health issue, not a crime*](https://360info.org/suicide-is-a-mental-health-issue-not-a-crime/) and a discussion on [*India's Mental Health act*](https://360info.org/how-india-continues-to-punish-those-who-attempt-suicide/). Sri Lanka is also mentioned in [The alternatives that can help prevent suicide](https://360info.org/the-alternatives-which-can-help-prevent-suicide/).
 
+Data source: [WHO](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
+
+The suicide rates in South Asian countries are reported to be between 0.43 to 331.0 per 100,000 population, which is high compared to the world average.
 
 ```{r, include=FALSE}
 #code only to spot and remove outliers
 south_asian_c <- who_data |> 
   filter(Location %in% c("India", "Maldives", "Afghanistan", "Nepal", "Bangladesh", "Bhutan", "Sri Lanka", "Pakistan")) 
 
-ggplot(south_asian_c , aes(x = Location, y = FactValueNumeric, fill = Location)) +
-  geom_boxplot() +
-  theme(legend.position = "none") 
-
 south_asian_c_clean <-  south_asian_c |> 
   slice(-c(157))
 ```
-
 
 ```{r, echo=FALSE, fig.height=5, fig.width=7}
 ggplot(south_asian_c_clean, aes(colour=Location, y=FactValueNumeric, x=Period ))+
@@ -363,44 +413,137 @@ ggplot(south_asian_c_clean, aes(colour=Location, y=FactValueNumeric, x=Period ))
   ylab("Suicide rate")+
   ggtitle("South Asian Countries")+
   scale_colour_brewer(type = "seq", palette = "Dark2")+
+    theme(plot.background = element_rect(fill = "#B2E3FF"))+
   theme_classic()
 ```
 
-It is observed that _____
+### Shortlisted Visualizations
 
-Limitation: 
+#### Visualization 4: A time-series plot depicting suicide rate trend before and after 2017, i.e. to pair up with the article on [India's Mental Health Act 2017](https://360info.org/how-india-continues-to-punish-those-who-attempt-suicide/).
 
-### Shortlisted Visualizations 
+Data source : [WHO](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
 
-#### State/Union territory-wise suicide rate distribution in India
+```{r, out.width='90%', echo=FALSE}
+india_suicide_rates <- who_data |> filter(Location == "India") |>
+  filter(Period > 2009) |>
+  mutate(year = as.Date(as.character(Period), format = "%Y"),
+         year = year(year))
+
+plot_india <-
+  ggplot(india_suicide_rates, aes(x = year, y = FactValueNumeric)) +
+  geom_line(color = "brown") +
+  geom_point(color = "brown", size = 1.5) +
+  geom_vline(xintercept = 2017, linetype = "dashed") +
+  labs(
+    x = NULL,
+    y = "Rate per 100,000 people",
+    title = "SUICIDE IN INDIA",
+    subtitle = "Suicide rates in India have declined from 2010 to 2017 and then a sudden hike is observed",
+    caption = paste(
+      "**CHART:** Nishtha Arora & James Goldie, 360info",
+      "**DATA:** Our World in Data",
+      sep = "<br>"
+    )
+  ) +
+  scale_x_continuous(breaks = 2010:2021) +
+  ylim(9, 16) +
+  theme_360() +
+  theme(
+    legend.position = "none",
+    axis.title = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  annotate_360_light(
+    x = 2016.9,
+    y = 19,
+    label = paste(
+      "Suicide rates slightly increased",
+      "after the introduction of the ",
+      "Mental Healthcare Act in 2017.",
+      sep = "<br>"
+    ) ,
+    hjust = 1,
+    size = 5
+  )
+
+save_360plot(plot_india, "graphs/indiatimeseries.png")
+knitr::include_graphics("graphs/indiatimeseries.png")
+```
+
+#### Visualization 5: A state wise India's suicide rate to pair with the article [How India contunues to punish those who attempt suicide.](https://360info.org/how-india-continues-to-punish-those-who-attempt-suicide/).
+
+Data source:
+
+-   [Data.gov](https://data.gov.in/catalog/stateut-wise-distribution-suicides-causes)
+
+-   [Geometery data at Diva-gis](http://www.diva-gis.org/datadown)
 
 ```{r data_correction, echo= FALSE}
-options(scipen=999)
+options(scipen = 999)
 
-region_cases_2019 <- read_csv("data/RS_Session_253_A_211.1.csv") |> 
+region_cases_2019 <-
+  read_csv("data/InitialA1/RS_Session_253_A_211.1.csv") |>
+  filter(str_detect(`State/UT`, "Total ", negate = TRUE)) |>
+  rename(wrong_total = Total) |>
+  rowwise() |>  # total cases, wrong data
+  mutate(Total = sum(Male, Female, Transgender)) |>
+  select(`State/UT`, Total)
 
-  filter(str_detect(`State/UT`, "Total ", negate = TRUE)) |> 
-  rename(wrong_total=Total) |> 
-  rowwise() |> # total cases, wrong data
-  mutate(Total= sum(Male, Female, Transgender)) |> 
-  select(`State/UT`, Total )
-
-    
-states_shape_sf <- read_sf("data/IND_adm/IND_adm1.shp") 
+states_shape_sf <- read_sf("data/InitialA1/IND_adm/IND_adm1.shp")
 
 #Correcting the data by manually looking at Id's as geometry was matching with wrong id's.
 
-df_newid=data.frame(id=c(2,3,4, 5,7,11,12,13,14,15,16,17,18,20, 21,22,23,24,25,26, 28,29,30, 31,32,33,34, 35,36, 1, 6, 8,9,10,19, 27))
+df_newid = data.frame(
+  id = c(
+    2,
+    3,
+    4,
+    5,
+    7,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    1,
+    6,
+    8,
+    9,
+    10,
+    19,
+    27
+  )
+)
 
-join_newid <- cbind(region_cases_2019, df_newid) |> 
-    mutate(id=as.numeric(id))
+join_newid <- cbind(region_cases_2019, df_newid) |>
+  mutate(id = as.numeric(id))
 
 states_merged <- inner_join(states_shape_sf, join_newid,
-  by = c("ID_1" = "id"))
+                            by = c("ID_1" = "id"))
               
 ```
 
-```{r map_plot_article2, echo=FALSE}
+```{r map_plot_article2, echo=FALSE, out.width='90%', warning=FALSE, message=FALSE}
 colors <- c('#C6B7F7', "#744BF7", "#6B96EC", "#103E99")
 b <- c(0, 1000, 10000, 18000)
 india_map <- ggplot() +
@@ -409,31 +552,37 @@ india_map <- ggplot() +
     data = states_merged,
     color = "black",
     linewidth = 0.25
-  )+
-geom_sf_text(
+  ) +
+  geom_sf_text(
     data = states_merged,
     aes(label = NAME_1),
     size = 3,
     color = "black",
     fontface = "bold"
-  )+
+  ) +
   coord_sf() +
-  scale_fill_fermenter(palette = "YlGnBu", direction = -1, 
-                       # trans = "log10",
-    labels = scales::label_number_si()) +
+  scale_fill_fermenter(
+    palette = "YlGnBu",
+    direction = -1,
+    # trans = "log10",
+    labels = scales::label_number_si()
+  ) +
   labs(
     title = "REGION-WISE: SUICIDE IN INDIA 2019",
-    subtitle="No. of suicides were maximum in Andhra Pradesh and Arunachal Pradesh",
+    subtitle = "No. of suicides were maximum in Andhra Pradesh and Arunachal Pradesh",
     caption = paste(
       "**CHART:** Nishtha Arora & James Goldie, 360info",
       "**DATA:** Our World in Data",
-      sep = "<br>")) +
-  theme_360()+
-theme(
-  axis.title = element_text(face = "bold"),
-  panel.grid.major.x = element_blank(),
-    panel.grid.minor.x = element_blank())+
-  xlab(NULL)+
+      sep = "<br>"
+    )
+  ) +
+  theme_360() +
+  theme(
+    axis.title = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  xlab(NULL) +
   ylab(NULL)
 
 save_360plot(india_map, "graphs/indiamap.png")
@@ -441,90 +590,52 @@ knitr::include_graphics("graphs/indiamap.png")
 
 ```
 
-Here, we observe that ___
+### Selected Visualization 
 
-Limitation: 
+#### Visualization 6: Comparison of visualization 4 with the similar plot made from National Crime Records Bureau extracted data
 
+Data source:
 
-#### Observation of suicide rates in India before and after 2017 (India's Mental Health Act 2017).
-
-```{r, echo=FALSE}
-india_suicide_rates <- who_data %>% filter(Location=="India") |> 
-  filter(Period > 2009) |> 
-    mutate(year= as.Date(as.character(Period), format = "%Y"),
-           year=year(year))
+- [NCRB](https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf)
 
 
-plot_india <- ggplot(india_suicide_rates, aes(x=year, y=FactValueNumeric)) +
-  geom_line(color="brown") +
-  geom_point(color = "brown", size = 1.5) +
-  geom_vline(xintercept = 2017, linetype = "dashed") +
-  labs(
-    x = NULL,
-    y = "Rate per 100,000 people",
-    title = "SUICIDE IN INDIA",
-    subtitle="Suicide rates in India have declined from 2010 to 2017 and then a sudden hike is observed",
-    caption = paste(
-      "**CHART:** Nishtha Arora & James Goldie, 360info",
-      "**DATA:** Our World in Data",
-      sep = "<br>")) +
-   scale_x_continuous(breaks = 2010:2021)+
-  ylim(9,16)+
-  theme_360() +
-  theme(
-    legend.position = "none",
-    axis.title = element_text(face = "bold"),
-     panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank())+
-    annotate_360_light(x = 2016.9, y = 19, label = paste( "Suicide rates slightly increased", "after the introduction of the ", "Mental Healthcare Act in 2017.",
-                  sep="<br>") ,hjust=1, size=5)
-
-save_360plot(plot_india, "graphs/indiatimeseries.png")
-knitr::include_graphics("graphs/indiatimeseries.png")
-```
-
-
-It is observed that___
-
-Limitation: The plot observed was completely opposite from the author's data reference source, i.e. NCRB data.
-
-This following comparison was made after the package was published.
-
-##### Comparison with NCRB data
-
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ncrb_pdf <- pdftools::pdf_text(pdf = "https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf") |> 
 str_split("\n")
 ```
 
-```{r, echo=FALSE}
-for(i in 1) { #sets the iteration to go through all 17 pages
-   ncrb_pdf[[i]] <- ncrb_pdf[[i]][11:41]
-} |> 
-  str_squish() 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+ncrb_pdf <-
+  pdftools::pdf_text(pdf = "https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf") |>
+  str_split("\n")
+
+for (i in 1) {
+  #sets the iteration to go through all 17 pages
+  ncrb_pdf[[i]] <- ncrb_pdf[[i]][11:41]
+} |>
+  str_squish()
 
 
 numbers_ex = list()
-k=1
-for(i in 1) {
-    numbers <- ncrb_pdf[[i]]
-    numbers_df <- data.frame(numbers)
-    while(k <= 1000) {
-    numbers_ex[[k]]<- numbers_df
-    k <- k+1
+k = 1
+for (i in 1) {
+  numbers <- ncrb_pdf[[i]]
+  numbers_df <- data.frame(numbers)
+  while (k <= 1000) {
+    numbers_ex[[k]] <- numbers_df
+    k <- k + 1
     break
-    }
+  }
   
   NH_numbers <- dplyr::bind_rows(numbers_ex)
 }
 
-```
-
-```{r, echo=FALSE}
 new <- NH_numbers |>
-  separate(numbers,
-           into = c("extra", "id", "year", "count", "population", "rate"),
-           sep = "\\s+") |>
+  separate(
+    numbers,
+    into = c("extra", "id", "year", "count", "population", "rate"),
+    sep = "\\s+"
+  ) |>
   na.omit() |>
   select(year, rate, count) |>
   mutate(
@@ -532,86 +643,686 @@ new <- NH_numbers |>
     # year = as.Date(paste0(year, "-07-01")),
     count = as.numeric(count),
     rate = as.numeric(rate),
-    year=as.numeric(year))
+    year = as.numeric(year)
+  )
+```
 
-
-
+```{r, echo=FALSE, out.width='90%', warning=FALSE, message=FALSE}
 plot_ncrb <- ggplot(new,
-      aes(x=year, y=rate))+
-geom_line(color="brown") +
+                    aes(x = year, y = rate)) +
+  geom_line(color = "brown") +
   geom_point(color = "brown", size = 1.5) +
   geom_vline(xintercept = 2017, linetype = "dashed") +
   labs(
     x = NULL,
     y = "Rate per 100,000 people",
     title = "SUICIDE IN INDIA (data.gov)",
-    subtitle="Suicide rates in India have rapidly fallen till 2016.",
+    subtitle = "Suicide rates in India have rapidly fallen till 2016.",
     caption = paste(
       "**CHART:** Nishtha Arora & James Goldie, 360info",
       "**DATA:** NCRB",
-      sep = "<br>")) +
-    scale_x_continuous(breaks = 2010:2021)+
-    ylim(9,16)+
-
+      sep = "<br>"
+    )
+  ) +
+  scale_x_continuous(breaks = 2010:2021) +
+  ylim(9, 16) +
+  
   theme_360() +
   theme(
     legend.position = "none",
     axis.title = element_text(face = "bold"),
-     panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank())
-  annotate_360_light(x = 2015, y = 10.2, label = paste( "Suicide rates have rapidly increased after 2017.",
-                sep="<br>") ,hjust=1, size=5)
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+annotate_360_light(
+  x = 2015,
+  y = 10.2,
+  label = paste("Suicide rates have rapidly increased after 2017.",
+                sep = "<br>") ,
+  hjust = 1,
+  size = 5
+)
 
 save_360plot(plot_ncrb, "graphs/indiatimeseries2.png")
 knitr::include_graphics("graphs/indiatimeseries2.png")
 ```
 
-# Policing the Police
+\newpage
+
+## Policing the Police
+
+The visualizations here are generic and related to different aspects of 'Policing the Police', for example, 
+
+- Corruption/bribery
+
+- Police Shootings/Encounter/Drug Wars/ Causalities
+
+- Trust in Police
+
+This is because, the package publication date was in June, i.e. 2-3 weeks later than the last day of internship. The article drafts would be created in early June and hence, the visualizations are not paired to specific articles for this package.
+
+### Initial Visualizations
+
+#### Visualizations 1 & 2
+
+Data source:
+
+- [UNODC](https://dataunodc.un.org/dp-crime-corruption-offences)
+
+```{r data_unodc, echo=FALSE, message=FALSE, warning=FALSE}
+corruption_UNODC <-
+  read_excel("data/policingthepolice/data_cts_corruption_and_economic_crime.xlsx") |>
+  slice(-c(1, 2)) |>
+  set_names(c( #colnames changed to setnames
+    "Iso3_code",
+    "Country",
+    "Region",
+    "Subregion",
+    "Indicator",
+    "Dimension",
+    "Category",
+    "Sex",
+    "Age",
+    "Year",
+    "Unit of measurement",
+    "VALUE",
+    "Source"
+  ))
+
+corruption_UNODC_clean <- corruption_UNODC |>#use better dataset names
+  filter(`Unit of measurement` == "Counts") |>
+  select(Iso3_code, Country, Category, VALUE, Year) |>
+  filter(Category %in% c("Corruption")) |>
+  mutate(VALUE = as.numeric(VALUE))
+
+plot_global <- corruption_UNODC_clean |>
+  group_by(Country) |>
+  summarise(VALUE = mean(VALUE)) |>
+  arrange(desc(VALUE)) |>
+  head(10) |>
+  mutate(ToHighlight = ifelse(VALUE > 30000, "yes", "no"))
+
+plot_usa <- corruption_UNODC_clean |>
+  filter(Country == "United States of America") |>
+  mutate(
+    Year = as.Date(as.character(Year), format = "%Y"),
+         Year = year(Year)
+    ) 
+```
+
+```{r plot1, out.width='50%', echo=FALSE, message=FALSE, warning=FALSE}
+
+plot_global  |>
+  ggplot(aes(reorder(x = Country,-VALUE), y = VALUE, fill = ToHighlight)) +
+  geom_col() +
+  theme(legend.position = "none") +
+  theme_dark() +
+  ggtitle("Country Rank: 2013-2021") +
+  xlab("Country") +
+  ylab("Average Corruption Count") +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold"),
+      axis.text.x = element_text(angle = 35, face = "bold"),
+    legend.position = "none"
+  ) +
+  scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
+
+plot_usa |>
+  ggplot(aes(x = Year, y = VALUE)) +
+  geom_col(fill = "lightblue", width = 0.4) +
+  geom_line(size = 1, colour = "#811B0F") +
+  ggtitle("Corruption Count: USA") +
+  ylab("Corruption Count") +
+  theme_dark() +
+  theme(
+    plot.title = element_text(face = "bold", size = 15),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  )
+
+```
+
+#### Visualization 3 & 4
+
+Data Sources:
+
+- [Washinton Post](https://www.washingtonpost.com/graphics/investigations/police-shootings-database/)
+
+- [Washinton Post Github](https://github.com/washingtonpost/data-police-shootings/tree/master/v1)
+
+- [Census data 2010-2020](https://www2.census.gov/programs-surveys/popest/datasets/2010-2020/counties/totals/)
+
+- [Census data 2020-2022](https://www2.census.gov/programs-surveys/popest/datasets/2020-2022/counties/totals/)
+
+- [Stats/States code data github](https://github.com/jasonong/List-of-US-States/blob/master/states.csv)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+options(scipen = 999)
+
+co_est2020 <- read_csv("data/policingthepolice/co-est2020.csv") |>
+  select(
+    -c(
+      SUMLEV,
+      REGION,
+      DIVISION,
+      STATE,
+      COUNTY,
+      CTYNAME,
+      CENSUS2010POP,
+      ESTIMATESBASE2010,
+      POPESTIMATE042020,
+      POPESTIMATE2011,
+      POPESTIMATE2012,
+      POPESTIMATE2013,
+      POPESTIMATE2014,
+      POPESTIMATE2010
+    )
+  ) |>
+  group_by(STNAME) |>
+  # summarise(summarise_if(is.numeric, mean))
+  summarise(
+    `2015` = mean(POPESTIMATE2015),
+    `2016` = mean(POPESTIMATE2016),
+    `2017` = mean(POPESTIMATE2017),
+    `2018` = mean(POPESTIMATE2018),
+    `2019` = mean(POPESTIMATE2019),
+    `2020` = mean(POPESTIMATE2020)
+  )
+
+co_est2022_alldata <-
+  read_csv("data/policingthepolice/co-est2022-alldata.csv") |>
+  select(STNAME, POPESTIMATE2021, POPESTIMATE2022) |>
+  group_by(STNAME) |>
+  summarise(`2021` = mean(POPESTIMATE2021),
+            `2022` = mean(POPESTIMATE2022)) |>
+  select(-c(STNAME))
+
+bind_pop <- cbind(co_est2020, co_est2022_alldata) |>
+  pivot_longer(cols = 2:9,
+               names_to = 'year',
+               values_to = 'population') |>
+  rename(state_name = STNAME) |>
+  mutate(year = as.numeric(year))
+
+states <- read_csv("data/policingthepolice/states.csv") |>
+  rename(state_name = State,
+         state = Abbreviation)
+
+fatal_police_shootings_data <-
+  read_csv("data/policingthepolice/fatal-police-shootings-data.csv") |>
+  mutate(year = year(date)) |>
+  select(gender, race, city, state, year)
+
+state_shooting <-
+  left_join(fatal_police_shootings_data, states, by = "state") |>
+  select(-c(state, city)) |>
+  group_by(year, state_name) |>
+  summarise(count = n())
+
+join_pop_killings <-
+  full_join(bind_pop, state_shooting, by = c("state_name", "year")) |>
+  mutate(rate = (count / population) * 100000) |>
+  select(-c(population, count)) |>
+  group_by(state_name) |>
+  summarise(rate = mean(rate)) |>
+  arrange(desc(rate)) |>
+  head(10)
+
+#rate per 100,000 population |
+
+join_pop_killings <-
+  full_join(bind_pop, state_shooting, by = c("state_name", "year")) |>
+  mutate(rate = (count / population) * 100000) |>
+  select(-c(population, count)) 
+
+shots_usa_plot4 <- join_pop_killings |>
+  group_by(year) |>
+  na.omit() |>
+  summarise(avg_rate = mean(rate))
+
+shots_usa_plot5 <-  join_pop_killings |>
+  group_by(state_name) |>
+  summarise(rate = mean(rate)) |>
+  arrange(desc(rate)) |>
+  head(10) 
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+plot4_shootings <- shots_usa_plot4  |>
+  ggplot(aes(x = year, y = avg_rate)) +
+  geom_line(color = "#6F0269") +
+  geom_point() +
+  geom_vline(xintercept = 2021, linetype = "dashed")+
+  theme_wsj() +
+  ggtitle("USA Killings: 2015-2022")
+
+ggsave("graphs/plot4_shootings.png")
+
+plot5_shootings <- shots_usa_plot5 |>
+  ggplot(aes(x = state_name, y = rate)) +
+  geom_segment(aes(
+    x = reorder(state_name, -rate),
+    xend = state_name,
+    y = 0,
+    yend = rate
+  )) +
+  geom_point(
+    size = 6,
+    color = "#6F0269",
+    fill = alpha("#074B1D", 0.3),
+    alpha = 0.7,
+    shape = 21,
+    stroke = 2
+  ) +
+  theme_wsj() +
+  theme(axis.text.x = element_text(size=8, angle = 35))+
+  labs(title = "Highest Killing States",
+       subtitle = "USA: 2015-2022")
+
+ggsave("graphs/plot5_shootings.png")
+
+```
+
+```{r out.width = '50%', echo = FALSE}
+
+#saving and adding image as this plot wasnt knitting in pdf
+knitr::include_graphics("graphs/plot4_shootings.png")
+
+
+knitr::include_graphics("graphs/plot5_shootings.png")
+```
+
+#### Visualizatio 5 & 6
+
+Data Source:
+
+- [NCRB](https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?page=21)
+
+```{r data_india_bind, echo=FALSE, message=FALSE, warning=FALSE}
+ncrb_col_names <- c(
+  #adding column names at once
+  "S. No.",
+  "State/UT",
+  "Registered Cases",
+  "Quashed/ Stayed by Court",
+  "Charge-sheeted cases",
+  "Final Report Submitted",
+  "Arrested",
+  " Charge-sheeted police",
+  "Cases With-drawn/ Disposed Off",
+  "Trials were Completed",
+  " Convicted",
+  "Acquitted or Discharged",
+  "Year"
+)
+
+Table_16A_5_0 <-
+  read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_0.xlsx") |>
+  slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
+  mutate(Year = "2018") |>  #mutate instead of add_column
+  set_names(ncrb_col_names) #set_name instead of colnames
+
+Table_16A_5_1 <-
+  read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5_1.xlsx") |>
+  slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
+  add_column(Year = "2017") |>
+  set_names(ncrb_col_names)
+
+Table_16A_5_2 <-
+  read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5-2.xlsx") |>
+  slice(-c(1, 2, 3, 4, 5, 34, 35, 44, 45, 46, 47)) |>
+  add_column(Year = "2020") |>
+  set_names(ncrb_col_names)
+
+Table_16A_5 <-
+  read_excel("data/policingthepolice/castagainstpolicep/Table 16A.5.xlsx") |>
+  slice(-c(1, 2, 3, 4, 5, 35, 36, 44, 45, 46, 47)) |>
+  add_column(Year = "2019") |>
+  set_names(ncrb_col_names)
+
+
+options(digits = 2)
+
+data_policecases <-
+  bind_rows(Table_16A_5_0, Table_16A_5_1, Table_16A_5_2, Table_16A_5) |> #bind rows instead of rbind
+  mutate(`Registered Cases` = as.numeric(`Registered Cases`),
+         `Arrested` = as.numeric(`Arrested`)) |> #not comparing with anything as not sure of what variables are
+  select(`State/UT`, `Registered Cases`, Year, Arrested) |> 
+  mutate(`State/UT` = recode(`State/UT`, "Delhi UT" = "Delhi"))
+  
+plot6_india <- data_policecases |> 
+  arrange(desc(`Registered Cases`)) |> 
+    head(36)
+
+plot7_kar <- data_policecases |>
+  filter(`State/UT` == "Karnataka") 
+
+```
+  
+```{r plot6, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7, fig.width=8}
+
+colourCount = length(unique(data_policecases$`State/UT`))
+ plot6_india |> 
+ggplot(aes( y = `Registered Cases`, x = Year, fill=`State/UT`))+
+  geom_col()+
+  scale_fill_manual(values = colorRampPalette(brewer.pal(15, "Set1"))(colourCount)) +
+theme_calc()+
+  theme(legend.position="bottom") +
+  guides(fill=guide_legend(nrow=3))+
+  ylab("Regestered Cases against Police")+
+  ggtitle("India: States with higehst regestered cases", subtitle = " States with 100 or more cases in any/each year")
+
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6}
+ image_plot7 <- plot7_kar |>
+  ggplot() +
+  geom_col(
+    aes(
+      x = reorder(Year, -`Registered Cases`),
+      y = `Registered Cases`),
+      fill = "#86BCD9") +
+  geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
+  ggtitle("Registered Cases vs Police Arrested: Karnataka") +
+  ylab("Regestered Cases & Arrested (Red") +
+  xlab("Year") +
+  theme_minimal() +
+  annotate("text",
+    x = 1,
+    y = 10,
+    label = "12% Arrested"
+  ) +
+  annotate("text",
+    x = 3,
+    y = 8,
+    label = "34% Arrested"
+  )
+image_plot7 
+```
+
+#### Visualization 7
+
+Data Source:
+
+- [OWID](https://ourworldindata.org/grapher/trust-in-others-vs-trust-in-police)
+
+```{r plot8_data, echo=FALSE, message=FALSE, warning=FALSE}
+options(scipen = 999)
+europe_trust_in_police <-
+  read_csv("data/policingthepolice/trust-in-others-vs-trust-in-police.csv") |>
+  na.omit()
+```
+
+```{r plot8, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=6}
+
+ggplot(
+  europe_trust_in_police,
+  aes(y = `GDP per capita, PPP (constant 2017 international $)`, x = `Trust in police (Eurostat (2015))`)
+) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  geom_text(
+    aes(label = Entity),
+    data = europe_trust_in_police |> filter(
+      Entity %in% c("Luxembourg", "Switzerland", "United Kingdom")),
+      nudge_y = -0.25E4) +
+  theme_bw()
+```
+
+#### Visualization 8
+ 
+Data Source:
+
+- [Data.World](https://data.world/stabile-center/ph-drug-war#)
+
+```{r plot9_data, echo=FALSE, message=FALSE, warning=FALSE}
+PH_data <- read_excel("data/policingthepolice/PH data.xlsx") |>
+  filter(`Type of killing` == "Police killing") |>
+  mutate(Date = as.Date(Date, format = "%Y")) |>
+  select(City, `Type of killing`, Date) |>
+  group_by(City, Date) |>
+  summarise(count = n())
+```
+
+```{r plot9, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=6}
+
+ggplot(PH_data, aes(x = Date, y = count, fill = City)) +
+  geom_bar(
+    stat = "identity",
+    position = position_dodge(),
+    alpha = 0.75
+  ) +
+  ggtitle("Phillippines Drug War Police Killings") +
+  ylab("People Killed") +
+  theme_economist() +
+  scale_fill_economist() +
+  theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  ) +
+  scale_x_date(
+    breaks = date_breaks("years"),
+    labels = date_format("20%y")
+  )
+```
+
+### Short- Listed Visualizations 
+
+#### Visualization 9
+
+Data Source:
+
+- [OWID](https://ourworldindata.org/corruption)
+
+```{r plot10_data, echo=FALSE, message=FALSE, warning=FALSE}
+OWID_police <-
+  read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") |>
+  group_by(Year) |>
+  summarise_if(is.numeric, mean, na.rm = TRUE) |>
+  pivot_longer(cols = -Year, names_to = "Institution", values_to = "Count") |>
+  ungroup() #added
+
+# sum counts across all years
+OWID_police_allyears <-
+  OWID_police |>
+  group_by(Institution) |>
+  summarise(Count = sum(Count, na.rm = TRUE)) |> #sum instea dof mean
+  mutate(Institution = fct_reorder(Institution, Count, .desc = TRUE))
+
+facet_plot_owid <- OWID_police |> 
+   filter(Institution %in% c("Police", "Government officials", "Legislature", "Business executives", "Judges and magistrates", "Religious leaders"))
+```
+
+```{r plot10, echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+
+
+plot_police <- 
+  ggplot( facet_plot_owid, aes( y = Count/100, x = Year, fill=Year))+
+  geom_col()+
+  facet_grid(rows = vars(Institution),
+             labeller = label_wrap_gen(width = 2, multi_line = TRUE))+
+  theme(legend.position = "none")+
+  coord_flip()+
+  scale_x_continuous(breaks = c(2013,2015, 2016, 2017))+
+   scale_y_continuous(labels = scales::percent)+
+  labs(
+    y = NULL,
+    x = NULL,
+    title = "People Survey: High Corruption Scams",
+    subtitle = "People beleive Police to be the most corrupt, especially in the years 2013 & 2015",
+    caption = paste(
+      "**CHART:** Nishtha Arora & James Goldie, 360info",
+      "**DATA:** Transparency International via Our World in Data",
+      sep = "<br>"
+    )
+  )+
+  theme_360() +
+  theme(
+    legend.position = "none",
+    axis.title = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+
+save_360plot(plot_police, "graphs/police.png")
+knitr::include_graphics("graphs/police.png")
+```
+
+#### Visualization 10 - updating visualization 9
+
+```{r plot11_data,  echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=7}
+world_owid_police <- 
+  read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") |>
+filter(Entity == "World") |> 
+  select(-c(Entity, Code)) |> 
+  pivot_longer(cols = -Year, names_to = "Institution", values_to = "Count") |>
+  ungroup() |> 
+  filter(Institution %in% c("Police", "Government officials", "Legislature", "Business executives", "Judges and magistrates", "Religious leaders"))
+
+b_2013<-world_owid_police |> 
+  filter(Year == "2013")
+
+c_2017<-world_owid_police |> 
+  filter(Year == "2017") 
+
+b_2013$Institution<-as.factor(b_2013$Institution)
+c_2017$Institution<-as.factor(c_2017$Institution)
+
+d_1317<-merge(b_2013,c_2017, by.x=c("Institution"), 
+              by.y = c("Institution"))
+
+e<-d_1317 |> 
+  mutate("diff"=pmin(Count.x-Count.y)) |> 
+  arrange(diff)
+
+d_1317$Institution<-factor(d_1317$Institution,  e$Institution)
+
+chapters <-  c("a","a","a","b","b","b")
+d_1317 <- cbind(e, chapters)
+
+dumbbell(xdf=d_1317,id = "Institution",
+         key="chapters",
+         column1 = "Count.x",
+         column2 = "Count.y",
+         lab1 = "2013",lab2 = "2017", 
+         # delt=1, 
+         expandy = 0.05, 
+         col_lab1 = "blue", 
+         col_lab2 = "red", 
+         pt_val = 1,
+         arrow = 1, 
+         arrow_size = 0.2, 
+         segsize = 1,
+    pointsize = 1.5, 
+    col_seg1 = "#A9A9A9", 
+    col_seg2 = "#A9A9A9") +
+  coord_flip()+
+   scale_y_discrete(labels = scales::label_wrap(14))
+```
+
+### Selected Visualization 
+
+## Visualization 11- updating visualization 10
+
+```{r plot12_data,  echo=FALSE, message=FALSE, warning=FALSE}
+plot12 <- world_owid_police |> 
+  mutate(Count=Count/100) 
+```
+
+```{r plot12,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+
+plot12_viz <- plot12 |> 
+  ggplot(aes(label=factor(Count))) +
+  aes(x = Institution, y = Count) +
+  geom_line(
+    aes(group = Institution),
+    arrow = grid::arrow()
+  ) +
+  geom_point(aes(colour = as.factor(Year)), size=4) +
+  geom_text(aes(label = scales::percent(Count), colour = as.factor(Year)), nudge_x = 0.25, family = "Body 360info", fontface = "bold") +
+  labs(
+    y = "Percentage of respondents",
+    x = NULL,
+    title = "CORRUPTION SURVEY",
+    subtitle = str_wrap("When asked which groups they perceived as corrupt, more people pointed to police than any other group.", 90),
+    caption = paste(
+      "**CHART:** Nishtha Arora & James Goldie, 360info",
+      "**DATA:** Transparency International", 
+      "     via Our World in Data",
+      sep = "<br>"
+    )
+  )+
+  theme_360() +
+  theme(
+    axis.title = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    axis.text.x = element_text(
+      size = 12,
+      face="bold"
+    ),
+    legend.position = "top"
+  )+
+  labs(colour=NULL)+
+  scale_y_continuous(labels = scales::percent)+
+  scale_color_manual(values=c("#56B4E9", "#E69F00"))+
+  scale_x_discrete(labels = scales::label_wrap(14))
+
+
+save_360plot(plot12_viz, "graphs/police_2.png")
+knitr::include_graphics("graphs/police_2.png")
+  
+  
+```
+
+
 
 # Conclusion
 
-
-
 # References
 
-360info. (n.d.). https://360info.org
+360info. (n.d.). <https://360info.org>
 
-Assisted dying - Christianity. (n.d.). Christianity. https://christianity.org.uk/article/assisted-dying
+Assisted dying - Christianity. (n.d.). Christianity. <https://christianity.org.uk/article/assisted-dying>
 
-Dattani, S. (2023, April 2). Suicides. Our World in Data. https://ourworldindata.org/suicide
+Dattani, S. (2023, April 2). Suicides. Our World in Data. <https://ourworldindata.org/suicide>
 
-G, E. (1987). Hawkins, D. M.: Identification of Outliers. Chapman and Hall, London – New York 1980, 188 S., £ 14, 50. Biometrical Journal, 29(2), 198. https://doi.org/10.1002/bimj.4710290215
+G, E. (1987). Hawkins, D. M.: Identification of Outliers. Chapman and Hall, London -- New York 1980, 188 S., £ 14, 50. Biometrical Journal, 29(2), 198. <https://doi.org/10.1002/bimj.4710290215>
 
-Ghana - Criminal Code 1960 (Act 29). (n.d.). https://www.ilo.org/dyn/natlex/natlex4.detail?p_lang=en&p_isn=88530
+Ghana - Criminal Code 1960 (Act 29). (n.d.). <https://www.ilo.org/dyn/natlex/natlex4.detail?p_lang=en&p_isn=88530>
 
-Halevy, A., & McGregor, S. E. (2012). Data Management for Journalism. IEEE Data(Base) Engineering Bulletin, 35, 7–15. http://sites.computer.org/debull/A12sept/p7.pdf
+Halevy, A., & McGregor, S. E. (2012). Data Management for Journalism. IEEE Data(Base) Engineering Bulletin, 35, 7--15. <http://sites.computer.org/debull/A12sept/p7.pdf>
 
-Jordans, M. J. D., Kaufman, A., Brenman, N. F., Adhikari, R. K., Kohrt, B. A., Tol, W. A., & Komproe, I. H. (2014). Suicide in South Asia: a scoping review. BMC Psychiatry, 14(1). https://doi.org/10.1186/s12888-014-0358-9
+Jordans, M. J. D., Kaufman, A., Brenman, N. F., Adhikari, R. K., Kohrt, B. A., Tol, W. A., & Komproe, I. H. (2014). Suicide in South Asia: a scoping review. BMC Psychiatry, 14(1). <https://doi.org/10.1186/s12888-014-0358-9>
 
-Kenya - The Penal Code (Cap. 63). (n.d.). https://www.ilo.org/dyn/natlex/natlex4.detail?p_isn=28595&p_lang=en
+Kenya - The Penal Code (Cap. 63). (n.d.). <https://www.ilo.org/dyn/natlex/natlex4.detail?p_isn=28595&p_lang=en>
 
-Lester, D. (2006). Suicide and Islam. Archives of Suicide Research, 10(1), 77–97. https://doi.org/10.1080/13811110500318489
+Lester, D. (2006). Suicide and Islam. Archives of Suicide Research, 10(1), 77--97. <https://doi.org/10.1080/13811110500318489>
 
-Lua filters in R Markdown. (n.d.). https://rmarkdown.rstudio.com/docs/articles/lua-filters.html
+Lua filters in R Markdown. (n.d.). <https://rmarkdown.rstudio.com/docs/articles/lua-filters.html>
 
-Ochuku, B. K., Johnson, N. M., Osborn, T. L., Wasanga, C., & Ndetei, D. M. (2022). Centering decriminalization of suicide in low – and middle – income countries on effective suicide prevention strategies. Frontiers in Psychiatry, 13. https://doi.org/10.3389/fpsyt.2022.1034206
+Ochuku, B. K., Johnson, N. M., Osborn, T. L., Wasanga, C., & Ndetei, D. M. (2022). Centering decriminalization of suicide in low -- and middle -- income countries on effective suicide prevention strategies. Frontiers in Psychiatry, 13. <https://doi.org/10.3389/fpsyt.2022.1034206>
 
-Osborne, J. A., & Overbay, A. (2004). The power of outliers (and why researchers should ALWAYS check for them). Practical Assessment, Research and Evaluation, 9(1), 1–8. https://doi.org/10.7275/qf69-7k43
+Osborne, J. A., & Overbay, A. (2004). The power of outliers (and why researchers should ALWAYS check for them). Practical Assessment, Research and Evaluation, 9(1), 1--8. <https://doi.org/10.7275/qf69-7k43>
 
-Muiruri, P. (2022, October 19). Concern grows in Kenya after alarming rise in suicide cases. The Guardian. https://www.theguardian.com/global-development/2021/aug/10/concern-grows-in-kenya-after-alarming-rise-in-suicide-cases
+Muiruri, P. (2022, October 19). Concern grows in Kenya after alarming rise in suicide cases. The Guardian. <https://www.theguardian.com/global-development/2021/aug/10/concern-grows-in-kenya-after-alarming-rise-in-suicide-cases>
 
-Ranjan, R., Kumar, S., Pattanayak, R. D., Dhawan, A., & Sagar, R. (2014). (De-) criminalization of attempted suicide in India: A review. Industrial Psychiatry Journal, 23(1), 4. https://doi.org/10.4103/0972-6748.144936
+Ranjan, R., Kumar, S., Pattanayak, R. D., Dhawan, A., & Sagar, R. (2014). (De-) criminalization of attempted suicide in India: A review. Industrial Psychiatry Journal, 23(1), 4. <https://doi.org/10.4103/0972-6748.144936>
 
-Riederer, Y. X. C. D. E. (2022, November 7). 10.1 The function knitr::kable() | R Markdown Cookbook. https://bookdown.org/yihui/rmarkdown-cookbook/kable.html
+Riederer, Y. X. C. D. E. (2022, November 7). 10.1 The function knitr::kable() \| R Markdown Cookbook. <https://bookdown.org/yihui/rmarkdown-cookbook/kable.html>
 
-Suicide Decriminalisation - United for Global Mental Health. (2022, July 4). United for Global Mental Health. https://unitedgmh.org/knowledge-hub/suicide-decriminalisation/?utm_campaign=SuicideDecrimReport&utm_medium=referral&utm_source=vip&utm_content=SuicideDecrimReport
+Suicide Decriminalisation - United for Global Mental Health. (2022, July 4). United for Global Mental Health. <https://unitedgmh.org/knowledge-hub/suicide-decriminalisation/?utm_campaign=SuicideDecrimReport&utm_medium=referral&utm_source=vip&utm_content=SuicideDecrimReport>
 
-World Health Organization. (2021). Comprehensive mental health action plan 2013–2030. https://apps.who.int/iris/handle/10665/345301
+World Health Organization. (2021). Comprehensive mental health action plan 2013--2030. <https://apps.who.int/iris/handle/10665/345301>
 
-World Health Organization: WHO. (2021). Suicide. www.who.int. https://www.who.int/news-room/fact-sheets/detail/suicide
+World Health Organization: WHO. (2021). Suicide. www.who.int. <https://www.who.int/news-room/fact-sheets/detail/suicide>
 
-Zhu, H. Z. (2021). Create Awesome LaTeX Table with knitr::kable and kableExtra. cran.r-project.org. Retrieved May 10, 2023, from https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf
-
-
-
-
+Zhu, H. Z. (2021). Create Awesome LaTeX Table with knitr::kable and kableExtra. cran.r-project.org. Retrieved May 10, 2023, from <https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf>

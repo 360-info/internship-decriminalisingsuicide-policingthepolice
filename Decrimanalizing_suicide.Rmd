@@ -34,7 +34,7 @@ library(pdftools)
 
 ### Data sources 
 
-- Worldwide suicide rates OWID (filtering from 2000-2019, i.e. 10 years)
+- Worldwide suicide rates OWID (filtering from 2008-2019, i.e. 10 years)
 https://ourworldindata.org/suicide
 
 - HDI Data-UNDP-  Values recorded in 2021, rank (2020).
@@ -137,7 +137,7 @@ plot1 <- join |> head(30)
 ```
 
 ```{r plot1}
-write_csv(plot1, "data/presentation/visualization1.csv")
+
 
 ggplot(plot1,
        aes(
@@ -187,7 +187,7 @@ india_who_data <- who_data |> filter(Location == "India")
 
 ```{r plot2}
 
-write_csv(india_who_data, "data/presentation/visualization2.csv")
+
 
 india_who_data |>
   ggplot(aes(x = Period, y = FactValueNumeric)) +

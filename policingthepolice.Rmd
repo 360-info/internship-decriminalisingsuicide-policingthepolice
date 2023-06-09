@@ -10,7 +10,6 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r loading_libraries}
-library(readxl)
 library(themes360info)
 library(readr)
 library(readxl)
@@ -442,7 +441,7 @@ image_plot7 <- plot7_kar |>
   )
 image_plot7 
 
-save_360plot(image_plot7 , "graphs/image_plot7_india.png")
+ggsave("graphs/image_plot7_india.png")
 
 ```
 

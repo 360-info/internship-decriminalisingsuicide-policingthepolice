@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.17)  30 MAY 2023 10:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.17)  9 JUN 2023 15:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -604,11 +604,11 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 l.126 \end{abstract}
                      [1] (./Report-pdfknit-.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 3.
+(Font)              <12> on input line 5.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 3.
+(Font)              <8> on input line 5.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 3.
+(Font)              <6> on input line 5.
 )
 \tf@toc=\write4
 \openout4 = `Report-pdfknit-.toc'.
@@ -621,7 +621,7 @@ l.132 \newpage
                [1
 
 ]
-<images/images.png, id=71, 280.04625pt x 180.675pt>
+<images/images.png, id=66, 280.04625pt x 180.675pt>
 File: images/images.png Graphic file (type png)
 <use images/images.png>
 Package pdftex.def Info: images/images.png  used on input line 164.
@@ -629,33 +629,35 @@ Package pdftex.def Info: images/images.png  used on input line 164.
 [2
 
  <./images/images.png>]
-<images/26119-gettyimages-145903640---2_source_file.jpg, id=79, 247.78285pt x 129.46654pt>
+<images/26119-gettyimages-145903640---2_source_file.jpg, id=73, 247.78285pt x 129.46654pt>
 File: images/26119-gettyimages-145903640---2_source_file.jpg Graphic file (type jpg)
 <use images/26119-gettyimages-145903640---2_source_file.jpg>
-Package pdftex.def Info: images/26119-gettyimages-145903640---2_source_file.jpg  used on input line 182.
+Package pdftex.def Info: images/26119-gettyimages-145903640---2_source_file.jpg  used on input line 181.
 (pdftex.def)             Requested size: 247.80492pt x 129.47804pt.
-<images/ezgif.com-webp-to-jpg.jpg, id=80, 1017.8025pt x 706.64pt>
-File: images/ezgif.com-webp-to-jpg.jpg Graphic file (type jpg)
-<use images/ezgif.com-webp-to-jpg.jpg>
-Package pdftex.def Info: images/ezgif.com-webp-to-jpg.jpg  used on input line 215.
-(pdftex.def)             Requested size: 249.32497pt x 173.10135pt.
-<images/whatsapp-image-2019-01-29-at-13-46-16.jpeg, id=81, 662.475pt x 460.72125pt>
-File: images/whatsapp-image-2019-01-29-at-13-46-16.jpeg Graphic file (type jpg)
-<use images/whatsapp-image-2019-01-29-at-13-46-16.jpeg>
-Package pdftex.def Info: images/whatsapp-image-2019-01-29-at-13-46-16.jpeg  used on input line 216.
-(pdftex.def)             Requested size: 249.32718pt x 173.3957pt.
-
-Overfull \hbox (2.60063pt too wide) in paragraph at lines 215--217
-[] [] 
- []
-
 [3
 
  <./images/26119-gettyimages-145903640---2_source_file.jpg>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 255.
+<images/ezgif.com-webp-to-jpg.jpg, id=79, 1017.8025pt x 706.64pt>
+File: images/ezgif.com-webp-to-jpg.jpg Graphic file (type jpg)
+<use images/ezgif.com-webp-to-jpg.jpg>
+Package pdftex.def Info: images/ezgif.com-webp-to-jpg.jpg  used on input line 209.
+(pdftex.def)             Requested size: 249.32497pt x 173.10135pt.
+<images/whatsapp-image-2019-01-29-at-13-46-16.jpeg, id=80, 662.475pt x 460.72125pt>
+File: images/whatsapp-image-2019-01-29-at-13-46-16.jpeg Graphic file (type jpg)
+<use images/whatsapp-image-2019-01-29-at-13-46-16.jpeg>
+Package pdftex.def Info: images/whatsapp-image-2019-01-29-at-13-46-16.jpeg  used on input line 210.
+(pdftex.def)             Requested size: 249.32718pt x 173.3957pt.
+
+Overfull \hbox (2.60063pt too wide) in paragraph at lines 209--211
+[] [] 
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 249.
 (/Users/nishthaarora/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+) [4
+
+ <./images/ezgif.com-webp-to-jpg.jpg> <./images/whatsapp-image-2019-01-29-at-13-46-16.jpeg>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -663,11 +665,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[4 <./images/ezgif.com-webp-to-jpg.jpg> <./images/whatsapp-image-2019-01-29-at-13-46-16.jpeg>]
-<Report-pdfknit-_files/figure-latex/plot1-1.pdf, id=98, 505.89pt x 361.35pt>
-File: Report-pdfknit-_files/figure-latex/plot1-1.pdf Graphic file (type pdf)
-<use Report-pdfknit-_files/figure-latex/plot1-1.pdf>
-Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot1-1.pdf  used on input line 308.
+[5] [6
+
+]
+<Report-pdfknit-_files/figure-latex/plot1_1-1.pdf, id=101, 505.89pt x 361.35pt>
+File: Report-pdfknit-_files/figure-latex/plot1_1-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/plot1_1-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot1_1-1.pdf  used on input line 315.
 (pdftex.def)             Requested size: 498.67125pt x 356.19376pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -676,29 +680,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[5 <./Report-pdfknit-_files/figure-latex/plot1-1.pdf>]
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 331.
+[7 <./Report-pdfknit-_files/figure-latex/plot1_1-1.pdf>]
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 335.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14> on input line 331.
+(Font)              <14> on input line 335.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9.79996> on input line 331.
-<Report-pdfknit-_files/figure-latex/unnamed-chunk-4-1.pdf, id=116, 289.08pt x 433.62pt>
-File: Report-pdfknit-_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use Report-pdfknit-_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: Report-pdfknit-_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 380.
-(pdftex.def)             Requested size: 289.09251pt x 433.63878pt.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[6]
-<Report-pdfknit-_files/figure-latex/unnamed-chunk-6-1.pdf, id=126, 505.89pt x 361.35pt>
-File: Report-pdfknit-_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use Report-pdfknit-_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: Report-pdfknit-_files/figure-latex/unnamed-chunk-6-1.pdf  used on input line 390.
+(Font)              <9.79996> on input line 335.
+<Report-pdfknit-_files/figure-latex/unnamed-chunk-3-1.pdf, id=123, 505.89pt x 361.35pt>
+File: Report-pdfknit-_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/unnamed-chunk-3-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 392.
 (pdftex.def)             Requested size: 498.67125pt x 356.19376pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -707,17 +698,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[7 <./Report-pdfknit-_files/figure-latex/unnamed-chunk-4-1.pdf>]
-<graphs/indiamap.png, id=141, 652.06015pt x 652.06015pt>
-File: graphs/indiamap.png Graphic file (type png)
-<use graphs/indiamap.png>
-Package pdftex.def Info: graphs/indiamap.png  used on input line 404.
-(pdftex.def)             Requested size: 652.1083pt x 652.1083pt.
-
-Overfull \hbox (153.44572pt too wide) in paragraph at lines 404--405
-[] 
- []
-
+[8]
+<Report-pdfknit-_files/figure-latex/unnamed-chunk-5-1.pdf, id=138, 505.89pt x 361.35pt>
+File: Report-pdfknit-_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/unnamed-chunk-5-1.pdf  used on input line 418.
+(pdftex.def)             Requested size: 498.67125pt x 356.19376pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -725,25 +711,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[8 <./Report-pdfknit-_files/figure-latex/unnamed-chunk-6-1.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[9 <./graphs/indiamap.png>]
-<graphs/indiatimeseries.png, id=161, 652.06015pt x 652.06015pt>
+[9 <./Report-pdfknit-_files/figure-latex/unnamed-chunk-3-1.pdf>]
+<graphs/indiatimeseries.png, id=157, 652.06015pt x 652.06015pt>
 File: graphs/indiatimeseries.png Graphic file (type png)
 <use graphs/indiatimeseries.png>
-Package pdftex.def Info: graphs/indiatimeseries.png  used on input line 415.
-(pdftex.def)             Requested size: 652.1083pt x 652.1083pt.
-
-Overfull \hbox (153.44572pt too wide) in paragraph at lines 415--416
-[] 
- []
-
+Package pdftex.def Info: graphs/indiatimeseries.png  used on input line 435.
+(pdftex.def)             Requested size: 448.80763pt x 448.80763pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -751,7 +724,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[10]
+[10 <./Report-pdfknit-_files/figure-latex/unnamed-chunk-5-1.pdf>]
+<graphs/indiamap.png, id=174, 652.06015pt x 652.06015pt>
+File: graphs/indiamap.png Graphic file (type png)
+<use graphs/indiamap.png>
+Package pdftex.def Info: graphs/indiamap.png  used on input line 453.
+(pdftex.def)             Requested size: 448.80763pt x 448.80763pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -760,20 +738,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [11 <./graphs/indiatimeseries.png>]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 427.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 471.
 (/Users/nishthaarora/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<graphs/indiatimeseries2.png, id=173, 652.06015pt x 652.06015pt>
+<graphs/indiatimeseries2.png, id=184, 652.06015pt x 652.06015pt>
 File: graphs/indiatimeseries2.png Graphic file (type png)
 <use graphs/indiatimeseries2.png>
-Package pdftex.def Info: graphs/indiatimeseries2.png  used on input line 434.
-(pdftex.def)             Requested size: 652.1083pt x 652.1083pt.
-
-Overfull \hbox (153.44572pt too wide) in paragraph at lines 434--435
-[][] 
- []
-
+Package pdftex.def Info: graphs/indiatimeseries2.png  used on input line 478.
+(pdftex.def)             Requested size: 448.80763pt x 448.80763pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -781,7 +754,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[12]
+[12 <./graphs/indiamap.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -790,6 +763,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [13 <./graphs/indiatimeseries2.png>]
+<Report-pdfknit-_files/figure-latex/plot1-1.pdf, id=199, 289.08pt x 433.62pt>
+File: Report-pdfknit-_files/figure-latex/plot1-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/plot1-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot1-1.pdf  used on input line 516.
+(pdftex.def)             Requested size: 249.33176pt x 373.99765pt.
+<Report-pdfknit-_files/figure-latex/plot1-2.pdf, id=200, 289.08pt x 433.62pt>
+File: Report-pdfknit-_files/figure-latex/plot1-2.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/plot1-2.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot1-2.pdf  used on input line 517.
+(pdftex.def)             Requested size: 249.33176pt x 373.99765pt.
+
+Overfull \hbox (2.612pt too wide) in paragraph at lines 516--518
+[][] [] 
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -797,14 +785,128 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[14] [15
+[14 <./Report-pdfknit-_files/figure-latex/plot1-1.pdf> <./Report-pdfknit-_files/figure-latex/plot1-2.pdf>]
+<graphs/plot4_shootings.png, id=229, 288.8391pt x 433.3791pt>
+File: graphs/plot4_shootings.png Graphic file (type png)
+<use graphs/plot4_shootings.png>
+Package pdftex.def Info: graphs/plot4_shootings.png  used on input line 542.
+(pdftex.def)             Requested size: 249.33994pt x 374.1139pt.
+<graphs/plot5_shootings.png, id=230, 288.8391pt x 433.3791pt>
+File: graphs/plot5_shootings.png Graphic file (type png)
+<use graphs/plot5_shootings.png>
+Package pdftex.def Info: graphs/plot5_shootings.png  used on input line 543.
+(pdftex.def)             Requested size: 249.33994pt x 374.1139pt.
+
+Overfull \hbox (2.62836pt too wide) in paragraph at lines 542--544
+[][] [] 
+ []
+
+<Report-pdfknit-_files/figure-latex/plot6-1.pdf, id=232, 578.16pt x 505.89pt>
+File: Report-pdfknit-_files/figure-latex/plot6-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/plot6-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot6-1.pdf  used on input line 556.
+(pdftex.def)             Requested size: 498.66353pt x 436.33058pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[15 <./graphs/plot4_shootings.png> <./graphs/plot5_shootings.png>]
+<Report-pdfknit-_files/figure-latex/unnamed-chunk-13-1.pdf, id=239, 433.62pt x 433.62pt>
+File: Report-pdfknit-_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 558.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[16 <./Report-pdfknit-_files/figure-latex/plot6-1.pdf>]
+<Report-pdfknit-_files/figure-latex/plot8-1.pdf, id=250, 433.62pt x 433.62pt>
+File: Report-pdfknit-_files/figure-latex/plot8-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/plot8-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot8-1.pdf  used on input line 571.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[17 <./Report-pdfknit-_files/figure-latex/unnamed-chunk-13-1.pdf>]
+<Report-pdfknit-_files/figure-latex/plot9-1.pdf, id=264, 433.62pt x 433.62pt>
+File: Report-pdfknit-_files/figure-latex/plot9-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/plot9-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot9-1.pdf  used on input line 584.
+(pdftex.def)             Requested size: 433.63878pt x 433.63878pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[18 <./Report-pdfknit-_files/figure-latex/plot8-1.pdf>]
+<graphs/police.png, id=278, 652.06015pt x 652.06015pt>
+File: graphs/police.png Graphic file (type png)
+<use graphs/police.png>
+Package pdftex.def Info: graphs/police.png  used on input line 601.
+(pdftex.def)             Requested size: 448.80763pt x 448.80763pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[19 <./Report-pdfknit-_files/figure-latex/plot9-1.pdf>]
+<Report-pdfknit-_files/figure-latex/plot11_data-1.pdf, id=296, 505.89pt x 433.62pt>
+File: Report-pdfknit-_files/figure-latex/plot11_data-1.pdf Graphic file (type pdf)
+<use Report-pdfknit-_files/figure-latex/plot11_data-1.pdf>
+Package pdftex.def Info: Report-pdfknit-_files/figure-latex/plot11_data-1.pdf  used on input line 607.
+(pdftex.def)             Requested size: 498.67125pt x 427.43251pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[20 <./graphs/police.png>]
+<graphs/police_2.png, id=302, 652.06015pt x 652.06015pt>
+File: graphs/police_2.png Graphic file (type png)
+<use graphs/police_2.png>
+Package pdftex.def Info: graphs/police_2.png  used on input line 616.
+(pdftex.def)             Requested size: 448.80763pt x 448.80763pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[21 <./Report-pdfknit-_files/figure-latex/plot11_data-1.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[22 <./graphs/police_2.png>] [23
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 515--518
+Underfull \hbox (badness 10000) in paragraph at lines 681--684
 \T1/lmr/m/n/12 (+20) campaign = SuicideDecrimReport & utm _ medium = referral & utm _ source = vip & utm _ content =
  []
 
-[16
+[24
 
 ]
 
@@ -814,23 +916,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[17] (./Report-pdfknit-.aux)
+[25] (./Report-pdfknit-.aux)
 Package rerunfilecheck Info: File `Report-pdfknit-.out' has not changed.
-(rerunfilecheck)             Checksum: 6FD7BB4C89162F8F0201B1251BC2EEB5;1341.
+(rerunfilecheck)             Checksum: 3FFB2927A2D45B2994F85D1CB0390616;1490.
  ) 
 Here is how much of TeX's memory you used:
- 14951 strings out of 477031
- 244520 string characters out of 5826878
- 619263 words of memory out of 5000000
- 35606 multiletter control sequences out of 15000+600000
- 546687 words of font info for 157 fonts, out of 8000000 for 9000
+ 15085 strings out of 477031
+ 250138 string characters out of 5826878
+ 621148 words of memory out of 5000000
+ 35699 multiletter control sequences out of 15000+600000
+ 547036 words of font info for 160 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,15n,67p,1012b,488s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,15n,67p,1012b,511s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmro12.pfb></Users/nishthaarora/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Report-pdfknit-.pdf (19 pages, 900136 bytes).
+Output written on Report-pdfknit-.pdf (27 pages, 1285386 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 238 compressed objects within 3 object streams
- 63 named destinations out of 1000 (max. 500000)
- 43139 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 418 PDF objects out of 1000 (max. 8388607)
+ 340 compressed objects within 4 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 43186 words of extra memory for PDF output out of 51595 (max. 10000000)
 
