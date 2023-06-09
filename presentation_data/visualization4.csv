@@ -1,0 +1,701 @@
+SpatialDimValueCode,Location,Period,Dim1,FactValueNumeric
+GRD,Grenada,2019,Both sexes,0.64
+NER,Niger,2019,Both sexes,10.15
+CUB,Cuba,2019,Both sexes,10.19
+GNQ,Equatorial Guinea,2019,Both sexes,13.51
+BFA,Burkina Faso,2019,Both sexes,14.38
+WSM,Samoa,2019,Both sexes,14.6
+LVA,Latvia,2019,Both sexes,16.06
+STP,Sao Tome and Principe,2019,Both sexes,2.2
+HND,Honduras,2019,Both sexes,2.58
+LBN,Lebanon,2019,Both sexes,2.76
+MDV,Maldives,2019,Both sexes,2.76
+KOR,Republic of Korea,2019,Both sexes,21.16
+CAF,Central African Republic,2019,Both sexes,22.96
+BHS,Bahamas,2019,Both sexes,3.37
+KIR,Kiribati,2019,Both sexes,30.56
+TLS,Timor-Leste,2019,Both sexes,4.53
+IRQ,Iraq,2019,Both sexes,4.74
+DOM,Dominican Republic,2019,Both sexes,5.11
+IRN,Iran (Islamic Republic of),2019,Both sexes,5.13
+BRA,Brazil,2019,Both sexes,6.41
+BOL,Bolivia (Plurinational State of),2019,Both sexes,6.82
+MKD,The former Yugoslav Republic of Macedonia,2019,Both sexes,7.15
+PRT,Portugal,2019,Both sexes,7.22
+BLZ,Belize,2019,Both sexes,7.65
+SRB,Serbia,2019,Both sexes,7.86
+MLI,Mali,2019,Both sexes,7.96
+ARG,Argentina,2019,Both sexes,8.14
+TZA,United Republic of Tanzania,2019,Both sexes,8.15
+PRK,Democratic People's Republic of Korea,2019,Both sexes,8.2
+BIH,Bosnia and Herzegovina,2019,Both sexes,8.25
+UZB,Uzbekistan,2019,Both sexes,8.28
+COM,Comoros,2019,Both sexes,8.46
+POL,Poland,2019,Both sexes,9.3
+RWA,Rwanda,2019,Both sexes,9.45
+FJI,Fiji,2019,Both sexes,9.51
+GRD,Grenada,2018,Both sexes,0.35
+NER,Niger,2018,Both sexes,10.13
+CUB,Cuba,2018,Both sexes,10.17
+POL,Poland,2018,Both sexes,10.4
+GNQ,Equatorial Guinea,2018,Both sexes,14.06
+LVA,Latvia,2018,Both sexes,14.29
+BFA,Burkina Faso,2018,Both sexes,14.68
+WSM,Samoa,2018,Both sexes,14.8
+STP,Sao Tome and Principe,2018,Both sexes,2.17
+LBN,Lebanon,2018,Both sexes,2.53
+HND,Honduras,2018,Both sexes,2.6
+MDV,Maldives,2018,Both sexes,2.92
+KOR,Republic of Korea,2018,Both sexes,21.27
+CAF,Central African Republic,2018,Both sexes,23.65
+BHS,Bahamas,2018,Both sexes,3.4
+KIR,Kiribati,2018,Both sexes,30.27
+TLS,Timor-Leste,2018,Both sexes,4.46
+IRQ,Iraq,2018,Both sexes,4.88
+DOM,Dominican Republic,2018,Both sexes,5.49
+IRN,Iran (Islamic Republic of),2018,Both sexes,5.49
+BRA,Brazil,2018,Both sexes,6.51
+BOL,Bolivia (Plurinational State of),2018,Both sexes,6.97
+BLZ,Belize,2018,Both sexes,7.16
+MKD,The former Yugoslav Republic of Macedonia,2018,Both sexes,7.22
+PRT,Portugal,2018,Both sexes,7.5
+SRB,Serbia,2018,Both sexes,7.86
+MLI,Mali,2018,Both sexes,7.98
+TZA,United Republic of Tanzania,2018,Both sexes,8.04
+BIH,Bosnia and Herzegovina,2018,Both sexes,8.18
+PRK,Democratic People's Republic of Korea,2018,Both sexes,8.19
+COM,Comoros,2018,Both sexes,8.48
+UZB,Uzbekistan,2018,Both sexes,8.73
+ARG,Argentina,2018,Both sexes,8.99
+RWA,Rwanda,2018,Both sexes,9.52
+FJI,Fiji,2018,Both sexes,9.72
+SRB,Serbia,2017,Both sexes,0.33
+GRD,Grenada,2017,Both sexes,0.67
+NER,Niger,2017,Both sexes,10.15
+CUB,Cuba,2017,Both sexes,10.53
+POL,Poland,2017,Both sexes,11.06
+GNQ,Equatorial Guinea,2017,Both sexes,13.16
+WSM,Samoa,2017,Both sexes,14.75
+BFA,Burkina Faso,2017,Both sexes,14.85
+LVA,Latvia,2017,Both sexes,17.14
+KOR,Republic of Korea,2017,Both sexes,19.31
+STP,Sao Tome and Principe,2017,Both sexes,2.19
+HND,Honduras,2017,Both sexes,2.71
+LBN,Lebanon,2017,Both sexes,2.99
+CAF,Central African Republic,2017,Both sexes,25.73
+MDV,Maldives,2017,Both sexes,3.11
+BHS,Bahamas,2017,Both sexes,3.28
+KIR,Kiribati,2017,Both sexes,31.51
+TLS,Timor-Leste,2017,Both sexes,4.4
+IRQ,Iraq,2017,Both sexes,5.17
+IRN,Iran (Islamic Republic of),2017,Both sexes,5.8
+DOM,Dominican Republic,2017,Both sexes,6.02
+BRA,Brazil,2017,Both sexes,6.19
+BOL,Bolivia (Plurinational State of),2017,Both sexes,7.17
+MKD,The former Yugoslav Republic of Macedonia,2017,Both sexes,7.23
+BLZ,Belize,2017,Both sexes,7.71
+PRT,Portugal,2017,Both sexes,7.86
+MLI,Mali,2017,Both sexes,8.04
+BIH,Bosnia and Herzegovina,2017,Both sexes,8.07
+TZA,United Republic of Tanzania,2017,Both sexes,8.15
+COM,Comoros,2017,Both sexes,8.58
+PRK,Democratic People's Republic of Korea,2017,Both sexes,8.65
+ARG,Argentina,2017,Both sexes,8.69
+UZB,Uzbekistan,2017,Both sexes,8.92
+RWA,Rwanda,2017,Both sexes,9.62
+FJI,Fiji,2017,Both sexes,9.91
+GRD,Grenada,2016,Both sexes,0.91
+FJI,Fiji,2016,Both sexes,10.03
+NER,Niger,2016,Both sexes,10.22
+SRB,Serbia,2016,Both sexes,10.58
+POL,Poland,2016,Both sexes,11.37
+GNQ,Equatorial Guinea,2016,Both sexes,14.97
+WSM,Samoa,2016,Both sexes,15.03
+BFA,Burkina Faso,2016,Both sexes,15.16
+LVA,Latvia,2016,Both sexes,17.15
+STP,Sao Tome and Principe,2016,Both sexes,2.16
+HND,Honduras,2016,Both sexes,2.66
+LBN,Lebanon,2016,Both sexes,2.78
+KOR,Republic of Korea,2016,Both sexes,20.49
+CAF,Central African Republic,2016,Both sexes,25.25
+MDV,Maldives,2016,Both sexes,3.15
+BHS,Bahamas,2016,Both sexes,3.49
+KIR,Kiribati,2016,Both sexes,31.38
+TLS,Timor-Leste,2016,Both sexes,4.45
+IRQ,Iraq,2016,Both sexes,5.33
+BRA,Brazil,2016,Both sexes,5.67
+IRN,Iran (Islamic Republic of),2016,Both sexes,5.92
+BLZ,Belize,2016,Both sexes,6.67
+DOM,Dominican Republic,2016,Both sexes,6.77
+MKD,The former Yugoslav Republic of Macedonia,2016,Both sexes,7.27
+PRT,Portugal,2016,Both sexes,7.38
+BOL,Bolivia (Plurinational State of),2016,Both sexes,7.43
+ARG,Argentina,2016,Both sexes,8.06
+BIH,Bosnia and Herzegovina,2016,Both sexes,8.13
+MLI,Mali,2016,Both sexes,8.29
+TZA,United Republic of Tanzania,2016,Both sexes,8.32
+COM,Comoros,2016,Both sexes,8.72
+UZB,Uzbekistan,2016,Both sexes,9.21
+PRK,Democratic People's Republic of Korea,2016,Both sexes,9.24
+RWA,Rwanda,2016,Both sexes,9.73
+CUB,Cuba,2016,Both sexes,9.73
+GRD,Grenada,2015,Both sexes,0.62
+FJI,Fiji,2015,Both sexes,10.01
+CUB,Cuba,2015,Both sexes,10.36
+NER,Niger,2015,Both sexes,10.39
+SRB,Serbia,2015,Both sexes,11.69
+POL,Poland,2015,Both sexes,13.15
+WSM,Samoa,2015,Both sexes,14.94
+GNQ,Equatorial Guinea,2015,Both sexes,15.33
+BFA,Burkina Faso,2015,Both sexes,15.44
+LVA,Latvia,2015,Both sexes,17.14
+STP,Sao Tome and Principe,2015,Both sexes,2.18
+LBN,Lebanon,2015,Both sexes,2.87
+MDV,Maldives,2015,Both sexes,2.95
+KOR,Republic of Korea,2015,Both sexes,21.2
+CAF,Central African Republic,2015,Both sexes,26.31
+BHS,Bahamas,2015,Both sexes,3.42
+KIR,Kiribati,2015,Both sexes,31.59
+TLS,Timor-Leste,2015,Both sexes,4.38
+HND,Honduras,2015,Both sexes,4.57
+IRQ,Iraq,2015,Both sexes,5.4
+BRA,Brazil,2015,Both sexes,5.6
+IRN,Iran (Islamic Republic of),2015,Both sexes,5.96
+DOM,Dominican Republic,2015,Both sexes,6.84
+BLZ,Belize,2015,Both sexes,6.87
+BOL,Bolivia (Plurinational State of),2015,Both sexes,7.2
+MKD,The former Yugoslav Republic of Macedonia,2015,Both sexes,7.28
+ARG,Argentina,2015,Both sexes,8.1
+TZA,United Republic of Tanzania,2015,Both sexes,8.23
+PRT,Portugal,2015,Both sexes,8.31
+BIH,Bosnia and Herzegovina,2015,Both sexes,8.33
+MLI,Mali,2015,Both sexes,8.46
+COM,Comoros,2015,Both sexes,8.8
+UZB,Uzbekistan,2015,Both sexes,9.2
+PRK,Democratic People's Republic of Korea,2015,Both sexes,9.47
+RWA,Rwanda,2015,Both sexes,9.89
+GRD,Grenada,2014,Both sexes,0.45
+RWA,Rwanda,2014,Both sexes,10.07
+CUB,Cuba,2014,Both sexes,10.23
+FJI,Fiji,2014,Both sexes,10.27
+NER,Niger,2014,Both sexes,10.65
+SRB,Serbia,2014,Both sexes,12.02
+GNQ,Equatorial Guinea,2014,Both sexes,14.22
+POL,Poland,2014,Both sexes,14.5
+WSM,Samoa,2014,Both sexes,14.92
+BFA,Burkina Faso,2014,Both sexes,15.66
+LVA,Latvia,2014,Both sexes,17.18
+STP,Sao Tome and Principe,2014,Both sexes,2.24
+LBN,Lebanon,2014,Both sexes,2.84
+MDV,Maldives,2014,Both sexes,2.88
+KOR,Republic of Korea,2014,Both sexes,22.42
+CAF,Central African Republic,2014,Both sexes,27.59
+BHS,Bahamas,2014,Both sexes,3.28
+KIR,Kiribati,2014,Both sexes,31.62
+HND,Honduras,2014,Both sexes,4.07
+TLS,Timor-Leste,2014,Both sexes,4.24
+BRA,Brazil,2014,Both sexes,5.4
+IRQ,Iraq,2014,Both sexes,5.49
+IRN,Iran (Islamic Republic of),2014,Both sexes,6.06
+DOM,Dominican Republic,2014,Both sexes,6.59
+BLZ,Belize,2014,Both sexes,6.89
+BOL,Bolivia (Plurinational State of),2014,Both sexes,7.04
+MKD,The former Yugoslav Republic of Macedonia,2014,Both sexes,7.43
+BIH,Bosnia and Herzegovina,2014,Both sexes,8.2
+TZA,United Republic of Tanzania,2014,Both sexes,8.25
+MLI,Mali,2014,Both sexes,8.65
+COM,Comoros,2014,Both sexes,8.87
+UZB,Uzbekistan,2014,Both sexes,9.03
+PRK,Democratic People's Republic of Korea,2014,Both sexes,9.13
+ARG,Argentina,2014,Both sexes,9.16
+PRT,Portugal,2014,Both sexes,9.23
+GRD,Grenada,2013,Both sexes,1.12
+RWA,Rwanda,2013,Both sexes,10.13
+FJI,Fiji,2013,Both sexes,10.51
+CUB,Cuba,2013,Both sexes,10.64
+NER,Niger,2013,Both sexes,10.66
+SRB,Serbia,2013,Both sexes,13.03
+GNQ,Equatorial Guinea,2013,Both sexes,13.76
+WSM,Samoa,2013,Both sexes,14.12
+POL,Poland,2013,Both sexes,15.06
+BFA,Burkina Faso,2013,Both sexes,16.09
+LVA,Latvia,2013,Both sexes,16.7
+STP,Sao Tome and Principe,2013,Both sexes,2.19
+MDV,Maldives,2013,Both sexes,2.8
+KOR,Republic of Korea,2013,Both sexes,23.84
+CAF,Central African Republic,2013,Both sexes,26.95
+LBN,Lebanon,2013,Both sexes,3.01
+BHS,Bahamas,2013,Both sexes,3.17
+HND,Honduras,2013,Both sexes,3.9
+KIR,Kiribati,2013,Both sexes,32.34
+TLS,Timor-Leste,2013,Both sexes,4.23
+BRA,Brazil,2013,Both sexes,5.41
+IRQ,Iraq,2013,Both sexes,5.7
+DOM,Dominican Republic,2013,Both sexes,6.06
+IRN,Iran (Islamic Republic of),2013,Both sexes,6.1
+BLZ,Belize,2013,Both sexes,6.83
+BOL,Bolivia (Plurinational State of),2013,Both sexes,6.87
+PRT,Portugal,2013,Both sexes,7.98
+MKD,The former Yugoslav Republic of Macedonia,2013,Both sexes,8.05
+BIH,Bosnia and Herzegovina,2013,Both sexes,8.23
+ARG,Argentina,2013,Both sexes,8.45
+COM,Comoros,2013,Both sexes,8.51
+TZA,United Republic of Tanzania,2013,Both sexes,8.64
+MLI,Mali,2013,Both sexes,8.75
+UZB,Uzbekistan,2013,Both sexes,8.92
+PRK,Democratic People's Republic of Korea,2013,Both sexes,9.12
+GRD,Grenada,2012,Both sexes,1.64
+FJI,Fiji,2012,Both sexes,10.5
+RWA,Rwanda,2012,Both sexes,10.56
+NER,Niger,2012,Both sexes,10.58
+CUB,Cuba,2012,Both sexes,10.74
+SRB,Serbia,2012,Both sexes,13.28
+WSM,Samoa,2012,Both sexes,14.75
+POL,Poland,2012,Both sexes,15.29
+GNQ,Equatorial Guinea,2012,Both sexes,15.53
+BFA,Burkina Faso,2012,Both sexes,16.11
+LVA,Latvia,2012,Both sexes,19.39
+STP,Sao Tome and Principe,2012,Both sexes,2.24
+MDV,Maldives,2012,Both sexes,2.88
+LBN,Lebanon,2012,Both sexes,2.99
+KOR,Republic of Korea,2012,Both sexes,24.01
+CAF,Central African Republic,2012,Both sexes,26.64
+BHS,Bahamas,2012,Both sexes,3.58
+HND,Honduras,2012,Both sexes,3.95
+KIR,Kiribati,2012,Both sexes,32.04
+TLS,Timor-Leste,2012,Both sexes,4.28
+BRA,Brazil,2012,Both sexes,5.29
+IRQ,Iraq,2012,Both sexes,5.58
+DOM,Dominican Republic,2012,Both sexes,5.8
+IRN,Iran (Islamic Republic of),2012,Both sexes,6.16
+BOL,Bolivia (Plurinational State of),2012,Both sexes,6.9
+BLZ,Belize,2012,Both sexes,7.35
+BIH,Bosnia and Herzegovina,2012,Both sexes,8.11
+MKD,The former Yugoslav Republic of Macedonia,2012,Both sexes,8.15
+TZA,United Republic of Tanzania,2012,Both sexes,8.45
+PRT,Portugal,2012,Both sexes,8.48
+COM,Comoros,2012,Both sexes,8.62
+MLI,Mali,2012,Both sexes,8.73
+ARG,Argentina,2012,Both sexes,8.96
+UZB,Uzbekistan,2012,Both sexes,8.98
+PRK,Democratic People's Republic of Korea,2012,Both sexes,9.09
+GRD,Grenada,2011,Both sexes,1.57
+FJI,Fiji,2011,Both sexes,10.33
+NER,Niger,2011,Both sexes,10.44
+RWA,Rwanda,2011,Both sexes,10.93
+CUB,Cuba,2011,Both sexes,11.13
+SRB,Serbia,2011,Both sexes,13.17
+WSM,Samoa,2011,Both sexes,14.79
+POL,Poland,2011,Both sexes,14.98
+BFA,Burkina Faso,2011,Both sexes,15.65
+GNQ,Equatorial Guinea,2011,Both sexes,16.64
+LVA,Latvia,2011,Both sexes,18.15
+STP,Sao Tome and Principe,2011,Both sexes,2.11
+HND,Honduras,2011,Both sexes,2.59
+MDV,Maldives,2011,Both sexes,2.88
+CAF,Central African Republic,2011,Both sexes,27.57
+KOR,Republic of Korea,2011,Both sexes,27.89
+LBN,Lebanon,2011,Both sexes,3.06
+BHS,Bahamas,2011,Both sexes,3.77
+KIR,Kiribati,2011,Both sexes,32.85
+TLS,Timor-Leste,2011,Both sexes,4.3
+BRA,Brazil,2011,Both sexes,5.19
+DOM,Dominican Republic,2011,Both sexes,5.5
+IRQ,Iraq,2011,Both sexes,5.52
+MKD,The former Yugoslav Republic of Macedonia,2011,Both sexes,5.91
+IRN,Iran (Islamic Republic of),2011,Both sexes,6.14
+BOL,Bolivia (Plurinational State of),2011,Both sexes,7.05
+BLZ,Belize,2011,Both sexes,7.92
+PRT,Portugal,2011,Both sexes,7.94
+BIH,Bosnia and Herzegovina,2011,Both sexes,8.35
+ARG,Argentina,2011,Both sexes,8.42
+COM,Comoros,2011,Both sexes,8.53
+UZB,Uzbekistan,2011,Both sexes,8.57
+MLI,Mali,2011,Both sexes,8.68
+PRK,Democratic People's Republic of Korea,2011,Both sexes,9.24
+TZA,United Republic of Tanzania,2011,Both sexes,9.32
+GRD,Grenada,2010,Both sexes,0.73
+FJI,Fiji,2010,Both sexes,10.12
+NER,Niger,2010,Both sexes,10.39
+CUB,Cuba,2010,Both sexes,11.45
+RWA,Rwanda,2010,Both sexes,11.5
+SRB,Serbia,2010,Both sexes,12.42
+WSM,Samoa,2010,Both sexes,14.83
+GNQ,Equatorial Guinea,2010,Both sexes,15.27
+POL,Poland,2010,Both sexes,15.51
+BFA,Burkina Faso,2010,Both sexes,15.82
+LVA,Latvia,2010,Both sexes,18.59
+STP,Sao Tome and Principe,2010,Both sexes,2.18
+HND,Honduras,2010,Both sexes,2.66
+KOR,Republic of Korea,2010,Both sexes,27.98
+CAF,Central African Republic,2010,Both sexes,28.12
+LBN,Lebanon,2010,Both sexes,3.04
+MDV,Maldives,2010,Both sexes,3.05
+BHS,Bahamas,2010,Both sexes,3.66
+KIR,Kiribati,2010,Both sexes,32.65
+TLS,Timor-Leste,2010,Both sexes,4.15
+BRA,Brazil,2010,Both sexes,5
+IRQ,Iraq,2010,Both sexes,5.34
+DOM,Dominican Republic,2010,Both sexes,5.38
+IRN,Iran (Islamic Republic of),2010,Both sexes,5.78
+MKD,The former Yugoslav Republic of Macedonia,2010,Both sexes,5.82
+BOL,Bolivia (Plurinational State of),2010,Both sexes,7
+BLZ,Belize,2010,Both sexes,8.18
+BIH,Bosnia and Herzegovina,2010,Both sexes,8.3
+UZB,Uzbekistan,2010,Both sexes,8.3
+ARG,Argentina,2010,Both sexes,8.43
+MLI,Mali,2010,Both sexes,8.69
+PRT,Portugal,2010,Both sexes,8.83
+COM,Comoros,2010,Both sexes,9.01
+PRK,Democratic People's Republic of Korea,2010,Both sexes,9.19
+TZA,United Republic of Tanzania,2010,Both sexes,9.81
+GRD,Grenada,2009,Both sexes,0.52
+FJI,Fiji,2009,Both sexes,10.16
+NER,Niger,2009,Both sexes,10.23
+TZA,United Republic of Tanzania,2009,Both sexes,10.57
+CUB,Cuba,2009,Both sexes,11.08
+RWA,Rwanda,2009,Both sexes,12.06
+WSM,Samoa,2009,Both sexes,13.01
+GNQ,Equatorial Guinea,2009,Both sexes,13.89
+SRB,Serbia,2009,Both sexes,14.8
+BFA,Burkina Faso,2009,Both sexes,15.7
+POL,Poland,2009,Both sexes,16.11
+STP,Sao Tome and Principe,2009,Both sexes,2.25
+HND,Honduras,2009,Both sexes,2.72
+LVA,Latvia,2009,Both sexes,21.67
+CAF,Central African Republic,2009,Both sexes,28.53
+KOR,Republic of Korea,2009,Both sexes,28.78
+LBN,Lebanon,2009,Both sexes,3.04
+MDV,Maldives,2009,Both sexes,3.29
+BHS,Bahamas,2009,Both sexes,3.39
+KIR,Kiribati,2009,Both sexes,32.95
+TLS,Timor-Leste,2009,Both sexes,4.41
+IRQ,Iraq,2009,Both sexes,5.13
+BRA,Brazil,2009,Both sexes,5.19
+DOM,Dominican Republic,2009,Both sexes,5.63
+IRN,Iran (Islamic Republic of),2009,Both sexes,5.71
+BOL,Bolivia (Plurinational State of),2009,Both sexes,6.99
+BLZ,Belize,2009,Both sexes,7.48
+MKD,The former Yugoslav Republic of Macedonia,2009,Both sexes,8.11
+UZB,Uzbekistan,2009,Both sexes,8.22
+ARG,Argentina,2009,Both sexes,8.35
+BIH,Bosnia and Herzegovina,2009,Both sexes,8.54
+COM,Comoros,2009,Both sexes,8.55
+PRT,Portugal,2009,Both sexes,8.65
+MLI,Mali,2009,Both sexes,8.87
+PRK,Democratic People's Republic of Korea,2009,Both sexes,9.13
+NER,Niger,2008,Both sexes,10.14
+FJI,Fiji,2008,Both sexes,10.2
+CUB,Cuba,2008,Both sexes,10.39
+TZA,United Republic of Tanzania,2008,Both sexes,11.03
+RWA,Rwanda,2008,Both sexes,12.94
+GNQ,Equatorial Guinea,2008,Both sexes,13.95
+SRB,Serbia,2008,Both sexes,13.99
+POL,Poland,2008,Both sexes,14.41
+WSM,Samoa,2008,Both sexes,14.94
+BFA,Burkina Faso,2008,Both sexes,15.69
+GRD,Grenada,2008,Both sexes,2.05
+STP,Sao Tome and Principe,2008,Both sexes,2.37
+HND,Honduras,2008,Both sexes,2.84
+LVA,Latvia,2008,Both sexes,21.66
+KOR,Republic of Korea,2008,Both sexes,24.38
+CAF,Central African Republic,2008,Both sexes,27.29
+LBN,Lebanon,2008,Both sexes,3.01
+BHS,Bahamas,2008,Both sexes,3.4
+TLS,Timor-Leste,2008,Both sexes,3.42
+MDV,Maldives,2008,Both sexes,3.49
+KIR,Kiribati,2008,Both sexes,33.45
+IRQ,Iraq,2008,Both sexes,4.86
+BRA,Brazil,2008,Both sexes,5.22
+DOM,Dominican Republic,2008,Both sexes,5.61
+BLZ,Belize,2008,Both sexes,5.7
+IRN,Iran (Islamic Republic of),2008,Both sexes,5.74
+BOL,Bolivia (Plurinational State of),2008,Both sexes,7.01
+MKD,The former Yugoslav Republic of Macedonia,2008,Both sexes,7.93
+ARG,Argentina,2008,Both sexes,8.59
+PRT,Portugal,2008,Both sexes,8.6
+BIH,Bosnia and Herzegovina,2008,Both sexes,8.72
+MLI,Mali,2008,Both sexes,8.86
+UZB,Uzbekistan,2008,Both sexes,8.9
+COM,Comoros,2008,Both sexes,8.99
+PRK,Democratic People's Republic of Korea,2008,Both sexes,9.2
+GRD,Grenada,2007,Both sexes,1.89
+FJI,Fiji,2007,Both sexes,10.05
+NER,Niger,2007,Both sexes,10.25
+TZA,United Republic of Tanzania,2007,Both sexes,10.43
+POL,Poland,2007,Both sexes,13.27
+RWA,Rwanda,2007,Both sexes,13.67
+GNQ,Equatorial Guinea,2007,Both sexes,14.18
+SRB,Serbia,2007,Both sexes,14.43
+WSM,Samoa,2007,Both sexes,15.1
+BFA,Burkina Faso,2007,Both sexes,15.89
+LVA,Latvia,2007,Both sexes,17
+STP,Sao Tome and Principe,2007,Both sexes,2.42
+HND,Honduras,2007,Both sexes,2.92
+LBN,Lebanon,2007,Both sexes,2.99
+KOR,Republic of Korea,2007,Both sexes,23.24
+CAF,Central African Republic,2007,Both sexes,27.7
+BHS,Bahamas,2007,Both sexes,3.32
+MDV,Maldives,2007,Both sexes,3.57
+TLS,Timor-Leste,2007,Both sexes,3.68
+KIR,Kiribati,2007,Both sexes,32.84
+IRQ,Iraq,2007,Both sexes,5.02
+BRA,Brazil,2007,Both sexes,5.05
+DOM,Dominican Republic,2007,Both sexes,5.69
+IRN,Iran (Islamic Republic of),2007,Both sexes,5.98
+BLZ,Belize,2007,Both sexes,6.69
+BOL,Bolivia (Plurinational State of),2007,Both sexes,7.17
+MKD,The former Yugoslav Republic of Macedonia,2007,Both sexes,8.07
+ARG,Argentina,2007,Both sexes,8.17
+PRT,Portugal,2007,Both sexes,8.33
+MLI,Mali,2007,Both sexes,8.74
+COM,Comoros,2007,Both sexes,8.86
+PRK,Democratic People's Republic of Korea,2007,Both sexes,8.93
+UZB,Uzbekistan,2007,Both sexes,9.25
+BIH,Bosnia and Herzegovina,2007,Both sexes,9.36
+CUB,Cuba,2007,Both sexes,9.92
+NER,Niger,2006,Both sexes,10.09
+TZA,United Republic of Tanzania,2006,Both sexes,10.26
+CUB,Cuba,2006,Both sexes,10.63
+RWA,Rwanda,2006,Both sexes,14.31
+GNQ,Equatorial Guinea,2006,Both sexes,14.41
+POL,Poland,2006,Both sexes,14.49
+SRB,Serbia,2006,Both sexes,15
+WSM,Samoa,2006,Both sexes,15.25
+BFA,Burkina Faso,2006,Both sexes,15.94
+LVA,Latvia,2006,Both sexes,19.09
+STP,Sao Tome and Principe,2006,Both sexes,2.23
+LBN,Lebanon,2006,Both sexes,2.67
+HND,Honduras,2006,Both sexes,2.97
+KOR,Republic of Korea,2006,Both sexes,20.78
+CAF,Central African Republic,2006,Both sexes,28.14
+BHS,Bahamas,2006,Both sexes,3.57
+MDV,Maldives,2006,Both sexes,3.77
+TLS,Timor-Leste,2006,Both sexes,3.9
+KIR,Kiribati,2006,Both sexes,31.46
+BRA,Brazil,2006,Both sexes,4.9
+GRD,Grenada,2006,Both sexes,4.94
+IRQ,Iraq,2006,Both sexes,5.15
+DOM,Dominican Republic,2006,Both sexes,5.61
+IRN,Iran (Islamic Republic of),2006,Both sexes,5.68
+BOL,Bolivia (Plurinational State of),2006,Both sexes,7
+BLZ,Belize,2006,Both sexes,7.19
+PRT,Portugal,2006,Both sexes,7.93
+MKD,The former Yugoslav Republic of Macedonia,2006,Both sexes,8.47
+ARG,Argentina,2006,Both sexes,8.53
+MLI,Mali,2006,Both sexes,8.65
+BIH,Bosnia and Herzegovina,2006,Both sexes,8.77
+PRK,Democratic People's Republic of Korea,2006,Both sexes,8.95
+COM,Comoros,2006,Both sexes,9.06
+UZB,Uzbekistan,2006,Both sexes,9.59
+FJI,Fiji,2006,Both sexes,9.86
+NER,Niger,2005,Both sexes,10.12
+FJI,Fiji,2005,Both sexes,10.16
+UZB,Uzbekistan,2005,Both sexes,10.22
+TZA,United Republic of Tanzania,2005,Both sexes,10.3
+CUB,Cuba,2005,Both sexes,11.1
+GNQ,Equatorial Guinea,2005,Both sexes,14.11
+RWA,Rwanda,2005,Both sexes,14.97
+POL,Poland,2005,Both sexes,15.22
+WSM,Samoa,2005,Both sexes,15.26
+SRB,Serbia,2005,Both sexes,15.64
+BFA,Burkina Faso,2005,Both sexes,15.87
+STP,Sao Tome and Principe,2005,Both sexes,2.12
+LBN,Lebanon,2005,Both sexes,2.89
+HND,Honduras,2005,Both sexes,2.98
+LVA,Latvia,2005,Both sexes,22.07
+KOR,Republic of Korea,2005,Both sexes,23.97
+CAF,Central African Republic,2005,Both sexes,27.24
+BHS,Bahamas,2005,Both sexes,3.15
+GRD,Grenada,2005,Both sexes,3.22
+MDV,Maldives,2005,Both sexes,3.83
+KIR,Kiribati,2005,Both sexes,32.52
+TLS,Timor-Leste,2005,Both sexes,4.31
+BRA,Brazil,2005,Both sexes,4.96
+IRQ,Iraq,2005,Both sexes,5.13
+DOM,Dominican Republic,2005,Both sexes,5.59
+IRN,Iran (Islamic Republic of),2005,Both sexes,5.97
+BLZ,Belize,2005,Both sexes,7.09
+BOL,Bolivia (Plurinational State of),2005,Both sexes,7.41
+MKD,The former Yugoslav Republic of Macedonia,2005,Both sexes,7.65
+PRT,Portugal,2005,Both sexes,7.91
+ARG,Argentina,2005,Both sexes,8.54
+MLI,Mali,2005,Both sexes,8.75
+BIH,Bosnia and Herzegovina,2005,Both sexes,8.95
+PRK,Democratic People's Republic of Korea,2005,Both sexes,9.04
+COM,Comoros,2005,Both sexes,9.1
+FJI,Fiji,2004,Both sexes,10.04
+TZA,United Republic of Tanzania,2004,Both sexes,10.87
+CUB,Cuba,2004,Both sexes,12.02
+GNQ,Equatorial Guinea,2004,Both sexes,14.62
+WSM,Samoa,2004,Both sexes,15.14
+POL,Poland,2004,Both sexes,15.25
+BFA,Burkina Faso,2004,Both sexes,15.82
+RWA,Rwanda,2004,Both sexes,16.2
+SRB,Serbia,2004,Both sexes,16.69
+STP,Sao Tome and Principe,2004,Both sexes,2.16
+LBN,Lebanon,2004,Both sexes,2.88
+HND,Honduras,2004,Both sexes,2.97
+LVA,Latvia,2004,Both sexes,22.05
+KOR,Republic of Korea,2004,Both sexes,23.08
+CAF,Central African Republic,2004,Both sexes,28.05
+BHS,Bahamas,2004,Both sexes,3.34
+MDV,Maldives,2004,Both sexes,3.83
+KIR,Kiribati,2004,Both sexes,31.99
+TLS,Timor-Leste,2004,Both sexes,4.38
+BRA,Brazil,2004,Both sexes,4.73
+GRD,Grenada,2004,Both sexes,4.89
+IRQ,Iraq,2004,Both sexes,5.16
+DOM,Dominican Republic,2004,Both sexes,5.32
+IRN,Iran (Islamic Republic of),2004,Both sexes,6.45
+PRT,Portugal,2004,Both sexes,7.45
+BOL,Bolivia (Plurinational State of),2004,Both sexes,7.53
+BIH,Bosnia and Herzegovina,2004,Both sexes,8.4
+MLI,Mali,2004,Both sexes,8.57
+ARG,Argentina,2004,Both sexes,8.68
+BLZ,Belize,2004,Both sexes,8.84
+PRK,Democratic People's Republic of Korea,2004,Both sexes,9.23
+COM,Comoros,2004,Both sexes,9.33
+MKD,The former Yugoslav Republic of Macedonia,2004,Both sexes,9.43
+UZB,Uzbekistan,2004,Both sexes,9.81
+NER,Niger,2004,Both sexes,9.83
+STP,Sao Tome and Principe,2003,Both sexes,1.99
+NER,Niger,2003,Both sexes,10.02
+UZB,Uzbekistan,2003,Both sexes,10.39
+FJI,Fiji,2003,Both sexes,10.48
+TZA,United Republic of Tanzania,2003,Both sexes,11.89
+CUB,Cuba,2003,Both sexes,11.98
+POL,Poland,2003,Both sexes,14.91
+GNQ,Equatorial Guinea,2003,Both sexes,15.31
+WSM,Samoa,2003,Both sexes,15.59
+BFA,Burkina Faso,2003,Both sexes,15.78
+SRB,Serbia,2003,Both sexes,17.05
+RWA,Rwanda,2003,Both sexes,18.36
+BHS,Bahamas,2003,Both sexes,2.51
+GRD,Grenada,2003,Both sexes,2.57
+LBN,Lebanon,2003,Both sexes,2.86
+KOR,Republic of Korea,2003,Both sexes,22.27
+LVA,Latvia,2003,Both sexes,24.46
+CAF,Central African Republic,2003,Both sexes,29.06
+HND,Honduras,2003,Both sexes,3.04
+KIR,Kiribati,2003,Both sexes,32.47
+MDV,Maldives,2003,Both sexes,4.55
+BRA,Brazil,2003,Both sexes,4.69
+TLS,Timor-Leste,2003,Both sexes,4.73
+IRQ,Iraq,2003,Both sexes,5.21
+DOM,Dominican Republic,2003,Both sexes,5.33
+IRN,Iran (Islamic Republic of),2003,Both sexes,6.75
+BOL,Bolivia (Plurinational State of),2003,Both sexes,7.72
+BLZ,Belize,2003,Both sexes,8.17
+MKD,The former Yugoslav Republic of Macedonia,2003,Both sexes,8.27
+BIH,Bosnia and Herzegovina,2003,Both sexes,8.45
+MLI,Mali,2003,Both sexes,8.55
+PRT,Portugal,2003,Both sexes,8.7
+PRK,Democratic People's Republic of Korea,2003,Both sexes,9.43
+ARG,Argentina,2003,Both sexes,9.66
+COM,Comoros,2003,Both sexes,9.84
+COM,Comoros,2002,Both sexes,10.22
+ARG,Argentina,2002,Both sexes,10.28
+FJI,Fiji,2002,Both sexes,10.96
+UZB,Uzbekistan,2002,Both sexes,11.3
+TZA,United Republic of Tanzania,2002,Both sexes,12.79
+CUB,Cuba,2002,Both sexes,12.91
+POL,Poland,2002,Both sexes,15.24
+WSM,Samoa,2002,Both sexes,15.8
+GNQ,Equatorial Guinea,2002,Both sexes,15.81
+BFA,Burkina Faso,2002,Both sexes,15.91
+KOR,Republic of Korea,2002,Both sexes,17.81
+SRB,Serbia,2002,Both sexes,17.85
+STP,Sao Tome and Principe,2002,Both sexes,2.4
+BHS,Bahamas,2002,Both sexes,2.44
+LBN,Lebanon,2002,Both sexes,2.88
+RWA,Rwanda,2002,Both sexes,20.73
+LVA,Latvia,2002,Both sexes,27.12
+HND,Honduras,2002,Both sexes,3.02
+GRD,Grenada,2002,Both sexes,3.42
+CAF,Central African Republic,2002,Both sexes,30.43
+KIR,Kiribati,2002,Both sexes,34.5
+TLS,Timor-Leste,2002,Both sexes,4.64
+MDV,Maldives,2002,Both sexes,4.69
+BRA,Brazil,2002,Both sexes,4.77
+DOM,Dominican Republic,2002,Both sexes,4.9
+IRQ,Iraq,2002,Both sexes,5.18
+IRN,Iran (Islamic Republic of),2002,Both sexes,7.33
+BOL,Bolivia (Plurinational State of),2002,Both sexes,7.93
+BLZ,Belize,2002,Both sexes,8.09
+BIH,Bosnia and Herzegovina,2002,Both sexes,8.53
+MLI,Mali,2002,Both sexes,8.65
+MKD,The former Yugoslav Republic of Macedonia,2002,Both sexes,9
+PRT,Portugal,2002,Both sexes,9.32
+NER,Niger,2002,Both sexes,9.72
+PRK,Democratic People's Republic of Korea,2002,Both sexes,9.84
+GRD,Grenada,2001,Both sexes,0.37
+ARG,Argentina,2001,Both sexes,10.31
+COM,Comoros,2001,Both sexes,10.63
+FJI,Fiji,2001,Both sexes,11.36
+UZB,Uzbekistan,2001,Both sexes,11.73
+MKD,The former Yugoslav Republic of Macedonia,2001,Both sexes,11.87
+CUB,Cuba,2001,Both sexes,13.72
+TZA,United Republic of Tanzania,2001,Both sexes,14.21
+KOR,Republic of Korea,2001,Both sexes,14.78
+POL,Poland,2001,Both sexes,15.29
+WSM,Samoa,2001,Both sexes,16.17
+BFA,Burkina Faso,2001,Both sexes,16.38
+GNQ,Equatorial Guinea,2001,Both sexes,17.63
+SRB,Serbia,2001,Both sexes,17.77
+STP,Sao Tome and Principe,2001,Both sexes,2.37
+BHS,Bahamas,2001,Both sexes,2.73
+LBN,Lebanon,2001,Both sexes,2.91
+HND,Honduras,2001,Both sexes,2.99
+RWA,Rwanda,2001,Both sexes,22.95
+LVA,Latvia,2001,Both sexes,27.51
+CAF,Central African Republic,2001,Both sexes,30.74
+KIR,Kiribati,2001,Both sexes,35.26
+DOM,Dominican Republic,2001,Both sexes,4.75
+BRA,Brazil,2001,Both sexes,4.88
+TLS,Timor-Leste,2001,Both sexes,4.94
+MDV,Maldives,2001,Both sexes,5.08
+IRQ,Iraq,2001,Both sexes,5.19
+PRT,Portugal,2001,Both sexes,6.54
+IRN,Iran (Islamic Republic of),2001,Both sexes,7.69
+BOL,Bolivia (Plurinational State of),2001,Both sexes,8.05
+BLZ,Belize,2001,Both sexes,8.19
+BIH,Bosnia and Herzegovina,2001,Both sexes,8.35
+MLI,Mali,2001,Both sexes,8.68
+NER,Niger,2001,Both sexes,9.78
+PRK,Democratic People's Republic of Korea,2001,Both sexes,9.93
+BLZ,Belize,2000,Both sexes,10.01
+PRK,Democratic People's Republic of Korea,2000,Both sexes,10.29
+COM,Comoros,2000,Both sexes,10.87
+FJI,Fiji,2000,Both sexes,11.69
+UZB,Uzbekistan,2000,Both sexes,12.05
+KOR,Republic of Korea,2000,Both sexes,13.9
+POL,Poland,2000,Both sexes,15.31
+TZA,United Republic of Tanzania,2000,Both sexes,15.56
+CUB,Cuba,2000,Both sexes,15.63
+WSM,Samoa,2000,Both sexes,16.26
+BFA,Burkina Faso,2000,Both sexes,16.93
+SRB,Serbia,2000,Both sexes,18.91
+GNQ,Equatorial Guinea,2000,Both sexes,19.35
+GRD,Grenada,2000,Both sexes,2.12
+STP,Sao Tome and Principe,2000,Both sexes,2.24
+BHS,Bahamas,2000,Both sexes,2.53
+LBN,Lebanon,2000,Both sexes,2.99
+RWA,Rwanda,2000,Both sexes,25.56
+LVA,Latvia,2000,Both sexes,29.63
+HND,Honduras,2000,Both sexes,3.01
+CAF,Central African Republic,2000,Both sexes,32.5
+KIR,Kiribati,2000,Both sexes,35.64
+BRA,Brazil,2000,Both sexes,4.47
+TLS,Timor-Leste,2000,Both sexes,4.88
+DOM,Dominican Republic,2000,Both sexes,4.9
+IRQ,Iraq,2000,Both sexes,5.25
+MDV,Maldives,2000,Both sexes,5.3
+PRT,Portugal,2000,Both sexes,5.45
+IRN,Iran (Islamic Republic of),2000,Both sexes,8.04
+BIH,Bosnia and Herzegovina,2000,Both sexes,8.13
+BOL,Bolivia (Plurinational State of),2000,Both sexes,8.37
+MKD,The former Yugoslav Republic of Macedonia,2000,Both sexes,8.66
+MLI,Mali,2000,Both sexes,8.78
+ARG,Argentina,2000,Both sexes,9.2
+NER,Niger,2000,Both sexes,9.51
