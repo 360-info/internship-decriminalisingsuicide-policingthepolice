@@ -44,7 +44,7 @@ For decades, computer based reporting has been an integral part of journalism, t
 
 The content published is based on research, and each week a special report is published, focusing on a global problem, which consists of 5-10 articles covering different aspects in the problem. These articles are contributions from academics across various fields of study, depending on the article.
 
-Each report is supported by visuals, can be images, graphics or interactives. Any story telling can be made better with a data-driven analysis along with it and hence, this internship has given me a chance to work in the data and digital story telling team, produce data visualizations, collaborating with the authors and editors.
+Each report is supported by visuals, can be images, graphics or interactive. Any story telling can be made better with a data-driven analysis along with it and hence, this internship has given me a chance to work in the data and digital story telling team, produce data visualizations, collaborating with the authors and editors.
 
 All the published work is reproducible for media partners and is published under Creative Commons licences, which is good for art, educational and entertainment works. 360info uses Creative Commons attribution 4.0 because it allows the user's rights under the licence to be reinstated, if the user comes in compliance within 30 days of discovering that they were in violation of the rights.
 
@@ -1450,6 +1450,21 @@ Here the arrows depict as if the trust in a particular institution has fallen do
 **Practical learning**
 
 - This project was beneficial in providing us a hand on experience with the real world work culture. More importantly, it made me realize the true meaning and significance of **Need Analysis**. It helped shape the research, R, Graphic skills even better.
+
+- This project also gave a good practice of data wrangling. Lot of new things were to learn, like pdf extraction, use of geom_sf, etc. It made us comfortable with converting a complicated downloaded data set into a clean one, ready for analysis.
+
+**Important Criterion's to publish a visualization**
+
+- The plot must be easy-to-read. It should be simple, and understandable to everyone.
+
+- Data source must be trusted, i.e. avoid websites like Our World in Data, data.world, etc., especially kaggle. Use public legit data sources like Eurostat, UN database, etc.
+
+- The visualization must align with the author's thoughts or the article at least. Here identification of 'what is needed' is more important, than creating many visualizations or a complicated visualization.
+
+- The visualization should obviously be pleasant to the eye. It should be catchy, with proper contrasts.
+
+- Visualization MUST be labelled, all axis's or titles must clearly state what is depicted.
+
 
 This workflow of this project, can be viewed at [Github](https://github.com/360-info/internship-decriminalisingsuicide-policingthepolice)
 
