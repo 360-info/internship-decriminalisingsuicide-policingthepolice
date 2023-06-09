@@ -442,7 +442,7 @@ image_plot7 <- plot7_kar |>
   )
 image_plot7 
 
-save_360plot(image_plot7 , "graphs/image_plot7_india.png")
+ggsave("graphs/image_plot7_india.png")
 
 ```
 
