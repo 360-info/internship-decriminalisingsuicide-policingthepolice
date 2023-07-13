@@ -273,7 +273,7 @@ join <- full_join(selected_suicide_rates, tidied_hdi_data) |>
 plot1 <- join |> head(30)
 ```
 
-```{r plot1, echo=FALSE, fig.width= 7, fig.height=5}
+```{r plot1, echo=FALSE, fig.width= 7, fig.height=5, fig.cap="Top 30 countries by average suicide rate (2008-2019)"}
 ggplot(plot1,
        aes(
          x = reorder(Entity, -avg_rate),
@@ -297,7 +297,7 @@ ggplot(plot1,
     plot.title = element_text(face = "bold"),
     plot.background = element_rect(fill = "#B2E3FF")
   ) +
-  labs(title = "Top 30 countries by average suicide rate (2008-2019)",
+  labs(
        x = substitute(paste(bold("Country"))),
        y = substitute(paste(bold(
          "Suicide rate per 100,000 people"
@@ -371,7 +371,7 @@ Outliers are highly underestimated! A small proportion of outliers can affect a 
 
 Here, initially the complete data set was observed for observing outliers, but due to it being a large data set, text overlapping and squeezed observations made the visualization hard to read, hence, countries with significant outliers were selected for visualization.
 
-```{r plot2, echo=FALSE, fig.height=5, fig.width=7}
+```{r plot2, echo=FALSE, fig.height=5, fig.width=7, fig.cap="Irregularity in Data Collection"}
 viz4_who_data <- who_data |> filter(
   Location %in% c(
     "Kiribati",
@@ -431,8 +431,7 @@ viz4_who_data |>
     plot.background = element_rect(fill = "#B2E3FF")
   ) +
   labs(x = "Country",
-       y = "Suicide rate",
-       title = "Irregularity in Data Collection")
+       y = "Suicide rate")
 ```
 
 Reasons for REJECTION:
@@ -468,13 +467,12 @@ south_asian_c_clean <-  south_asian_c |>
   slice(-c(157))
 ```
 
-```{r plot3, echo=FALSE, fig.height=5, fig.width=7}
+```{r plot3, echo=FALSE, fig.height=5, fig.width=7, fig.cap="South Asian Countries"}
 ggplot(south_asian_c_clean,
        aes(colour = Location, y = FactValueNumeric, x = Period)) +
   geom_line() +
   geom_point() +
   ylab("Suicide rate") +
-  ggtitle("South Asian Countries") +
   scale_colour_brewer(type = "seq", palette = "Dark2") +
   theme(plot.background = element_rect(fill = "#B2E3FF")) +
   theme_classic()
@@ -493,7 +491,7 @@ Reasons for REJECTION:
 
 Data source : [*WHO*](https://www.who.int/data/gho/data/themes/mental-health/suicide-rates)
 
-```{r plot4, out.width='90%', echo=FALSE}
+```{r plot4, out.width='90%', echo=FALSE, fig.cap="SUICIDE IN INDIA"}
 india_suicide_rates <- who_data |> filter(Location == "India") |>
   filter(Period > 2009) |>
   mutate(year = as.Date(as.character(Period), format = "%Y"),
@@ -618,7 +616,7 @@ states_merged <- inner_join(states_shape_sf, join_newid,
               
 ```
 
-```{r plot5, echo=FALSE, out.width='90%', warning=FALSE, message=FALSE}
+```{r plot5, echo=FALSE, out.width='90%', warning=FALSE, message=FALSE, fig.cap="REGION-WISE: SUICIDE IN INDIA 2019"}
 colors <- c('#C6B7F7', "#744BF7", "#6B96EC", "#103E99")
 b <- c(0, 1000, 10000, 18000)
 india_map <- ggplot() +
@@ -673,7 +671,9 @@ Reasons for REJECTION:
 
 ### Selected Visualization 
 
-#### Visualization 6: Comparison of visualization 4 with the similar plot made from National Crime Records Bureau extracted data
+#### Visualization 6: Comparison of visualization 4 with the similar plot made from National Crime Records Bureau extracted data.
+
+This is a time series plot based on NCRB data that visualizes suicide rate in India over time and highlights 2017 (India's Mental Health Act 2017)
 
 Data source:
 
@@ -729,7 +729,7 @@ new <- NH_numbers |>
   )
 ```
 
-```{r plot6, echo=FALSE, out.width='90%', warning=FALSE, message=FALSE}
+```{r plot6, echo=FALSE, out.width='90%', warning=FALSE, message=FALSE, fig.cap="SUICIDE IN INDIA"}
 plot_ncrb <- ggplot(new,
                     aes(x = year, y = rate)) +
   geom_line(color = "brown") +
@@ -738,7 +738,7 @@ plot_ncrb <- ggplot(new,
   labs(
     x = NULL,
     y = "Rate per 100,000 people",
-    title = "SUICIDE IN INDIA (data.gov)",
+    title = "SUICIDE IN INDIA",
     subtitle = "Suicide rates in India have rapidly fallen till 2016.",
     caption = paste(
       "**CHART:** Nishtha Arora & James Goldie, 360info",
@@ -836,14 +836,13 @@ plot_usa <- corruption_UNODC_clean |>
          Year = year(Year)) 
 ```
 
-```{r p1, out.width='50%', echo=FALSE, message=FALSE, warning=FALSE}
+```{r p1, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Viz1: Country Rank: 2013-2021", fig.height=5, fig.width=5}
 
 plot_global  |>
   ggplot(aes(reorder(x = Country, -VALUE), y = VALUE, fill = ToHighlight)) +
   geom_col() +
   theme(legend.position = "none") +
   theme_dark() +
-  ggtitle("Country Rank: 2013-2021") +
   xlab("Country") +
   ylab("Average Corruption Count") +
   theme(
@@ -855,11 +854,16 @@ plot_global  |>
   ) +
   scale_fill_manual(values = c("yes" = "#57AFD5", "no" = "lightblue"))
 
+```
+
+This plot above ranks the countries in order of no. of corruption cases reported and top 10 countries are shown in the plot, for the years 2013-2021.
+
+```{r p2, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Viz2: Corruption Count: USA", fig.height=5, fig.width=5}
+
 plot_usa |>
   ggplot(aes(x = Year, y = VALUE)) +
   geom_col(fill = "lightblue", width = 0.4) +
   geom_line(size = 1, colour = "#811B0F") +
-  ggtitle("Corruption Count: USA") +
   ylab("Corruption Count") +
   theme_dark() +
   theme(
@@ -869,6 +873,8 @@ plot_usa |>
   )
 
 ```
+
+In the plot above, USA was a random selection and the plot depics a trend over years of the no. of corruption cases registered.
 
 Reason for REJECTION:
 
@@ -888,6 +894,8 @@ Data Sources:
 - [*Census data 2020-2022*](https://www2.census.gov/programs-surveys/popest/datasets/2020-2022/counties/totals/)
 
 - [*Stats/States code data github*](https://github.com/jasonong/List-of-US-States/blob/master/states.csv)
+
+The plot below the rate at which killings occurred in the United States of America over time.
 
 ```{r police_data_wrangling, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -969,12 +977,12 @@ join_pop_killings <-
   mutate(rate = (count / population) * 100000) |>
   select(-c(population, count))
 
-shots_usa_plot4 <- join_pop_killings |>
+shots_usa_plot3 <- join_pop_killings |>
   group_by(year) |>
   na.omit() |>
   summarise(avg_rate = mean(rate))
 
-shots_usa_plot5 <-  join_pop_killings |>
+shots_usa_plot4 <-  join_pop_killings |>
   group_by(state_name) |>
   summarise(rate = mean(rate)) |>
   arrange(desc(rate)) |>
@@ -983,19 +991,23 @@ shots_usa_plot5 <-  join_pop_killings |>
 ```
 
 
-```{r p3, echo=FALSE, message=FALSE, warning=FALSE}
+```{r p3, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="USA Killings: Rate vs Year", fig.height=5, fig.width=5}
 
-plot4_shootings <- shots_usa_plot4  |>
+plot4_shootings <- shots_usa_plot3  |>
   ggplot(aes(x = year, y = avg_rate)) +
   geom_line(color = "#6F0269") +
   geom_point() +
   geom_vline(xintercept = 2021, linetype = "dashed") +
-  theme_wsj() +
-  ggtitle("USA Killings", subtitle = "Rate vs Year")
+  theme_wsj() 
+plot4_shootings
 
-ggsave("graphs/plot4_shootings.png")
+```
 
-plot5_shootings <- shots_usa_plot5 |>
+The plot below highlights the states where the average police shooting rate is the highest from 2015-2022.
+
+```{r p4, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Killing rate: USA: 2015-2022", fig.height=5, fig.width=5}
+
+plot5_shootings <- shots_usa_plot4 |>
   ggplot(aes(x = state_name, y = rate)) +
   geom_segment(aes(
     x = reorder(state_name,-rate),
@@ -1012,21 +1024,8 @@ plot5_shootings <- shots_usa_plot5 |>
     stroke = 2
   ) +
   theme_wsj() +
-  theme(axis.text.x = element_text(size = 8, angle = 35)) +
- labs(title = "Killing rate",
-       subtitle = "USA: 2015-2022")
-
-ggsave("graphs/plot5_shootings.png")
-
-```
-
-```{r p4, out.width = '50%', echo = FALSE}
-
-#saving and adding image as this plot wasn't knitting in pdf
-knitr::include_graphics("graphs/plot4_shootings.png")
-
-
-knitr::include_graphics("graphs/plot5_shootings.png")
+  theme(axis.text.x = element_text(size = 8, angle = 35)) 
+plot5_shootings
 ```
 
 Here rate is a calculated value from the Police shooting count and the population of the state.
@@ -1110,7 +1109,7 @@ plot6_kar <- data_policecases |>
 
 ```
   
-```{r p5, echo=FALSE, message=FALSE, warning=FALSE, fig.height=7, fig.width=8}
+```{r p5, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=6, fig.cap="Visualization 5-India: States with higehst regestered cases"}
 
 colourCount = length(unique(data_policecases$`State/UT`))
 plot5_india |>
@@ -1120,22 +1119,20 @@ plot5_india |>
   theme_calc() +
   theme(legend.position = "bottom") +
   guides(fill = guide_legend(nrow = 3)) +
-  ylab("Regestered Cases against Police, 2017-2019") +
-  ggtitle("Visualization 5-India: States with higehst regestered cases", subtitle = " States with 100 or more cases in any/each year")
+  ylab("Regestered Cases against Police, 2017-2019") 
 
 
 ```
 
 This plot shows the states that have had more than 100 registered cases against police, for the years 2017-2020. For example, Rajasthan has recorded maximum cases overall and in 2018.
 
-```{r p6, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=6}
+```{r p6, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=5, fig.cap="Visualization 6- Registered Cases vs Police Arrested: Karnataka"}
 image_plot6 <- plot6_kar |>
   ggplot() +
   geom_col(aes(x = reorder(Year,-`Registered Cases`),
                y = `Registered Cases`),
            fill = "#86BCD9") +
   geom_col(aes(x = Year, y = Arrested), fill = "#E95E5E") +
-  ggtitle("Visualization 6- Registered Cases vs Police Arrested: Karnataka") +
   ylab("Regestered Cases & Arrested (Red") +
   xlab("Year") +
   theme_minimal() +
@@ -1174,14 +1171,13 @@ europe_trust_in_police <-
   na.omit()
 ```
 
-```{r p7, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=6}
+```{r p7, echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=6, fig.cap="Europe: Relation b/w GDP per capita & Trust in Police"}
 ggplot(
   europe_trust_in_police,
   aes(y = `GDP per capita, PPP (constant 2017 international $)`, x = `Trust in police (Eurostat (2015))`)
 ) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
-  ggtitle("Europe: Relation b/w GDP per capita & Trust in Police")+
   geom_text(
     aes(label = Entity),
     data = europe_trust_in_police |> filter(Entity %in% c(
@@ -1192,7 +1188,7 @@ ggplot(
   theme_bw()
 ```
 
-This graph shows that the trust in police is proportional to the GDP per capita.
+This graph shows that the trust in police is proportional to the GDP per capita. Hence, it can be said that countries falling under higher human development index, have less cases of misconducts and people trust the police more or the people themselves have some influence on the misconduct done by the police and hence, the trust.
 
 Reason for REJECTION:
 
@@ -1200,6 +1196,8 @@ Reason for REJECTION:
 
 
 #### Visualization 8
+
+During the reign of Philippine President Rodrigo Duterte, on June 30th 2016 a "war on drugs" was carried out which lead to a death of about 12000 people in the Philippians to date. They were mostly from low income class. Out of this about 2555 have been because of the national police itseelf. Since then police have been falsifying the evidence to justify these killings and even after calls for investigation, the campaign of "war on drugs" continues.
  
 Data Source:
 
@@ -1214,13 +1212,12 @@ PH_data <- read_excel("data/policingthepolice/PH data.xlsx") |>
   summarise(count = n())
 ```
 
-```{r p8, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=6}
+```{r p8, echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, fig.width=6, fig.cap="Phillippines Drug War Police Killings"}
 
 ggplot(PH_data, aes(x = Date, y = count, fill = City)) +
   geom_bar(stat = "identity",
            position = position_dodge(),
            alpha = 0.75) +
-  ggtitle("Phillippines Drug War Police Killings") +
   ylab("People Killed") +
   theme_economist() +
   scale_fill_economist() +
@@ -1238,6 +1235,8 @@ Reasons for REJECTION:
 
 
 ### Short- Listed Visualizations 
+
+The plot here shows the perception of people regarding corruption against these institutions plotted on the graph. And it is clearly seen that, almost each year, people have believed the Police to be the most corrupt.
 
 #### Visualization 9
 
@@ -1268,7 +1267,7 @@ facet_plot_owid <- OWID_police |>
   )
 ```
 
-```{r plot9, echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+```{r plot9, echo=FALSE, message=FALSE, warning=FALSE, out.width='90%', fig.cap="People Survey: High Corruption Scams"}
 plot_police <-
   ggplot(facet_plot_owid, aes(y = Count / 100, x = Year, fill = Year)) +
   geom_col() +
@@ -1309,7 +1308,9 @@ Reason for REJECTION:
 
 #### Visualization 10 - updating visualization 9
 
-```{r plot10,  echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=7}
+To tackle the problem of the missing year, a dumbbell plot was thought of to highlight the concern better.
+
+```{r plot10,  echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=7, fig.cap="Perception of Corruption vs Institution"}
 world_owid_police <-
   read_csv("data/policingthepolice/perception-of-corruption-by-institution.csv") |>
   filter(Entity == "World") |>
@@ -1385,12 +1386,14 @@ Reason for REJECTION:
 
 #### Visualization 11- updating visualization 10
 
+Since the previous dumbbell plot code used 'library(dumbbell)' which was hard to integrate in the publication code, a dumbbell plot with 'ggplot' was made.
+
 ```{r plot11_data,  echo=FALSE, message=FALSE, warning=FALSE}
 plot11 <- world_owid_police |>
   mutate(Count = Count / 100) 
 ```
 
-```{r plot11,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%'}
+```{r plot11,  echo=FALSE, message=FALSE, warning=FALSE, out.width='90%', fig.cap="CORRUPTION SURVEY"}
 plot11_viz <- plot11 |>
   ggplot(aes(label = factor(Count))) +
   aes(x = Institution, y = Count) +

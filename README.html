@@ -352,58 +352,107 @@ display: none;
 </div>
 
 
-<div id="quarto-scaffold" class="section level1">
-<h1>quarto-scaffold</h1>
-<p>Base a new repo off this public template to get started with a
-reproducible analysis or graphic quickly. The template comes with a <a href="https://code.visualstudio.com/docs/remote/containers">dev
-container</a> in order to get working with 360’s data science stack
-quickly.</p>
-<div id="get-started" class="section level2">
-<h2>🛠 Get started</h2>
-<p>To start working with a preconfigured, reproducible environment:</p>
-<ul>
-<li>Clone this repository</li>
-<li>Open it in <a href="https://code.visualstudio.com">VSCode</a></li>
-<li>Open the command palette (Cmd/Ctrl+Shift+P) and run
-<strong>“Remote-Containers: Reopen in Container”</strong></li>
-<li>The project will now be open in a container that includes Quarto, R
-and the packages needed to reproduce the analysis</li>
-</ul>
+<div id="etc5543---business-analytics-creative-activity---s1-2023" class="section level1">
+<h1>ETC5543 - Business analytics creative activity - S1 2023</h1>
+<p>This repository consists of 5 .rmd files, 2 files with package names
+that were used at the internship to create visualizations, a specific
+pdf report knit friendly .rmd, a specific html report knit friendly .rmd
+and xaringan (presentation) .rmd.</p>
+<p>The first package, <strong>‘Decriminalizing Suicide’</strong> focuses
+on various aspects covered by the authors, one of them is ‘India’s
+Mental Health Act 2017’ and opposite results are observed due to
+different data sources, an increase and decrease after 2017, which is
+discussed in the report. The second package, <strong>‘Policing he
+Police’</strong> takes a generic angle, covering topics of shootings
+around the world, the changing trust in police and much more. The
+project uses methods of data wrangling, exploration, pdf scraping,
+spatial analysis and basics of functions of tidyverse, in R language and
+uses ‘themes360info’ package for the theme.</p>
+<div id="use-remix-rights" class="section level2">
+<h2>Use + Remix rights</h2>
+<div class="figure">
+<img src="data:image/png;base64,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" alt />
+<p class="caption"><a href="https://creativecommons.org/licenses/by/4.0">Creative Commons
+Attribution 4.0</a></p>
 </div>
-<div id="adding-stories" class="section level2">
-<h2>➕ Adding stories</h2>
-<p>This repo just keeps the dev environment scaffolding; templates for
-individual analyses and graphics are kept in the
-[<code>quarto-examples</code>] repo. To bring one of them into your
-project with <a href="https://quarto.org">Quarto</a>, run (for
-example):</p>
-<pre class="shell"><code>quarto use extension 360-info/quarto-examples/360analysis</code></pre>
-</div>
-<div id="publication-checklist" class="section level2">
-<h2>✅ Publication checklist</h2>
-<ul class="task-list">
-<li><input type="checkbox" disabled></input>Replace this README with <a href="README-template.md"><code>README-template.md</code></a>,
-adding:<ul>
-<li><code>[report_title]</code></li>
-<li><code>[report_summary]</code></li>
-<li><code>[report_datasources_links]</code></li>
-<li><code>[report_codespaces_id]</code>
+<p>These charts, as well as the analyses that underpin them, are
+available under a Creative Commons Attribution 4.0 licence. This
+includes commercial reuse and derivates.</p>
+<!-- Do any of the data sources fall under a different licence? If so, describe the licence and which parts of the data fall under it here! if most of it does, change the above and replace LICENCE.md too -->
+<p>Data in these charts comes from:</p>
 <ul>
-<li>(lookup the repo ID in the address bar once you select it <a href="https://github.com/codespaces/new">in the Codespaces
-launcher</a>)</li>
-</ul></li>
-<li>Any exceptions to <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>
-licensing</li>
-<li><code>[report_reponame]</code></li>
-<li>Any changes that need to be made to reproduction instructions</li>
-</ul></li>
-<li><input type="checkbox" disabled></input>Fill in <a href="data/README.md"><code>data/README.md</code></a> with the data
-dictionary, links or other notes needed to understand and re-use the
-dataset</li>
-<li><input type="checkbox" disabled></input>Change the</li>
-<li><input type="checkbox" disabled></input>Make sure any additional R
-packages used in the analysis are installed at the bottom of <a href=".devcontainer/Dockerfile"><code>.devcontainer/Dockerfile</code></a></li>
+<li><p><a href="https://data.world/stabile-center/ph-drug-war#">Data.World: Drug
+War</a></p></li>
+<li><p><a href="https://data.gov.in/catalog/stateut-wise-distribution-suicides-cause">Dat.gov</a></p></li>
+<li><p><a href="%5Dhttp://www.diva-gis.org/datadown">Dive-Gis</a></p></li>
+<li><p><a href="https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf">NCRB
+ADSI Reports</a></p></li>
+<li><p><a href="https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?page=21">NCRB
+Crime in India</a></p></li>
+<li><p><a href="https://ourworldindata.org/corruption%5D">Our World in
+Data: Corruption</a></p></li>
+<li><p><a href="https://ourworldindata.org/suicide">Our World in Data:
+Global Suicide Rates</a></p></li>
+<li><p><a href="https://ourworldindata.org/grapher/trust-in-others-vs-trust-in-police">Our
+World in Data: Global Police trust Survey</a></p></li>
+<li><p><a href="http://hdr.undp.org/en/composite/HDI">UNDP</a></p></li>
+<li><p><a href="https://dataunodc.un.org/dp-crime-corruption-offences">UNODC</a></p></li>
+<li><p><a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">Washington
+Post</a></p></li>
+<li><p><a href="https://www.who.int/data/gho/data/themes/mental-health/suicide-rates">WHO</a></p></li>
+<li><p><a href="https://www2.census.gov/programs-surveys/popest/datasets/2010-2020/counties/totals">USA
+Census Data 2010-2020</a></p></li>
+<li><p><a href="https://www2.census.gov/programs-surveys/popest/datasets/2020-2022/counties/totals">USA
+Census Data 2020-2022</a></p></li>
 </ul>
+<p><strong>Please attribute 360info and the data sources when you use
+and remix these visualizations.</strong></p>
+</div>
+<div id="reproduce-the-analysis" class="section level2">
+<h2>Reproduce the analysis</h2>
+<div id="quickstart-use-the-dev-container" class="section level3">
+<h3>💨 Quickstart: use the dev container</h3>
+<p>This project comes with a ready-to-use <a href="https://code.visualstudio.com/docs/remote/containers">dev
+container</a> that includes everything you need to reproduce the
+analysis (or do a similar one of your own!), including <a href="https://r-project.org">R</a> and <a href="https://quarto.org">Quarto</a>.</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/codespaces/new?hide_repo_select=true&amp;ref=main&amp;repo=%5Breport_codespaces_id%5D">Launch
+this project in GitHub Codespaces</a></li>
+<li>If you have Docker installed, you can build and run the container
+locally:</li>
+</ol>
+<ul>
+<li>Download or clone the project</li>
+<li>Open it in <a href="https://code.visualstudio.com">Visual Studio
+Code</a></li>
+<li>Run the <strong>Remote-Containers: Reopen in Container</strong>
+command</li>
+</ul>
+<p>Once the container has launched (it might take a few minutes to set
+up the first time), you can run the analysis scripts with:</p>
+<pre class="sh"><code>quarto render</code></pre>
+<p>Or look for the <code>.qmd</code> files to modify the analysis.</p>
+</div>
+<div id="manual-setup" class="section level3">
+<h3>Manual setup</h3>
+<p>To setup a development environment manually,</p>
+<p>You’ll need to: - <a href="https://quarto.org/docs/get-started">Download and install
+Quarto</a> - <a href="https://www.r-project.org">Download the install
+R</a> - Satisfy the R package dependencies. In R: * Install the <a href="https://rstudio.github.io/renv"><code>renv</code></a> package with
+<code>install.packages(&quot;renv&quot;)</code>, * Then run
+<code>renv::restore()</code> to install the R package dependencies. *
+(For problems satisfying R package dependencies, refer to <a href="https://quarto.org/docs/projects/virtual-environments.html">Quarto’s
+documentation on virtual environments</a>.)</p>
+<p>Now, render the <code>.qmd</code> files to the <code>/out</code>
+directory with:</p>
+<pre class="sh"><code>quarto render</code></pre>
+</div>
+</div>
+<div id="help" class="section level2">
+<h2>Help</h2>
+<p>If you find any problems with our analysis or charts, please feel
+free to <a href="https://github.com/360-info/%5Breport%20repo%20name%5D/issues/new">create
+an issue</a>!</p>
 </div>
 </div>
 

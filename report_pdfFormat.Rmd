@@ -768,7 +768,7 @@ plot_ncrb <- ggplot(new,
   labs(
     x = NULL,
     y = "Rate per 100,000 people",
-    title = "SUICIDE IN INDIA (data.gov)",
+    title = "SUICIDE IN INDIA",
     subtitle = "Suicide rates in India have rapidly fallen till 2016.",
     caption = paste(
       "**CHART:** Nishtha Arora & James Goldie, 360info",
@@ -1231,6 +1231,8 @@ Reason for REJECTION:
 
 
 #### Visualization 8
+
+During the reign of Philippine President Rodrigo Duterte, on June 30th 2016 a "war on drugs" was carried out which lead to a death of about 12000 people in the Philippians to date. They were mostly from low income class. Out of this about 2555 have been because of the national police itseelf. Since then police have been falsifying the evidence to justify these killings and even after calls for investigation, the campaign of "war on drugs" continues.
  
 Data Source:
 
