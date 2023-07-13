@@ -1,6 +1,8 @@
 # ETC5543 - Business analytics creative activity - S1 2023
 
-This repository consists of 5 .rmd files, 2 files with package names that were used at the internship to create visualizations, a specific pdf report knit friendly .rmd, a specific html report knit friendly .rmd and xaringan (presentation) .rmd.
+This repository consists of 5 .rmd files, 2 files with package names that were used at the internship to create visualizations, a specific pdf report knit friendly .rmd, a specific html report knit friendly .rmd and xaringan (presentation) .rmd. Also, HTML versions of all the 5 .rmd files is available.
+
+The folder also contains 2 data folders, one for the visualizations and report and the other one contains cleaned data used for the presentation. The "graphs" folder contains the saved plots with 360themes added to them and the "images" folder for images used in the report and the presentation.
 
 The first package, **'Decriminalizing Suicide'** focuses on various aspects covered by the authors, one of them is 'India's Mental Health Act 2017' and opposite results are observed due to different data sources, an increase and decrease after 2017, which is discussed in the report. The second package, **'Policing he Police'** takes a generic angle, covering topics of shootings around the world, the changing trust in police and much more. The project uses methods of data wrangling, exploration, pdf scraping, spatial analysis and basics of functions of tidyverse, in R language and uses 'themes360info' package for the theme.
 
@@ -17,8 +19,6 @@ Data in these charts comes from:
 - [Data.World: Drug War](https://data.world/stabile-center/ph-drug-war#)
 
 - [Dat.gov](https://data.gov.in/catalog/stateut-wise-distribution-suicides-cause)
-
-- [Dive-Gis](]http://www.diva-gis.org/datadown)
 
 - [NCRB ADSI Reports](https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf)
 
