@@ -7,3 +7,14 @@ IND_adm folder contains the spatial data for India and IND_adm1.shp was used - h
 
 Data set not in the folder :
 PDF extracted was done from National Crime Records Bureau (India): https://ncrb.gov.in/sites/default/files/adsi_reports_previous_year/Table%202.1.pdf
+
+
+Data for Policing the Police (policing the police folder)
+data_cts_corruption_and_economic_crime.xlsx containg the global corruption rate from UNODC- https://dataunodc.un.org/dp-crime-corruption-offences
+perception-of-corruption-by-institution.csv was extracted from Our World in Data- https://ourworldindata.org/corruption for 2013-2017.
+fatal-police-shootings-data.csv contains US police shootings from data collected by The Washington Post- https://www.washingtonpost.com/graphics/investigations/police-shootings-database/ or can be found on Github- https://github.com/washingtonpost/data-police-shootings/tree/master/v1
+states.csv has abreviatins of US states- https://github.com/jasonong/List-of-US-States/blob/master/states.csv
+co-est2022-alldata.csv and co-est2020 are the US population data sets from https://www2.census.gov/programs-surveys/popest/datasets/2020-2022/counties/totals/ and https://www2.census.gov/programs-surveys/popest/datasets/2010-2020/counties/totals/ respectively.
+Folder : castagainstpolicep contains: Table 16A.5_0.xlsx, Table 16A.5_2.xlsx, Table 16A.5_1.xlsx, Table 16A._5.xlsx. They are regestered cases against police in India from 2013-2017, extracted from NCRB database- https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?page=21
+trust-in-others-vs-trust-in-police.csv is a europe dataset from Our world in Data- https://ourworldindata.org/grapher/trust-in-others-vs-trust-in-police
+PH data.xlsx is Philippines drug war casualities from https://data.world/stabile-center/ph-drug-war#.
