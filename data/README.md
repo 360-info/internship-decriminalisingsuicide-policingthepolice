@@ -18,3 +18,7 @@ co-est2022-alldata.csv and co-est2020 are the US population data sets from https
 Folder : castagainstpolicep contains: Table 16A.5_0.xlsx, Table 16A.5_2.xlsx, Table 16A.5_1.xlsx, Table 16A._5.xlsx. They are regestered cases against police in India from 2013-2017, extracted from NCRB database- https://ncrb.gov.in/en/crime-in-india-table-addtional-table-and-chapter-contents?page=21
 trust-in-others-vs-trust-in-police.csv is a europe dataset from Our world in Data- https://ourworldindata.org/grapher/trust-in-others-vs-trust-in-police
 PH data.xlsx is Philippines drug war casualities from https://data.world/stabile-center/ph-drug-war#.
+
+Presentation Folder
+This contains 19 cleaned datasets of the above mentioned for presentation visualization purposes only.
+Similarly, HDIStatus2.csv and join_HDI_suicide.csv are in the data folder for easy report visualization.
